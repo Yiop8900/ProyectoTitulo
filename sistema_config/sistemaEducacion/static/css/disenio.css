@@ -1,0 +1,43 @@
+.tituloCole
+{
+    text-align: center;
+    margin-top: 2%;
+}
+
+.contenedorImg
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.contenido
+{
+    text-align: center;
+}
+
+.contenido img {
+    max-width: 65%;
+    max-height: 60%;
+    display: inline-block;
+}
+
+.info
+{
+    text-align: center;
+    margin-top: 2%;
+}
+
+.acerca
+{
+    text-align: center;
+    margin-top: 2%;
+}
+
+.eventos
+{
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 5%;
+}
