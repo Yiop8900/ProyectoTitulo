@@ -1,0 +1,60 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%; /* Establece un alto mínimo de la ventana de visualización */
+  }
+  
+  main {
+    flex-grow: 1; /* Hace que el contenido principal ocupe todo el espacio disponible */
+  }
+  
+  footer {
+    background-color: rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 10px;
+  }
+  
+.curso
+{
+    border: 2px solid black; 
+    border-radius: 10px; 
+    margin: 2%; 
+    background-color: white;
+    transition: transform 0.3s;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6); 
+}
+
+    .curso:hover
+    {
+        transform: scale(1.01);
+    }
+
+
+#interiorCurso
+{
+    margin: 1%;
+}
+
+
+#btnCurso {
+    background-color: #9ce0e9; /* Color de fondo inicial */
+    color: #000000; /* Color de texto inicial */
+    padding: 10px 20px;
+    border: none;
+    margin-right: 1%;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Estilo cuando se pasa el cursor sobre el botón */
+  #btnCurso:hover {
+    background-color: #75aab1; /* Nuevo color de fondo en hover */
+    color: #000000; /* Nuevo color de texto en hover */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  }
+
+.titCurso
+{
+    margin-top: 2%;
+}

@@ -1,3 +1,10 @@
+body
+{
+    background: linear-gradient(to right, #a5e4ec, #deadf1);
+}
+
+
+  
 .tituloCole
 {
     text-align: center;
@@ -21,6 +28,8 @@
     max-width: 65%;
     max-height: 60%;
     display: inline-block;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
 }
 
 .info
@@ -35,9 +44,47 @@
     margin-top: 2%;
 }
 
+
+.eve
+{
+    margin-top: 2%;
+}
+
 .eventos
 {
+    margin-top: 2%;
     margin-left: 2%;
     margin-right: 2%;
     margin-bottom: 5%;
+}
+
+.card
+{
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+
+img{
+    border-radius: 15px ;
+}
+
+.frame
+{
+    border-radius: 15px;
+}
+
+#interiorCurso
+{
+    margin: 2%;
+}
+
+.curso
+{
+    margin-top: 2%;
 }

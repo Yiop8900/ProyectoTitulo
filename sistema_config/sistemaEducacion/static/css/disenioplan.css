@@ -1,0 +1,25 @@
+.tituloPlan
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.formularioPlan
+{
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+}
+
+.shadow
+{
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.tablaPlan
+{
+    border-radius: 20px;
+}
