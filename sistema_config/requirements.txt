@@ -2,3 +2,4 @@ pip install -m requirements.txt
 
 django
 requests
+cx_Oracle
