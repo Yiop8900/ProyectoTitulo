@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
 from .views import *
 import requests
 
@@ -12,17 +12,17 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
-def sistema_Profe(reuqest):
-    return render(reuqest, 'Profesor/sistema_Profe.html')
+def sistema_Profe(request):
+    return render(request, 'Profesor/sistema_Profe.html')
 
-def clase(reuqest):
-    return render(reuqest, 'Profesor/clase.html')
+def clase(request):
+    return render(request, 'Profesor/clase.html')
 
-def planificar(reuqest):
-    return render(reuqest, 'Profesor/planificar.html')
+def planificar(request):
+    return render(request, 'Profesor/planificar.html')
 
-def calificar(reuqest):
-    return render(reuqest, 'Profesor/calificar.html')
+def calificar(request):
+    return render(request, 'Profesor/calificar.html')
 
-def iniciar_sesion(reuqest):
-    return render(reuqest, 'iniciar_sesion.html')
+def iniciar_sesion(request):
+    return render(request, 'iniciar_sesion.html')

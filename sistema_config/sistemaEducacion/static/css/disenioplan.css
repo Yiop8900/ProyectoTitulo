@@ -1,5 +1,4 @@
-.tituloPlan
-{
+.tituloPlan {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -7,19 +6,39 @@
     margin-bottom: 2%;
 }
 
-.formularioPlan
-{
+.formularioPlan {
     margin-left: 2%;
     margin-right: 2%;
     margin-bottom: 2%;
 }
 
-.shadow
-{
+.shadow {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-.tablaPlan
-{
+.tablaPlan {
     border-radius: 20px;
 }
+
+.contenedorSes {
+    margin-top: 7%;
+    margin-bottom: 12%;
+    margin-left: 40%;
+    margin-right: 40%;
+    border: 2px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    border-radius: 25px;
+    background: white;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.7);
+}
+
+.formularioSes {
+    margin: 5%;
+}
+
+@media screen and (max-width: 1180px) {
+    /* Cuando la pantalla es más pequeña que 768px, cambia los márgenes */
+    .contenedorSes {
+      margin: 5vw; /* Márgenes iguales en todos los lados */
+    }
+  }
