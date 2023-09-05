@@ -4,29 +4,133 @@
 
 
 <div class="container-fluid">
-    <div class="row">
-      <div class="col-xl-8" style="border-right: 3px solid  black;">
-        <h1 class="titCurso" style="text-align: center;">8vo | Profesor Asignado</h1>
-        <div class="curso" >
-            <div id="interiorCurso" >
-              <h5 style="text-align: center; margin: 10%;">Planificacion</h5>
+  <div class="row">
+    <div class="col-xl-8" style="border-right: 3px solid  black;">
+      <h1 class="titCurso" style="text-align: center;">8vo | Profesor Asignado</h1>
+      <div class="d-grid gap-2">
+        <button class="btn btnblanco"
+          style="border: 1px solid black; background-color: white; padding: 5%; margin-right: 5%; margin-left: 5%; margin-top: 5%; "
+          type="button">Planificacion</button>
+        <button class="btn btnblanco"
+          style="border: 1px solid black; background-color: white; padding: 5%; margin-right: 5%; margin-left: 5%; margin-top: 2%; margin-bottom: 5%;"
+          type="button">Notificar Evento</button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h2 class="titCurso" style="text-align: center; margin-bottom: 6%; margin-top: 5%;">Lista Estudiantes</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Foto</th>
+            <th>RUT</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-toggle="modal" data-target="#alumnoModal">
+            <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50" height="50"></a>
+            </td>
+            <td>12345678-9</td>
+            <td>Juan</td>
+            <td>Pérez</td>
+          </tr>
+          <tr data-toggle="modal" data-target="#alumnoModal">
+            <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50" height="50"></a>
+            </td>
+            <td>87654321-0</td>
+            <td>María</td>
+            <td>Gómez</td>
+          </tr>
+          <tr data-toggle="modal" data-target="#alumnoModal">
+            <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50" height="50"></a>
+            </td>
+            <td>23456789-1</td>
+            <td>Pedro</td>
+            <td>López</td>
+          </tr>
+          <tr data-toggle="modal" data-target="#alumnoModal">
+            <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50" height="50"></a>
+            </td>
+            <td>23456789-1</td>
+            <td>Pedro</td>
+            <td>López</td>
+          </tr>
+          <tr data-toggle="modal" data-target="#alumnoModal">
+            <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50" height="50"></a>
+            </td>
+            <td>23456789-1</td>
+            <td>Pedro</td>
+            <td>López</td>
+          </tr>
+          <tr data-toggle="modal" data-target="#alumnoModal">
+            <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50" height="50"></a>
+            </td>
+            <td>23456789-1</td>
+            <td>Pedro</td>
+            <td>López</td>
+          </tr>
+          <tr data-toggle="modal" data-target="#alumnoModal">
+            <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50" height="50"></a>
+            </td>
+            <td>23456789-1</td>
+            <td>Pedro</td>
+            <td>López</td>
+          </tr>
+          <!-- Agrega más filas para otros alumnos -->
+        </tbody>
+      </table>
+
+      <!-- Modal -->
+      <div class="modal fade" id="alumnoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Información del Alumno</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="{% static 'img/alumno.png' %}" alt="Imagen Alumno" width="100%">
+                </div>
+                <div class="col-md-4">
+                  <p><strong>Nombre:</strong> Juan Pérez</p>
+                  <p><strong>RUT:</strong> 12345678-9</p>
+                  <p><strong>Edad:</strong> 15 anios</p>
+                </div>
+                <div class="col-md-4">
+                  <p><strong>Nombre Apoderado:</strong> Maria de las Nieves</p>
+                  <p><strong>Numero Emergencia:</strong> +56985246585</p>
+                  <p><strong>Correo Electronico:</strong> maria@gmail.com</p>
+                </div>
+                <!-- Aquí puedes mostrar la información del alumno -->
+                <div class="tituloAlumnado">
+                  <h4 style="text-align: center; margin-top: 2%;">Informacion Adicional</h4>
+                  <p style="margin-left: 2%; margin-right: 2%;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit accusantium rem deserunt doloribus
+                    beatae nulla consequuntur quas ipsum laborum! Quae, odio amet. Excepturi, eveniet provident id
+                    corporis non nam laboriosam?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id, quam
+                    tenetur repellat sint maiores quia, nulla veritatis, nostrum quas ad vitae perspiciatis repudiandae
+                    fugit? Atque, nam asperiores! Magni, fugit earum!Lorem</p>
+                </div>
+
+                <!-- Agrega más detalles según tus necesidades -->
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
           </div>
-          <div class="curso" >
-            <div id="interiorCurso" >
-              <h5 style="text-align: center; margin: 10%;">Notificar Evento</h5>
-            
-            </div>
-          </div>    
-        
-      </div>
-      <div class="col-md-4 d-none d-xl-block">
-        <h2 class="titCurso" style="text-align: center; margin-bottom: 6%;">Lista Estudiantes</h2>
         </div>
+      </div>
     </div>
   </div>
-  
-  
-  
+</div>
+
+
+
 
 {% endblock %}

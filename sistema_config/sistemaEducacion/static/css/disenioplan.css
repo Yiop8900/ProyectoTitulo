@@ -36,9 +36,28 @@
     margin: 5%;
 }
 
+
+
 @media screen and (max-width: 1180px) {
+
     /* Cuando la pantalla es más pequeña que 768px, cambia los márgenes */
     .contenedorSes {
-      margin: 5vw; /* Márgenes iguales en todos los lados */
+        margin: 5vw;
+        /* Márgenes iguales en todos los lados */
     }
-  }
+}
+
+.fixed-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    /* Ajusta esto según la altura de tu footer */
+    background-color: #333;
+    /* Cambia el color de fondo según tus preferencias */
+    color: #fff;
+    /* Cambia el color de texto según tus preferencias */
+    text-align: center;
+    line-height: 100px;
+    /* Ajusta esto para centrar verticalmente el contenido del footer */
+}
