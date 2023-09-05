@@ -11,4 +11,5 @@ urlpatterns = [
     path('clase/', clase, name='clase'), 
     path('iniciar_sesion/', iniciar_sesion, name='iniciar_sesion'),
     path('apoderado/', apoderado , name= 'apoderado'),
+    path('revisar_notas/', revisar_notas , name= 'revisar_notas'),
 ]

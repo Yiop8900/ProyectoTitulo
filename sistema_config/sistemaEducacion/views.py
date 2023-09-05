@@ -29,3 +29,6 @@ def iniciar_sesion(request):
 
 def apoderado (request):
     return render (request, 'Apoderado/apoderado.html')
+
+def revisar_notas (request):
+    return render (request, 'Apoderado/revisar_notas.html')

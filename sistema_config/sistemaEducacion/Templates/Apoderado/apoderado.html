@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block contenido %}
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4" style="border-right: 3px solid  black;">
@@ -12,41 +11,37 @@
             </iframe>
         </div>
         <div class="col-md-7 d-none d-xl-block">
-            <h2 class="titCurso" style="text-align: center; margin-bottom: 2%;">Cursos de su pupilo</h2>
+            <h2 class="titCurso" style="text-align: center; margin-bottom: 2%;">Cursos de su pupilo (Posibles cambios)</h2>
             <div class="curso">
                 <div id="interiorCurso">
                     <h5>Matematicas | Profesor: Profesor asignado en un futuro</h5>
                     <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso">Revisar Planificación</a>
-                    <a href="{% url 'calificar' %}" type="button" class="btn" id="btnCurso">Revisar Calificaciones</a>
+                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso">Revisar Calificaciones</a>
                 </div>
             </div>
             <div class="curso">
                 <div id="interiorCurso">
                     <h5>Ciencias | Profesor: Profesor asignado en un futuro</h5>
                     <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso">Revisar Planificación</a>
-                    <a href="{% url 'calificar' %}" type="button" class="btn" id="btnCurso">Revisar Calificaciones</a>
-                </div>
+                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso">Revisar Calificaciones</a>                </div>
             </div>
             <div class="curso">
                 <div id="interiorCurso">
                     <h5>Lenguaje | Profesor: Profesor asignado en un futuro</h5>
                     <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso">Revisar Planificación</a>
-                    <a href="{% url 'calificar' %}" type="button" class="btn" id="btnCurso">Revisar Calificaciones</a>
-                </div>
+                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso">Revisar Calificaciones</a>                </div>
             </div>
             <div class="curso">
                 <div id="interiorCurso">
                     <h5>Musica | Profesor: Profesor asignado en un futuro</h5>
                     <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso">Revisar Planificación</a>
-                    <a href="{% url 'calificar' %}" type="button" class="btn" id="btnCurso">Revisar Calificaciones</a>
-                </div>
+                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso">Revisar Calificaciones</a>                </div>
             </div>
             <div class="curso">
                 <div id="interiorCurso">
                     <h5>Ingles | Profesor: Profesor asignado en un futuro</h5>
                     <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso">Revisar Planificación</a>
-                    <a href="{% url 'calificar' %}" type="button" class="btn" id="btnCurso">Revisar Calificaciones</a>
-                </div>
+                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso">Revisar Calificaciones</a>                </div>
             </div>
         </div>
     </div>
