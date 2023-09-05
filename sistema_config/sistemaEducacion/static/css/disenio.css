@@ -88,3 +88,25 @@ img{
 {
     margin-top: 2%;
 }
+
+.cursoAlumno
+{
+    margin-top: 10%;
+}
+
+
+.tabla{
+    color: #a5e4ec;
+}
+
+#miVentanaEmergente {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
