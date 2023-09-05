@@ -9,6 +9,6 @@ urlpatterns = [
     path('calificar/', calificar, name='calificar'),    
     path('planificar/', planificar, name='planificar'),
     path('clase/', clase, name='clase'), 
-    path('iniciar_sesion/', iniciar_sesion, name='iniciar_sesion'),  
-
+    path('iniciar_sesion/', iniciar_sesion, name='iniciar_sesion'),
+    path('apoderado/', apoderado , name= 'apoderado'),
 ]

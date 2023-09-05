@@ -26,3 +26,6 @@ def calificar(request):
 
 def iniciar_sesion(request):
     return render(request, 'iniciar_sesion.html')
+
+def apoderado (request):
+    return render (request, 'Apoderado/apoderado.html')
