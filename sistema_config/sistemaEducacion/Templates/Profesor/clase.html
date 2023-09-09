@@ -10,10 +10,10 @@
       <div class="d-grid gap-2">
         <button class="btn btnblanco"
           style="border: 1px solid black; background-color: white; padding: 5%; margin-right: 5%; margin-left: 5%; margin-top: 5%; "
-          type="button">Planificacion</button>
-        <button class="btn btnblanco"
+          type="button" data-bs-toggle="modal" data-bs-target="#planificacionModal">Planificacion</button>
+        <a class="btn btnblanco"
           style="border: 1px solid black; background-color: white; padding: 5%; margin-right: 5%; margin-left: 5%; margin-top: 2%; margin-bottom: 5%;"
-          type="button">Notificar Evento</button>
+          type="button" href="{% url 'notificar'%}">Notificar Evento</a>
       </div>
     </div>
     <div class="col-md-4">
@@ -110,7 +110,8 @@
                 <!-- Aquí puedes mostrar la información del alumno -->
                 <div class="tituloAlumnado">
                   <h4 style="text-align: center; margin-top: 2%;">Informacion Adicional</h4>
-                  <p style="margin-left: 2%; margin-right: 2%;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit accusantium rem deserunt doloribus
+                  <p style="margin-left: 2%; margin-right: 2%;">Lorem ipsum dolor sit, amet consectetur adipisicing
+                    elit. Velit accusantium rem deserunt doloribus
                     beatae nulla consequuntur quas ipsum laborum! Quae, odio amet. Excepturi, eveniet provident id
                     corporis non nam laboriosam?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id, quam
                     tenetur repellat sint maiores quia, nulla veritatis, nostrum quas ad vitae perspiciatis repudiandae
@@ -126,10 +127,29 @@
           </div>
         </div>
       </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="planificacionModal" tabindex="-1" aria-labelledby="planificacionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content" style=" height: 900px;">
+            <div class="modal-header">
+              <h5 class="modal-title" id="pdfModalLabel">Visor de PDF</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <!-- Contenedor del visor de PDF -->
+              <iframe src="{% static 'PDF/Definicion Proyecto APT Fase1.pdf' %}" width="100%" height="90%"
+                style="margin-bottom: 2%;"></iframe>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
 
 
 

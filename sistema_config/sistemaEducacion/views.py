@@ -32,3 +32,6 @@ def apoderado (request):
 
 def revisar_notas (request):
     return render (request, 'Apoderado/revisar_notas.html')
+
+def notificar (request):
+    return render (request, 'Profesor/notificar.html')
