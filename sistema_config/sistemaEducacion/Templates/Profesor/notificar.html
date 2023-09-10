@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+
+<div class="container-fluid row" >
+    <div class="col-md" style="margin-left: 2%; margin-right: 2%;">
+        <h2 style="text-align: center; margin-bottom: 6%; margin-top: 5%;">Formulario de Reunión</h2>
+        <form class="formularioReunion">
+            <div class="mb-3">
+                <label for="fecha" class="form-label">Fecha de la Reunion</label>
+                <input type="date" class="form-control shadow" id="fecha" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Asunto del Mensaje</label>
+                <input class="form-control shadow" id="exampleFormControlTextarea1" rows="3"></input>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Cuerpo del Mensaje</label>
+                <textarea class="form-control shadow" id="exampleFormControlTextarea1" rows="7"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Notificar</button>
+        </form>
+    </div>
+    <div class="col-md">
+        <h2 class="titCurso" style="text-align: center; margin-bottom: 6%; margin-top: 5%;">Lista Estudiantes</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Foto</th>
+                    <th>RUT</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-toggle="modal" data-target="#alumnoModal">
+                    <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50"
+                                height="50"></a>
+                    </td>
+                    <td>12345678-9</td>
+                    <td>Juan</td>
+                    <td>Pérez</td>
+                </tr>
+                <tr data-toggle="modal" data-target="#alumnoModal">
+                    <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50"
+                                height="50"></a>
+                    </td>
+                    <td>87654321-0</td>
+                    <td>María</td>
+                    <td>Gómez</td>
+                </tr>
+                <tr data-toggle="modal" data-target="#alumnoModal">
+                    <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50"
+                                height="50"></a>
+                    </td>
+                    <td>23456789-1</td>
+                    <td>Pedro</td>
+                    <td>López</td>
+                </tr>
+                <tr data-toggle="modal" data-target="#alumnoModal">
+                    <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50"
+                                height="50"></a>
+                    </td>
+                    <td>23456789-1</td>
+                    <td>Pedro</td>
+                    <td>López</td>
+                </tr>
+                <tr data-toggle="modal" data-target="#alumnoModal">
+                    <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50"
+                                height="50"></a>
+                    </td>
+                    <td>23456789-1</td>
+                    <td>Pedro</td>
+                    <td>López</td>
+                </tr>
+                <tr data-toggle="modal" data-target="#alumnoModal">
+                    <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50"
+                                height="50"></a>
+                    </td>
+                    <td>23456789-1</td>
+                    <td>Pedro</td>
+                    <td>López</td>
+                </tr>
+                <tr data-toggle="modal" data-target="#alumnoModal">
+                    <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50"
+                                height="50"></a>
+                    </td>
+                    <td>23456789-1</td>
+                    <td>Pedro</td>
+                    <td>López</td>
+                </tr>
+                <!-- Agrega más filas para otros alumnos -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script>
+    // Obtener el campo de fecha por su ID
+    var fechaInput = document.getElementById("fecha");
+
+    // Obtener la fecha actual en formato ISO (AAAA-MM-DD)
+    var fechaActual = new Date().toISOString().split("T")[0];
+
+    // Establecer el atributo "min" del campo de fecha para bloquear fechas anteriores
+    fechaInput.setAttribute("min", fechaActual);
+</script>
+
+
+{% endblock %}

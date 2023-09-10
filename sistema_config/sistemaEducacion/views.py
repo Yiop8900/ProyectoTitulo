@@ -28,10 +28,25 @@ def iniciar_sesion(request):
     return render(request, 'iniciar_sesion.html')
 
 def apoderado (request):
-    return render (request, 'Apoderado/apoderado.html')
+    return render (request, 'Apoderados_Alumnos/apoderado.html')
 
 def revisar_notas (request):
-    return render (request, 'Apoderado/revisar_notas.html')
+    return render (request, 'Apoderados_Alumnos/revisar_notas.html')
 
 def notificar (request):
     return render (request, 'Profesor/notificar.html')
+
+def admin_ap (request):
+    return render (request, 'Administrador/admin_apoderado.html')
+
+def admin_al (request):
+    return render (request, 'Administrador/admin_alum.html')
+
+def admin_pro (request):
+    return render (request, 'Administrador/admin_profe.html')
+
+def admin_user (request):
+    return render (request, 'Administrador/admin_user.html')
+
+def control_plan (request):
+    return render (request, 'Administrador/control_plan.html')
