@@ -2,6 +2,134 @@
 {% load static %}
 {% block contenido %}
 
+<div class="container-fluid row">
+    <div class="col-md-2" style="margin-top: 2%;">
+        <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; " href="{% url 'admin_apoderado' %}">Administrar Apoderados ></a></li>
+        <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; " href="{% url 'admin_profe' %}">Administrar Profesores ></a></li>
+        <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; " href="{% url 'admin_alum' %}">Administrar Alumnos ></a></li>
+        <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; " href="{% url 'admin_user' %}">Administrar Usuarios ></a></li>
+        <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; " href="{% url 'control_plan' %}">Control de Planificaciones ></a></li>
+    </div>
+    <div class="col-md-10">
+        <div class="row">
+            <div class="col-md-4" style="border-left: 1px solid black;">
+                <h2 class="titCurso" style="text-align: center; margin-bottom: 1%; ">Administrar Profesores</h2>
+                <form class="formularioReunion" style="margin-bottom: 5%;">
+                    <div class="mb-3">
+                        <label for="fecha" class="form-label">Rut:</label>
+                        <input type="text" class="form-control shadow" id="rut" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Nombres:</label>
+                        <input class="form-control shadow" id="exampleFormControlTextarea1"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Apellido</label>
+                        <input class="form-control shadow" id="exampleFormControlTextarea1" ></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Direccion</label>
+                        <input class="form-control shadow" id="exampleFormControlTextarea1" ></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Numero Telefonico</label>
+                        <input class="form-control shadow" id="exampleFormControlTextarea1" ></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Correo Electronico</label>
+                        <input class="form-control shadow" id="exampleFormControlTextarea1" ></input>
+                    </div>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button type="submit" class="btn btn-primary">Modificar</button>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+            <div class="col-md-8">
+              <h2 class="titCurso" style="text-align: center;">Lista Profesores</h2>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>RUT</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Direccion</th>
+                    <th>Numero Telefonico</th>
+                    <th>Correo Electronico</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-toggle="modal" data-target="#alumnoModal">
+                    
+                    <td>12345678-9</td>
+                    <td>Juan</td>
+                    <td>Pérez</td>
+                    <td>Su casa #526</td>
+                    <td>+56924568524</td>
+                    <td>apoderado@gmail.com</td>
+                  </tr>
+                  <tr data-toggle="modal" data-target="#alumnoModal">
+                   
+                    <td>87654321-0</td>
+                    <td>María</td>
+                    <td>Gómez</td>
+                    <td>Su casa #526</td>
+                    <td>+56924568524</td>
+                    <td>apoderado@gmail.com</td>
+                  </tr>
+                  <tr data-toggle="modal" data-target="#alumnoModal">
+                 
+                    <td>23456789-1</td>
+                    <td>Pedro</td>
+                    <td>López</td>
+                    <td>Su casa #526</td>
+                    <td>+56924568524</td>
+                    <td>apoderado@gmail.com</td>
+                  </tr>
+                  <tr data-toggle="modal" data-target="#alumnoModal">
+                    
+                    <td>23456789-1</td>
+                    <td>Pedro</td>
+                    <td>López</td>
+                    <td>Su casa #526</td>
+                    <td>+56924568524</td>
+                    <td>apoderado@gmail.com</td>
+                  </tr>
+                  <tr data-toggle="modal" data-target="#alumnoModal">
+                   
+                    <td>23456789-1</td>
+                    <td>Pedro</td>
+                    <td>López</td>
+                    <td>Su casa #526</td>
+                    <td>+56924568524</td>
+                    <td>apoderado@gmail.com</td>
+                  </tr>
+                  <tr data-toggle="modal" data-target="#alumnoModal">
+                  
+                    <td>23456789-1</td>
+                    <td>Pedro</td>
+                    <td>López</td>
+                    <td>Su casa #526</td>
+                    <td>+56924568524</td>
+                    <td>apoderado@gmail.com</td>
+                  </tr>
+                  <tr data-toggle="modal" data-target="#alumnoModal">
+                   
+                    <td>23456789-1</td>
+                    <td>Pedro</td>
+                    <td>López</td>
+                    <td>Su casa #526</td>
+                    <td>+56924568524</td>
+                    <td>apoderado@gmail.com</td>
+                  </tr>
+                  <!-- Agrega más filas para otros alumnos -->
+                </tbody>
+              </table>
+        
+              
+            </div>
+        </div>
+    </div>
+  </div>
 
 
 

@@ -1,18 +1,6 @@
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%; /* Establece un alto mínimo de la ventana de visualización */
-  }
-  
-  main {
-    flex-grow: 1; /* Hace que el contenido principal ocupe todo el espacio disponible */
-  }
-  
-  footer {
-    background-color: rgba(0, 0, 0, 0.2);
-    text-align: center;
-    padding: 10px;
-  }
+
+
+
   
 .curso
 {
