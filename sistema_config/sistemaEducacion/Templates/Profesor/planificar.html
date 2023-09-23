@@ -14,25 +14,28 @@
     <div class="row">
         <div class="col-md-4">
             <form class="formularioPlan">
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Objetivo de la clase</label>
-                    <input type="text" class="form-control shadow" id="exampleFormControlInput1"
-                        placeholder="Objetivo:">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Actividad 1</label>
-                    <textarea class="form-control shadow" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Actividad 2</label>
-                    <textarea class="form-control shadow" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Actividad 3</label>
-                    <textarea class="form-control shadow" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <div style="height: 500px; overflow-y: scroll;" id="inputs-extra">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Objetivo de la clase</label>
+                        <input type="text" class="form-control shadow" id="exampleFormControlInput1"
+                            placeholder="Objetivo:">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Semana 1</label>
+                        <textarea class="form-control shadow" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Actividad 2</label>
+                        <textarea class="form-control shadow" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Actividad 3</label>
+                        <textarea class="form-control shadow" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar Planificacion</button>
                 <button type="submit" class="btn btn-warning">Editar</button>
+                <button type="button" class="btn btn-success" id="agregar">Agregar Semanas</button>
             </form>
         </div>
         <div class="col-md-4">
@@ -64,5 +67,25 @@
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        var contador = 4;
+
+        $("#agregar").click(function () {
+            // Crear un nuevo campo de entrada
+            var nuevoInputHTML =
+                '<div class="mb-3">' +
+                '<label for="input' + contador + '">Semana ' + contador + ':</label>' +
+                '<textarea type="text" class="form-control" id="input' + contador + '" rows="3">' +
+                '</textarea>';
+
+            // Agregar el nuevo campo de entrada al formulario
+            $("#inputs-extra").append(nuevoInputHTML);
+
+            // Incrementar el contador
+            contador++;
+        });
+    });
+</script>
 
 {% endblock %}
