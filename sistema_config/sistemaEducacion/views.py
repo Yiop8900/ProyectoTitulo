@@ -37,6 +37,13 @@ def notificar (request):
     return render (request, 'Profesor/notificar.html')
 
 def admin_ap (request):
+
+
+    query = "call procedure listar_alumno()"
+    query1 = 'call procedure insertar_apoderado()'
+
+
+
     return render (request, 'Administrador/admin_apoderado.html')
 
 def admin_al (request):
