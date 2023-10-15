@@ -1,6 +1,8 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
 from .views import *
 import requests
+from django.db import connections
+
 
 # Create your views here.
 def base(request):
@@ -39,8 +41,7 @@ def notificar (request):
 def admin_ap (request):
 
 
-    query = "call procedure listar_alumno()"
-    query1 = 'call procedure insertar_apoderado()'
+    
 
 
 

@@ -16,11 +16,7 @@ class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True)
     correo = models.CharField(max_length=50)
     contrasenia = models.CharField(max_length=20)
-    tipo_usuario = models.IntegerField()
     rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
-    alumno_run = models.IntegerField(null=True)
-    profesor_run = models.IntegerField(null=True)
-    apoderado_run = models.IntegerField(null=True)
 
 class Apoderado(models.Model):
     run = models.AutoField(primary_key=True)
