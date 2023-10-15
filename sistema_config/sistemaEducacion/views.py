@@ -1,8 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
 from .views import *
-import requests
-from django.db import connections
-
+from django.db import connection
+import cx_Oracle
 
 # Create your views here.
 def base(request):
@@ -38,14 +37,8 @@ def revisar_notas (request):
 def notificar (request):
     return render (request, 'Profesor/notificar.html')
 
-def admin_ap (request):
-
-
-    
-
-
-
-    return render (request, 'Administrador/admin_apoderado.html')
+def admin_ap(request):
+    return render(request, 'Administrador/admin_apoderado.html')
 
 def admin_al (request):
     return render (request, 'Administrador/admin_alum.html')
