@@ -3,4 +3,3 @@
 django
 requests
 cx_Oracle
-fpdf
