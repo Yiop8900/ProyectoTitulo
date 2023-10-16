@@ -45,7 +45,7 @@
             <select id="" class="form-select">
               <option>Selecciona...</option>
               {% for cr in correo %}
-              <option value="" > {{ cr.0 }} </option>
+              <option value="{{ cr.0 }}" > {{ cr.1 }}</option>
               {% endfor %}
             </select>
           </div>

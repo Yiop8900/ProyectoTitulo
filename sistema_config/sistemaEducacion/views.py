@@ -65,7 +65,7 @@ def notificar (request):
 def admin_ap(request):
     data = {
         'apoderados' : listar_apoderado(),
-        'correo': cbo_usuario(),
+        'correo': listar_usuarios(),
     }
 
     return render(request, 'Administrador/admin_apoderado.html', data)
