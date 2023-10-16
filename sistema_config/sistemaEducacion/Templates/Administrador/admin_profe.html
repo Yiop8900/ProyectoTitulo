@@ -51,77 +51,25 @@
                   <tr>
                     <th>RUT</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
                     <th>Direccion</th>
                     <th>Numero Telefonico</th>
-                    <th>Correo Electronico</th>
+                    <th>Correo</th>
+                    <th>Comuna</th>
+                    <th>Curso Asignado</th>
                   </tr>
                 </thead>
                 <tbody>
+                  {% for pro in profesores %}
                   <tr data-toggle="modal" data-target="#alumnoModal">
-                    
-                    <td>12345678-9</td>
-                    <td>Juan</td>
-                    <td>Pérez</td>
-                    <td>Su casa #526</td>
-                    <td>+56924568524</td>
-                    <td>apoderado@gmail.com</td>
+                    <td>{{ pro.0 }}</td>
+                    <td>{{ pro.1 }}</td>
+                    <td>{{ pro.2 }}</td>
+                    <td>{{ pro.3 }}</td>
+                    <td>{{ pro.6 }}</td>
+                    <td>{{ pro.4 }}</td>
+                    <td>{{ pro.5 }}</td>
                   </tr>
-                  <tr data-toggle="modal" data-target="#alumnoModal">
-                   
-                    <td>87654321-0</td>
-                    <td>María</td>
-                    <td>Gómez</td>
-                    <td>Su casa #526</td>
-                    <td>+56924568524</td>
-                    <td>apoderado@gmail.com</td>
-                  </tr>
-                  <tr data-toggle="modal" data-target="#alumnoModal">
-                 
-                    <td>23456789-1</td>
-                    <td>Pedro</td>
-                    <td>López</td>
-                    <td>Su casa #526</td>
-                    <td>+56924568524</td>
-                    <td>apoderado@gmail.com</td>
-                  </tr>
-                  <tr data-toggle="modal" data-target="#alumnoModal">
-                    
-                    <td>23456789-1</td>
-                    <td>Pedro</td>
-                    <td>López</td>
-                    <td>Su casa #526</td>
-                    <td>+56924568524</td>
-                    <td>apoderado@gmail.com</td>
-                  </tr>
-                  <tr data-toggle="modal" data-target="#alumnoModal">
-                   
-                    <td>23456789-1</td>
-                    <td>Pedro</td>
-                    <td>López</td>
-                    <td>Su casa #526</td>
-                    <td>+56924568524</td>
-                    <td>apoderado@gmail.com</td>
-                  </tr>
-                  <tr data-toggle="modal" data-target="#alumnoModal">
-                  
-                    <td>23456789-1</td>
-                    <td>Pedro</td>
-                    <td>López</td>
-                    <td>Su casa #526</td>
-                    <td>+56924568524</td>
-                    <td>apoderado@gmail.com</td>
-                  </tr>
-                  <tr data-toggle="modal" data-target="#alumnoModal">
-                   
-                    <td>23456789-1</td>
-                    <td>Pedro</td>
-                    <td>López</td>
-                    <td>Su casa #526</td>
-                    <td>+56924568524</td>
-                    <td>apoderado@gmail.com</td>
-                  </tr>
-                  <!-- Agrega más filas para otros alumnos -->
+                  {% endfor %}
                 </tbody>
               </table>
         

@@ -51,10 +51,16 @@ def admin_al (request):
     return render (request, 'Administrador/admin_alum.html', data)
 
 def admin_pro (request):
-    return render (request, 'Administrador/admin_profe.html')
+    data = {
+        'profesores': listar_profesores()
+    }
+    return render (request, 'Administrador/admin_profe.html',data)
 
 def admin_user (request):
-    return render(request, 'Administrador/admin_user.html')
+    data = {
+        'usuarios': listar_usuarios()
+    }
+    return render(request, 'Administrador/admin_user.html', data)
 
 def control_plan (request):
     return render (request, 'Administrador/control_plan.html')
@@ -91,16 +97,31 @@ def listar_alumnos():
 
     return lista_al
 
-def listar_apoderado():
+def listar_profesores():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     out_cur = django_cursor.connection.cursor()
 
-    cursor.callproc("LIST_APODERADO", [out_cur])
+    cursor.callproc("LIST_PROFESOR", [out_cur])
 
-    lista_apo = []
+    lista_pro = []
 
     for fila in out_cur:
-        lista_apo.append(fila)
+        lista_pro.append(fila)
 
-    return lista_apo
+    return lista_pro
+
+
+def listar_usuarios():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("LIST_USUARIO", [out_cur])
+
+    lista_user = []
+
+    for fila in out_cur:
+        lista_user.append(fila)
+
+    return lista_user
