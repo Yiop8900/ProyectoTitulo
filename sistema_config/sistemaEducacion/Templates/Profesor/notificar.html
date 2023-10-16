@@ -2,7 +2,9 @@
 {% load static %}
 {% block contenido %}
 
+
 <div class="container-fluid row" >
+    <a type="button" class="btn btn-secondary" href="{% url 'sistema_Profe' %}">⬅ Volver</a>
     <div class="col-md" style="margin-left: 2%; margin-right: 2%;">
         <h2 style="text-align: center; margin-bottom: 6%; margin-top: 5%;">Formulario de Reunión</h2>
         <form class="formularioReunion">
@@ -23,74 +25,27 @@
         </form>
     </div>
     <div class="col-md">
-        <h2 class="titCurso" style="text-align: center; margin-bottom: 6%; margin-top: 5%;">Lista Estudiantes</h2>
+        <h2 class="titCurso" style="text-align: center; margin-bottom: 6%; margin-top: 5%;">Lista Apoderados</h2>
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Foto</th>
                     <th>RUT</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
+                    <th>Correo</th>
                 </tr>
             </thead>
             <tbody>
+                {% for a in apoderados %}
                 <tr data-toggle="modal" data-target="#alumnoModal">
                     <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50"
                                 height="50"></a>
                     </td>
-                    <td>12345678-9</td>
-                    <td>Juan</td>
-                    <td>Pérez</td>
+                    <td>{{ a.0 }}</td>
+                    <td>{{ a.1 }}</td>
+                    <td>{{ a.5 }}</td>
                 </tr>
-                <tr data-toggle="modal" data-target="#alumnoModal">
-                    <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50"
-                                height="50"></a>
-                    </td>
-                    <td>87654321-0</td>
-                    <td>María</td>
-                    <td>Gómez</td>
-                </tr>
-                <tr data-toggle="modal" data-target="#alumnoModal">
-                    <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50"
-                                height="50"></a>
-                    </td>
-                    <td>23456789-1</td>
-                    <td>Pedro</td>
-                    <td>López</td>
-                </tr>
-                <tr data-toggle="modal" data-target="#alumnoModal">
-                    <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50"
-                                height="50"></a>
-                    </td>
-                    <td>23456789-1</td>
-                    <td>Pedro</td>
-                    <td>López</td>
-                </tr>
-                <tr data-toggle="modal" data-target="#alumnoModal">
-                    <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50"
-                                height="50"></a>
-                    </td>
-                    <td>23456789-1</td>
-                    <td>Pedro</td>
-                    <td>López</td>
-                </tr>
-                <tr data-toggle="modal" data-target="#alumnoModal">
-                    <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50"
-                                height="50"></a>
-                    </td>
-                    <td>23456789-1</td>
-                    <td>Pedro</td>
-                    <td>López</td>
-                </tr>
-                <tr data-toggle="modal" data-target="#alumnoModal">
-                    <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50"
-                                height="50"></a>
-                    </td>
-                    <td>23456789-1</td>
-                    <td>Pedro</td>
-                    <td>López</td>
-                </tr>
-                <!-- Agrega más filas para otros alumnos -->
+                {% endfor %}
             </tbody>
         </table>
     </div>

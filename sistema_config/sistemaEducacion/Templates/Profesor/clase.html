@@ -5,6 +5,7 @@
 
 <div class="container-fluid">
   <div class="row">
+    <a type="button" class="btn btn-secondary" href="{% url 'sistema_Profe' %}">⬅ Volver</a>
     <div class="col-xl-8" style="border-right: 3px solid  black;">
       <h1 class="titCurso" style="text-align: center;">8vo | Profesor Asignado</h1>
       <div class="d-grid gap-2">
@@ -23,61 +24,18 @@
           <tr>
             <th>Foto</th>
             <th>RUT</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
+            <th>Nombre Completo</th>
           </tr>
         </thead>
         <tbody>
+          {% for al in alumnos %}
           <tr data-toggle="modal" data-target="#alumnoModal">
             <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50" height="50"></a>
             </td>
-            <td>12345678-9</td>
-            <td>Juan</td>
-            <td>Pérez</td>
+            <td>{{al.1}}</td>
+            <td>{{al.2 | date:"d/m/Y"}}</td>
           </tr>
-          <tr data-toggle="modal" data-target="#alumnoModal">
-            <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50" height="50"></a>
-            </td>
-            <td>87654321-0</td>
-            <td>María</td>
-            <td>Gómez</td>
-          </tr>
-          <tr data-toggle="modal" data-target="#alumnoModal">
-            <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50" height="50"></a>
-            </td>
-            <td>23456789-1</td>
-            <td>Pedro</td>
-            <td>López</td>
-          </tr>
-          <tr data-toggle="modal" data-target="#alumnoModal">
-            <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50" height="50"></a>
-            </td>
-            <td>23456789-1</td>
-            <td>Pedro</td>
-            <td>López</td>
-          </tr>
-          <tr data-toggle="modal" data-target="#alumnoModal">
-            <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50" height="50"></a>
-            </td>
-            <td>23456789-1</td>
-            <td>Pedro</td>
-            <td>López</td>
-          </tr>
-          <tr data-toggle="modal" data-target="#alumnoModal">
-            <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50" height="50"></a>
-            </td>
-            <td>23456789-1</td>
-            <td>Pedro</td>
-            <td>López</td>
-          </tr>
-          <tr data-toggle="modal" data-target="#alumnoModal">
-            <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50" height="50"></a>
-            </td>
-            <td>23456789-1</td>
-            <td>Pedro</td>
-            <td>López</td>
-          </tr>
-          <!-- Agrega más filas para otros alumnos -->
+          {% endfor %}
         </tbody>
       </table>
 

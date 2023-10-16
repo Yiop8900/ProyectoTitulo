@@ -42,7 +42,12 @@
           </div>
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Correo Electronico</label>
-            <input class="form-control shadow" id="exampleFormControlTextarea1"></input>
+            <select id="" class="form-select">
+              <option>Selecciona...</option>
+              {% for cr in correo %}
+              <option value="" > {{ cr.0 }} </option>
+              {% endfor %}
+            </select>
           </div>
           <button type="submit" class="btn btn-success">Guardar</button>
           <button type="submit" class="btn btn-primary">Modificar</button>
