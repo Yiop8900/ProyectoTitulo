@@ -38,16 +38,69 @@ def notificar (request):
     return render (request, 'Profesor/notificar.html')
 
 def admin_ap(request):
-    return render(request, 'Administrador/admin_apoderado.html')
+    data = {
+        'apoderados' : listar_apoderado()
+    }
+
+    return render(request, 'Administrador/admin_apoderado.html', data)
 
 def admin_al (request):
-    return render (request, 'Administrador/admin_alum.html')
+    data = {
+        'alumnos' : listar_alumnos()
+    }
+    return render (request, 'Administrador/admin_alum.html', data)
 
 def admin_pro (request):
     return render (request, 'Administrador/admin_profe.html')
 
 def admin_user (request):
-    return render (request, 'Administrador/admin_user.html')
+    return render(request, 'Administrador/admin_user.html')
 
 def control_plan (request):
     return render (request, 'Administrador/control_plan.html')
+
+
+
+#-------- cosas ---------------
+
+def listar_apoderado():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("LIST_APODERADO", [out_cur])
+
+    lista_apo = []
+
+    for fila in out_cur:
+        lista_apo.append(fila)
+
+    return lista_apo
+
+def listar_alumnos():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("LIST_ALUMNO", [out_cur])
+
+    lista_al = []
+
+    for fila in out_cur:
+        lista_al.append(fila)
+
+    return lista_al
+
+def listar_apoderado():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("LIST_APODERADO", [out_cur])
+
+    lista_apo = []
+
+    for fila in out_cur:
+        lista_apo.append(fila)
+
+    return lista_apo

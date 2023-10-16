@@ -63,14 +63,14 @@
             </tr>
           </thead>
           <tbody>
-            {% for apoderado in apoderados %}
+            {% for ap in apoderados %}
             <tr data-toggle="modal" data-target="#alumnoModal">
-              <td>{{ apoderado.RUT }}</td> {# Asumiendo que la primera columna es el RUT en el resultado de la consulta #}
-              <td>{{ apoderado.NOMBRE_COMPLETO }}</td> {# Asumiendo que el nombre está en la tercera columna #}
-              <td>{{ apoderado.TELEFONO }}</td> {# Asumiendo que la dirección está en la sexta columna #}
-              <td>{{ apoderado.DIRECCION }}</td> {# Asumiendo que el número telefónico está en la séptima columna #}
-              <td>{{ apoderado.COMUNA }}</td> {# Asumiendo que el correo electrónico está en la segunda columna #}
-              <td>{{ apoderado.CORREO }}</td> {# Asumiendo que el correo electrónico está en la segunda columna #}
+              <td>{{ ap.0 }}</td> 
+              <td>{{ ap.1 }}</td> 
+              <td>{{ ap.2 }}</td>
+              <td>{{ ap.3 }}</td> 
+              <td>{{ ap.4 }}</td> 
+              <td>{{ ap.5 }}</td> 
             </tr>
             {% endfor %}
           </tbody>
