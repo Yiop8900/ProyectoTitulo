@@ -19,34 +19,54 @@
     <div class="row">
       <div class="col-md-4" style="border-left: 1px solid black;">
         <h2 class="titCurso" style="text-align: center; margin-bottom: 1%;">Administrar Alumnos</h2>
-        <form class="formularioReunion" style="margin-bottom: 5%;">
+        <form class="formularioReunion" method="POST" style="margin-bottom: 5%;">
+          {% csrf_token %}
           <div class="mb-3">
-            <label for="fecha" class="form-label">Rut:</label>
-            <input type="text" class="form-control shadow" id="rut" required>
+            <label for="rut" class="form-label">Rut:</label>
+            <input type="text" class="form-control shadow" id="rut" name="rut" placeholder="sin puntos ni digito verificador" required>
           </div>
           <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Nombres:</label>
-            <input class="form-control shadow" id="exampleFormControlTextarea1"></input>
+            <label for="dv" class="form-label">DV:</label>
+            <input type="text" class="form-control shadow" id="dv"  name="dv" placeholder="Digito verificador" required>
           </div>
           <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Apellido</label>
-            <input class="form-control shadow" id="exampleFormControlTextarea1"></input>
+            <label for="nombre" class="form-label">Nombres:</label>
+            <input class="form-control shadow" id="nombre"  name="nombre"></input>
           </div>
           <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Direccion</label>
-            <input class="form-control shadow" id="exampleFormControlTextarea1"></input>
+            <label for="apellido" class="form-label">Apellido</label>
+            <input class="form-control shadow" id="apellido"  name="apellido"></input>
           </div>
           <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Numero Telefonico</label>
-            <input class="form-control shadow" id="exampleFormControlTextarea1"></input>
+            <label for="telefono" class="form-label">Numero Telefonico</label>
+            <input class="form-control shadow" id="telefono" name="telefono"></input>
           </div>
           <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Correo Electronico</label>
-            <input class="form-control shadow" id="exampleFormControlTextarea1"></input>
+            <label for="direccion" class="form-label">Direccion</label>
+            <input class="form-control shadow" id="direccion"  name="direccion"></input>
           </div>
+          <div class="mb-3">
+            <label for="comuna" class="form-label">Comuna</label>
+            <select name="comuna" class="form-select">
+              <option>Selecciona...</option>
+              {% for co in comuna %}
+              <option value="{{ co.0 }}">{{ co.1 }}</option>
+              {% endfor %}
+            </select>
+          </div>                    
+          <div class="mb-3">
+            <label for="correo" class="form-label">Correo Electrónico</label>
+            <select name="correo" class="form-select">
+              <option>Selecciona...</option>
+              {% for cr in correo %}
+              <option value="{{ cr.0 }}">{{ cr.1 }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          
           <button type="submit" class="btn btn-success">Guardar</button>
-          <button type="submit" class="btn btn-primary">Modificar</button>
-          <button type="submit" class="btn btn-danger">Eliminar</button>
+          <button  class="btn btn-primary">Modificar</button>
+          <button  class="btn btn-danger">Eliminar</button>
         </form>
       </div>
       <div class="col-md-8">

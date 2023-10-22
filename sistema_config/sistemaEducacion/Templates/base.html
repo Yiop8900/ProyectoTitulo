@@ -20,6 +20,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <link rel="icon" href="{% static 'img/educacion.png' %}">
   <link rel="stylesheet" href="{% static 'css/disenio.css' %}">
   <link rel="stylesheet" href="{% static 'css/disenioalterno.css' %}">
@@ -64,9 +66,16 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'admin_apoderado' %}">Administracion</a>
             </li>
+            {% if is_login_successful %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'index' %}">Cerrar Sesión</a>
+            </li>
+            {% else %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'iniciar_sesion' %}">Iniciar Sesión</a>
             </li>
+            {% endif %}
+
           </ul>
         </div>
       </div>
@@ -84,8 +93,31 @@
   <!--Bloque de contenido-->
   {% block contenido %}
 
+
+
+
   {% endblock contenido %}
 
+  {% if swal_config %}
+  <script>
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Signed in successfully'
+    })
+  </script>
+  {% endif %}
 
   <!-- Footer -->
   <footer class="bg-dark text-center text-white ">

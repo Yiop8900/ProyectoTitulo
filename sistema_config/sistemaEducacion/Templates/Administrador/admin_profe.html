@@ -3,81 +3,114 @@
 {% block contenido %}
 
 <div class="container-fluid row">
-    <div class="col-md-3" style="margin-top: 2%;">
-        <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; " href="{% url 'admin_apoderado' %}">Administrar Apoderados ></a></li>
-        <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; " href="{% url 'admin_profe' %}">Administrar Profesores ></a></li>
-        <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; " href="{% url 'admin_alum' %}">Administrar Alumnos ></a></li>
-        <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; " href="{% url 'admin_user' %}">Administrar Usuarios ></a></li>
-        <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; " href="{% url 'control_plan' %}">Control de Planificaciones ></a></li>
-    </div>
-    <div class="col-md-9">
-        <div class="row">
-            <div class="col-md-4" style="border-left: 1px solid black;">
-                <h2 class="titCurso" style="text-align: center; margin-bottom: 1%; ">Administrar Profesores</h2>
-                <form class="formularioReunion" style="margin-bottom: 5%;">
-                    <div class="mb-3">
-                        <label for="fecha" class="form-label">Rut:</label>
-                        <input type="text" class="form-control shadow" id="rut" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Nombres:</label>
-                        <input class="form-control shadow" id="exampleFormControlTextarea1"></input>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Apellido</label>
-                        <input class="form-control shadow" id="exampleFormControlTextarea1" ></input>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Direccion</label>
-                        <input class="form-control shadow" id="exampleFormControlTextarea1" ></input>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Numero Telefonico</label>
-                        <input class="form-control shadow" id="exampleFormControlTextarea1" ></input>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Correo Electronico</label>
-                        <input class="form-control shadow" id="exampleFormControlTextarea1" ></input>
-                    </div>
-                    <button type="submit" class="btn btn-success">Guardar</button>
-                    <button type="submit" class="btn btn-primary">Modificar</button>
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </form>
-            </div>
-            <div class="col-md-8">
-              <h2 class="titCurso" style="text-align: center;">Lista Profesores</h2>
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>RUT</th>
-                    <th>Nombre</th>
-                    <th>Direccion</th>
-                    <th>Numero Telefonico</th>
-                    <th>Correo</th>
-                    <th>Comuna</th>
-                    <th>Curso Asignado</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for pro in profesores %}
-                  <tr data-toggle="modal" data-target="#alumnoModal">
-                    <td>{{ pro.0 }}</td>
-                    <td>{{ pro.1 }}</td>
-                    <td>{{ pro.2 }}</td>
-                    <td>{{ pro.3 }}</td>
-                    <td>{{ pro.6 }}</td>
-                    <td>{{ pro.4 }}</td>
-                    <td>{{ pro.5 }}</td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-        
-              
-            </div>
-        </div>
+  <div class="col-md-3" style="margin-top: 2%;">
+    <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; "
+        href="{% url 'admin_apoderado' %}">Administrar Apoderados ></a></li>
+    <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; "
+        href="{% url 'admin_profe' %}">Administrar Profesores ></a></li>
+    <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; "
+        href="{% url 'admin_alum' %}">Administrar Alumnos ></a></li>
+    <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; "
+        href="{% url 'admin_user' %}">Administrar Usuarios ></a></li>
+    <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; "
+        href="{% url 'control_plan' %}">Control de Planificaciones ></a></li>
+  </div>
+  <div class="col-md-9">
+    <div class="row">
+      <div class="col-md-4" style="border-left: 1px solid black;">
+        <h2 class="titCurso" style="text-align: center; margin-bottom: 1%; ">Administrar Profesores</h2>
+        <form class="formularioReunion" method="POST" style="margin-bottom: 5%;">
+          {% csrf_token %}
+          <div class="mb3">
+            <label for="rut" class="form-label">Rut:</label>
+            <input type="text" class="form-control shadow" id="rut" name="rut" placeholder="Rut sin puntos ni guion" > 
+          </div>
+          <div class="mb3">
+            <label for="dv" class="form-label">Dv:</label>
+            <input type="text" class="form-control shadow" id="dv" name="dv" placeholder="Digito verificador">
+          </div>
+          <div class="mb3">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" class="form-control shadow" id="nombre" name="nombre">
+          </div>
+          <div class="mb3">
+            <label for="apellido" class="form-label">Apellido:</label>
+            <input type="text" class="form-control shadow" id="apellido" name="apellido">
+          </div>
+          <div class="mb3" >
+            <label for="telefono" class="from-label">Telefono:</label>
+            <input type="text" class="form-control shadow" id="telefono" name="telefono">
+          </div>
+          <div class="mb3">
+            <label for="direccion" class="form-label">Direccion:</label>
+            <input type="text" class="form-control shadow" id="direccion" name="direccion">
+          </div>
+          <div class="mb3">
+            <label for="comuna" class="form-label">Comuna:</label>
+            <select name="comuna" id="comuna" class="form-select">
+              <option value="">Selecciona...</option>
+              {% for co in comuna %}
+              <option value="{{ co.0}}">{{co.1}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb3">
+            <label for="curso" class="form-label">Curso:</label>
+            <select name="curso" id="curso" class="form-select">
+              <option value="">Seleccione....</option>
+              {% for c in curso %}
+              <option value="{{c.0}}">{{c.1}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb3" style="margin-bottom: 2%;">
+            <label for="rol" class="form-label">Rol:</label>
+            <select name="rol" id="rol" class="form-select">
+              <option value="">Selecccione...</option>
+              {% for r in rol %}
+              <option value="{{r.0}}">{{r.1}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <button type="submit" class="btn btn-success">Guardar</button>
+          <button class="btn btn-primary">Modificar</button>
+          <button class="btn btn-danger">Eliminar</button>
+        </form>
+      </div>
+      <div class="col-md-8">
+        <h2 class="titCurso" style="text-align: center;">Lista Profesores</h2>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>RUT</th>
+              <th>Nombre</th>
+              <th>Direccion</th>
+              <th>Numero Telefonico</th>
+              <th>Correo</th>
+              <th>Comuna</th>
+              <th>Curso Asignado</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for pro in profesores %}
+            <tr data-toggle="modal" data-target="#alumnoModal">
+              <td>{{ pro.0 }}</td>
+              <td>{{ pro.1 }}</td>
+              <td>{{ pro.2 }}</td>
+              <td>{{ pro.3 }}</td>
+              <td>{{ pro.6 }}</td>
+              <td>{{ pro.4 }}</td>
+              <td>{{ pro.5 }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+
+      </div>
     </div>
   </div>
+</div>
 
 
 

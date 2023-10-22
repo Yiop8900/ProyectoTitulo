@@ -30,10 +30,10 @@
         <tbody>
           {% for al in alumnos %}
           <tr data-toggle="modal" data-target="#alumnoModal">
-            <td><a href="#"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50" height="50"></a>
+            <td><a href="#" value="{{al.0}}"><img src="{% static 'img/usuario.png' %}" alt="Imagen Alumno" width="50" height="50"></a>
             </td>
+            <td>{{al.0}}</td>
             <td>{{al.1}}</td>
-            <td>{{al.2 | date:"d/m/Y"}}</td>
           </tr>
           {% endfor %}
         </tbody>
