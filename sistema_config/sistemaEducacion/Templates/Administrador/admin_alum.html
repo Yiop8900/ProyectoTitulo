@@ -11,62 +11,91 @@
     <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; "
         href="{% url 'admin_alum' %}">Administrar Alumnos ></a></li>
     <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; "
-        href="{% url 'admin_user' %}">Administrar Usuarios ></a></li>
+        href="{% url 'admin_user' %}">Generar Administrador></a></li>
     <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; "
         href="{% url 'control_plan' %}">Control de Planificaciones ></a></li>
   </div>
   <div class="col-md-9">
     <div class="row">
-      <div class="col-md-4" style="border-left: 1px solid black;">
+      <div class="col-md-4" style="border-left: 1px solid black; ">
         <h2 class="titCurso" style="text-align: center; margin-bottom: 1%;">Administrar Alumnos</h2>
-        <form class="formularioReunion" method="POST" style="margin-bottom: 5%;">
+        <form class="formularioReunion" method="POST" style="margin-bottom: 5%; height: 700px; overflow-y: scroll;">
           {% csrf_token %}
-          <div class="mb-3">
+          <div class="mb3">
             <label for="rut" class="form-label">Rut:</label>
-            <input type="text" class="form-control shadow" id="rut" name="rut" placeholder="sin puntos ni digito verificador" required>
+            <input type="text" class="form-control shadow" id="rut" name="rut" placeholder="Rut sin puntos ni guion" > 
           </div>
-          <div class="mb-3">
-            <label for="dv" class="form-label">DV:</label>
-            <input type="text" class="form-control shadow" id="dv"  name="dv" placeholder="Digito verificador" required>
+          <div class="mb3">
+            <label for="dv" class="form-label">Dv:</label>
+            <input type="text" class="form-control shadow" id="dv" name="dv" placeholder="Digito verificador">
           </div>
-          <div class="mb-3">
-            <label for="nombre" class="form-label">Nombres:</label>
-            <input class="form-control shadow" id="nombre"  name="nombre"></input>
+          <div class="mb3">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" class="form-control shadow" id="nombre" name="nombre">
           </div>
-          <div class="mb-3">
-            <label for="apellido" class="form-label">Apellido</label>
-            <input class="form-control shadow" id="apellido"  name="apellido"></input>
+          <div class="mb3">
+            <label for="apellido" class="form-label">Apellido:</label>
+            <input type="text" class="form-control shadow" id="apellido" name="apellido">
           </div>
-          <div class="mb-3">
-            <label for="telefono" class="form-label">Numero Telefonico</label>
-            <input class="form-control shadow" id="telefono" name="telefono"></input>
+          <div class="mb3">
+            <label for="fecha">Fecha de Nacimiento</label>
+            <input type="date" class="form-control shadow" id="fecha" name="fecha" max="" >
           </div>
-          <div class="mb-3">
-            <label for="direccion" class="form-label">Direccion</label>
-            <input class="form-control shadow" id="direccion"  name="direccion"></input>
+          <div class="mb3">
+            <label for="direccion" class="form-label">Direccion:</label>
+            <input type="text" class="form-control shadow" id="direccion" name="direccion">
           </div>
-          <div class="mb-3">
-            <label for="comuna" class="form-label">Comuna</label>
-            <select name="comuna" class="form-select">
-              <option>Selecciona...</option>
+          <div class="mb3" >
+            <label for="telefono" class="from-label">Telefono:</label>
+            <input type="text" class="form-control shadow" id="telefono" name="telefono">
+          </div>
+          <div class="mb3">
+            <label for="apoderado" class="form-label">Apoderado:</label>
+            <input name="apoderado" id="apoderado" class="form-control shadow" placeholder="Rut del apoderado sin puntos ni guion" >
+          </div>
+          <div class="mb3">
+            <label for="inf_adicional" class="form-label">Informacion Adicional:</label>
+            <textarea type="text-area" class="form-control shadow" id="inf_adicional" name="inf_adicional" rows="3"></textarea>
+          </div>
+          <div class="mb3">
+            <label for="comuna" class="form-label">Comuna:</label>
+            <select name="comuna" id="comuna" class="form-select shadow">
+              <option value="">Selecciona...</option>
               {% for co in comuna %}
-              <option value="{{ co.0 }}">{{ co.1 }}</option>
-              {% endfor %}
-            </select>
-          </div>                    
-          <div class="mb-3">
-            <label for="correo" class="form-label">Correo Electrónico</label>
-            <select name="correo" class="form-select">
-              <option>Selecciona...</option>
-              {% for cr in correo %}
-              <option value="{{ cr.0 }}">{{ cr.1 }}</option>
+              <option value="{{ co.0}}">{{co.1}}</option>
               {% endfor %}
             </select>
           </div>
-          
+          <div class="mb3">
+            <label for="nota" class="form-label">Nota:</label>
+            <select name="nota" id="nota" class="form-select shadow">
+              <option value="">Seleccione....</option>
+              {% for c in curso %}
+              <option value="{{c.0}}">{{c.1}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb3">
+            <label for="curso" class="form-label">Curso:</label>
+            <select name="curso" id="curso" class="form-select shadow">
+              <option value="">Seleccione....</option>
+              {% for c in curso %}
+              <option value="{{c.0}}">{{c.1}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb3" style="margin-bottom: 2%;">
+            <label for="rol" class="form-label">Rol:</label>
+            <select name="rol" id="rol" class="form-select shadow">
+              <option value="">Selecccione...</option>
+              {% for r in rol %}
+              <option value="{{r.0}}">{{r.1}}</option>
+              {% endfor %}
+            </select>
+          </div>
           <button type="submit" class="btn btn-success">Guardar</button>
-          <button  class="btn btn-primary">Modificar</button>
-          <button  class="btn btn-danger">Eliminar</button>
+          <button class="btn btn-primary">Modificar</button>
+          <button class="btn btn-danger">Eliminar</button>
         </form>
       </div>
       <div class="col-md-8">
@@ -102,6 +131,16 @@
   </div>
 </div>
 
+<script>
+  // Obtener la fecha actual en formato "YYYY-MM-DD"
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = (today.getMonth() + 1).toString().padStart(2, '0');
+  const day = today.getDate().toString().padStart(2, '0');
+  const currentDate = `${year}-${month}-${day}`;
 
+  // Establecer la fecha actual como valor máximo
+  document.getElementById("fecha").max = currentDate;
+</script>
 
 {% endblock %}

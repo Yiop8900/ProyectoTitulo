@@ -124,8 +124,34 @@ def admin_ap(request):
     return render(request, 'Administrador/admin_apoderado.html', data)
 
 def admin_al (request):
+    p_run = request.POST.get("rut")
+    p_dv = request.POST.get("dv")
+    p_nombre = request.POST.get("nombre")
+    p_apellido = request.POST.get("apellido")
+    p_fecha_nac = request.POST.get("fecha")
+    p_direccion = request.POST.get("direccion")
+    p_telefono = request.POST.get("telefono")  
+    p_inf_adicional = request.POST.get("inf_adicional")  
+    p_comuna_id = request.POST.get("comuna")
+    p_apoderado_id = request.POST.get("apoderado")
+    p_notas_id = request.POST.get("nota")
+    p_curso_id = request.POST.get("curso")
+    p_rol_id = request.POST.get("rol")
+
+    
+    insert = insertar_alumno(p_run, p_dv, p_nombre, p_apellido, p_fecha_nac, p_direccion, p_telefono, p_inf_adicional, p_curso_id, p_comuna_id, p_apoderado_id, p_notas_id, p_rol_id)
+
+    if insert:
+        print("INSERCION EXITOSA!!")
+    else:
+        print("VUELVE A PROBAR")
+
+
     data = {
-        'alumnos' : listar_alumnos()
+        'alumnos' : listar_alumnos(),
+        'curso': listar_cursos(),
+        'rol': listar_rol(),
+        'comuna': listar_comunas(),
     }
     return render (request, 'Administrador/admin_alum.html', data)
 
@@ -329,7 +355,23 @@ def insertar_profesor(p_run, p_dv, p_nombre, p_apellido, p_direccion, p_telefono
         # Asegúrate de cerrar el cursor y liberar los recursos
         cursor.close()
 
+def insertar_alumno(p_run, p_dv, p_nombre, p_apellido, p_fecha_nac, p_direccion, p_telefono, p_inf_adicional, p_curso_id, p_comuna_id, p_apoderado_id, p_notas_id, p_rol_id):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
 
+    try:
+        # Llamar a la función almacenada "INSERT_APODERADO" con los parámetros
+        cursor.callproc("INSERT_ALUMNO", (p_run, p_dv, p_nombre, p_apellido, p_fecha_nac, p_direccion, p_telefono, p_inf_adicional, p_curso_id, p_comuna_id, p_apoderado_id, p_notas_id, p_rol_id))
 
-
+        cursor.connection.commit()
         
+        print("correcto")
+
+    except Exception as e:
+        # En caso de error, puedes manejar la excepción aquí, por ejemplo, registrando el error
+        # y devolviendo False para indicar que la inserción falló
+        print(f"Error al insertar alumno: {e}")
+        return False
+    finally:
+        # Asegúrate de cerrar el cursor y liberar los recursos
+        cursor.close()
