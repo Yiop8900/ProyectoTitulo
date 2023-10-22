@@ -70,8 +70,8 @@
             <label for="nota" class="form-label">Nota:</label>
             <select name="nota" id="nota" class="form-select shadow">
               <option value="">Seleccione....</option>
-              {% for c in curso %}
-              <option value="{{c.0}}">{{c.1}}</option>
+              {% for n in nota %}
+              <option value="{{n.0}}">{{c.0}}</option>
               {% endfor %}
             </select>
           </div>
@@ -132,15 +132,17 @@
 </div>
 
 <script>
-  // Obtener la fecha actual en formato "YYYY-MM-DD"
+  // Obtener la fecha actual
   const today = new Date();
+
+  // Formatear la fecha en "YYYY-MM-DD"
   const year = today.getFullYear();
   const month = (today.getMonth() + 1).toString().padStart(2, '0');
   const day = today.getDate().toString().padStart(2, '0');
-  const currentDate = `${year}-${month}-${day}`;
+  const formattedDate = `${year}-${month}-${day}`;
 
-  // Establecer la fecha actual como valor máximo
-  document.getElementById("fecha").max = currentDate;
+  // Establecer la fecha formateada como valor máximo
+  document.getElementById("fecha").max = formattedDate;
 </script>
 
 {% endblock %}

@@ -4,7 +4,7 @@ from django.db import connection
 from django.http import JsonResponse
 from django.contrib import messages
 import json
-
+from datetime import datetime
 # Create your views here.
 
 def login(p_correo, p_contrasenia):
@@ -152,6 +152,7 @@ def admin_al (request):
         'curso': listar_cursos(),
         'rol': listar_rol(),
         'comuna': listar_comunas(),
+        'nota': listar_nota()
     }
     return render (request, 'Administrador/admin_alum.html', data)
 
@@ -310,6 +311,19 @@ def listar_rol():
 
     return lista_rol
 
+def listar_nota():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("LIST_NOTAs", [out_cur])
+
+    lista_nota = []
+
+    for fila in out_cur:
+        lista_nota.append(fila)
+
+    return lista_nota
 
 def insertar_apoderado(p_run, p_dv, p_nombre, p_apellido, p_telefono, p_direccion, p_comuna_id, p_usuario_id):
     # Establecer una conexión a la base de datos
