@@ -80,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
         'NAME': '127.0.0.1:1521/orcl',
-        'USER': 'sistema',
-        'PASSWORD': 'sistema',
+        'USER': 'colegio',
+        'PASSWORD': 'colegio',
         'TEST': {
             'USER': 'default_test',
             'TBLSPACE': 'default_test_tbls',
@@ -117,7 +117,7 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-DATE_FORMAT = ['%d-%m-%Y']
+DATE_FORMAT = ['%Y-%m-%d']
 
 USE_I18N = True
 

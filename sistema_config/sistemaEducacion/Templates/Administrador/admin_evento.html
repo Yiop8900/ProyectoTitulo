@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+<div class="container-fluid row">
+  <div class="dropdown">
+    <button style="margin-left: 1%; margin-top: 0.5%;" class="btn btn-secondary dropdown-toggle" type="button"
+      data-bs-toggle="dropdown" aria-expanded="false">
+      Menu de Administracion
+    </button>
+    <ul class="dropdown-menu">
+      <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+          style="text-decoration: none; color: black;" href="{% url 'admin_apoderado' %}">Administrar Apoderados</a>
+      </li>
+      <hr>
+      <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+          style="text-decoration: none; color: black; " href="{% url 'admin_profe' %}">Administrar Profesores</a></li>
+      <hr>
+      <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+          style="text-decoration: none; color: black; " href="{% url 'admin_alum' %}">Administrar Alumnos</a></li>
+      <hr>
+      <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+          style="text-decoration: none; color: black; " href="{% url 'admin_user' %}">Generar Administrador</a></li>
+      <hr>
+      <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+          style="text-decoration: none; color: black; " href="{% url 'control_plan' %}">Control de Planificaciones</a>
+      </li>
+      <hr>
+      <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+          style="text-decoration: none; color: black; " href="{% url 'admin_evento' %}">Gestionar Eventos</a></li>
+    </ul>
+  </div>
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-4" style="border-left: 1px solid black; ">
+        <h2 class="titCurso" style="text-align: center; margin-bottom: 1%;">Administrar Alumnos</h2>
+        <form class="formularioReunion" method="POST" enctype="multipart/form-data"
+          style="margin-bottom: 5%; height: 700px;">
+          {% csrf_token %}
+          <div class="mb3">
+            <label for="descripcion" class="form-label">Descripcion:</label>
+            <input type="textArea" class="form-control shadow" id="descripcion" name="descripcion">
+          </div>
+          <div class="mb-3">
+            <label for="foto" class="form-label">Subir archivo</label>
+            <input class="form-control shadow" type="file" id="foto" name="foto">
+          </div>
+          <div class="mb-3">
+            <label for="profe" class="form-label">Profesor:</label>
+            <select name="profe" class="form-select shadow">
+              <option>Selecciona...</option>
+              {% for p in profesor %}
+              <option value="{{ p.0 }}">{{ p.1 }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <button type="submit" class="btn btn-success">Guardar</button>
+          <button class="btn btn-primary">Modificar</button>
+        </form>
+      </div>
+      <div class="col-md-8">
+        <h2 class="titCurso" style="text-align: center; ">Lista eventos</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Nombre Profesor</th>
+              <th>Descripcion</th>
+              <th>Foto</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for e in eventos %}
+            <tr>
+              <td>{{ e.data.0 }}</td>
+              <td>{{ e.data.1 }}</td>
+              <td>
+                {% if e.imagen %}
+                <img src="data:imagen/jpeg;base64,{{ e.imagen }}" class="card-img-top" alt="..." height="100"
+                  width="100">
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+
+        </table>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}

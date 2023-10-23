@@ -30,29 +30,13 @@
 
 <div class="eve">
     <div class="row row-cols-1 row-cols-md-4 g-5 eventos">
+        {% for e in eventos %}
         <div class="col">
             <div class="card h-100">
-                <iframe class="frame" height="350" src="https://www.youtube.com/embed/N1d6AGSZWz0?si=CRKWYXjBJQCIXF3_"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen></iframe>
+                <img src="data:imagen/jpeg;base64,{{ e.imagen }}" class="card-img-top" alt="..." height="350" style="border-radius: 15px;">
             </div>
         </div>
-        <div class="col">
-            <div class="card h-100">
-                <img src="{% static 'img/showCirco.png' %}" class="card-img-top" alt="..." height="350">
-            </div>
-        </div>
-        <div class="col">
-            <div class="card h-100">
-                <img src="{% static 'img/licenciatura.png' %}" class="card-img-top" alt="..." height="350">
-            </div>
-        </div>
-        <div class="col">
-            <div class="card h-100">
-                <img src="{% static 'img/encuentroCientifico.png' %}" class="card-img-top" alt="..." height="350">
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 

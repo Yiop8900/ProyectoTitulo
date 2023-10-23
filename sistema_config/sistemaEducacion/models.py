@@ -48,7 +48,7 @@ class Alumno(models.Model):
     dv = models.CharField(max_length=1)
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=30)
-    fecha_nac = models.DateField()
+    fecha_nac = models.CharField(max_length=50)
     direccion = models.CharField(max_length=50)
     telefono = models.IntegerField()
     inf_adicional = models.TextField(max_length=300)
@@ -77,7 +77,7 @@ class Eventos(models.Model):
 
 class Notificacion(models.Model):
     id_notificacion = models.AutoField(primary_key=True)
-    fecha = models.DateField()
+    fecha = models.CharField(max_length=50)
     asunto = models.CharField(max_length=50)
     mensaje = models.TextField(max_length=300)
     profesor = models.ForeignKey(Profesor, on_delete=models.CASCADE)

@@ -18,5 +18,5 @@ urlpatterns = [
     path('admin_profe/', admin_pro , name= 'admin_profe'),
     path('admin_user/', admin_user , name= 'admin_user'),
     path('control_plan/', control_plan , name= 'control_plan'),
-
+    path('admin_evento/', admin_evento , name= 'admin_evento'),
 ]

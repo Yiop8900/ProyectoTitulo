@@ -3,19 +3,31 @@
 {% block contenido %}
 
 <div class="container-fluid row">
-  <div class="col-md-3" style="margin-top: 2%;">
-    <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; "
-        href="{% url 'admin_apoderado' %}">Administrar Apoderados ></a></li>
-    <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; "
-        href="{% url 'admin_profe' %}">Administrar Profesores ></a></li>
-    <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; "
-        href="{% url 'admin_alum' %}">Administrar Alumnos ></a></li>
-    <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; "
-        href="{% url 'admin_user' %}">Generar Administrador></a></li>
-    <li style="list-style-type: none; margin-bottom: 4%;"><a style="text-decoration: none; color: black; "
-        href="{% url 'control_plan' %}">Control de Planificaciones ></a></li>
+  <div class="dropdown">
+    <button style="margin-left: 1%; margin-top: 0.5%;" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Menu de Administracion
+    </button>
+    <ul class="dropdown-menu" >
+      <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a style="text-decoration: none; color: black;"
+        href="{% url 'admin_apoderado' %}">Administrar Apoderados</a></li>
+        <hr>
+    <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a style="text-decoration: none; color: black; "
+        href="{% url 'admin_profe' %}">Administrar Profesores</a></li>
+        <hr>
+    <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a style="text-decoration: none; color: black; "
+        href="{% url 'admin_alum' %}">Administrar Alumnos</a></li>
+        <hr>
+    <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a style="text-decoration: none; color: black; "
+        href="{% url 'admin_user' %}">Generar Administrador</a></li>
+        <hr>
+    <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a style="text-decoration: none; color: black; "
+        href="{% url 'control_plan' %}">Control de Planificaciones</a></li>
+        <hr>
+    <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a style="text-decoration: none; color: black; "
+        href="{% url 'admin_evento' %}">Gestionar Eventos</a></li>   
+    </ul>
   </div>
-  <div class="col-md-9">
+  <div class="col-md-12">
     <div class="row">
       <div class="col-md-4" style="border-left: 1px solid black; ">
         <h2 class="titCurso" style="text-align: center; margin-bottom: 1%;">Administrar Alumnos</h2>
@@ -67,15 +79,6 @@
             </select>
           </div>
           <div class="mb3">
-            <label for="nota" class="form-label">Nota:</label>
-            <select name="nota" id="nota" class="form-select shadow">
-              <option value="">Seleccione....</option>
-              {% for n in nota %}
-              <option value="{{n.0}}">{{c.0}}</option>
-              {% endfor %}
-            </select>
-          </div>
-          <div class="mb3">
             <label for="curso" class="form-label">Curso:</label>
             <select name="curso" id="curso" class="form-select shadow">
               <option value="">Seleccione....</option>
@@ -105,24 +108,56 @@
             <tr>
               <th>RUT</th>
               <th>Nombre</th>
-              <th>Direccion</th>
               <th>Fecha de Nacimiento</th>
-              <th>Numero Telefonico</th>
-              <th>Correo Electronico</th>
+              <th>Direccion</th>
+              <th>Apoderado</th>
+              <th>Informacion Adicional</th>
+              <th>Telefono</th>
             </tr>
           </thead>
           <tbody>
             {% for a in alumnos %}
             <tr data-toggle="modal" data-target="#alumnoModal">
-              <td>{{ a.0 }}</td>
+              <td><a href="#" class="enlaceTexto">{{ a.0 }}</a></td>
               <td>{{ a.1 }}</td>
+              <td>{{ a.2 }}</td>
               <td>{{ a.4 }}</td>
-              <td>{{ a.2|date:"d/m/Y" }}</td>
+              <td>{{ a.6 }}</td>
+              <td>{{ a.5 }}</td>
               <td>{{ a.3 }}</td>
-              <td>{{ a.9 }}</td>
             </tr>
             {% endfor %}
           </tbody>
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              var enlacesTexto = document.querySelectorAll(".enlaceTexto");
+              var formulario = document.querySelector(".formularioReunion");
+          
+              enlacesTexto.forEach(function (enlace) {
+                enlace.addEventListener("click", function (event) {
+                  event.preventDefault();
+          
+                  // Obtiene los valores de la fila
+                  var rut = this.textContent;
+                  var nombre = this.parentNode.nextElementSibling.textContent;
+                  var telefono = this.parentNode.nextElementSibling. nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+                  var direccion = this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+                  var fecha_nac = this.parentNode.nextElementSibling.nextElementSibling.textContent;
+                  var apoderado = this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+                  var info_adicional = this.parentNode.nextElementSibling. nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+          
+                  // Llena los campos del formulario con los valores
+                  formulario.querySelector("#rut").value = rut;
+                  formulario.querySelector("#nombre").value = nombre;
+                  formulario.querySelector("#fecha").value = fecha_nac;
+                  formulario.querySelector("#telefono").value = telefono;
+                  formulario.querySelector("#direccion").value = direccion;
+                  formulario.querySelector("#apoderado").value = apoderado;
+                  formulario.querySelector("#inf_adicional").value = info_adicional;
+                });
+              });
+            });
+          </script>
         </table>
 
 
@@ -131,18 +166,7 @@
   </div>
 </div>
 
-<script>
-  // Obtener la fecha actual
-  const today = new Date();
 
-  // Formatear la fecha en "YYYY-MM-DD"
-  const year = today.getFullYear();
-  const month = (today.getMonth() + 1).toString().padStart(2, '0');
-  const day = today.getDate().toString().padStart(2, '0');
-  const formattedDate = `${year}-${month}-${day}`;
 
-  // Establecer la fecha formateada como valor máximo
-  document.getElementById("fecha").max = formattedDate;
-</script>
 
 {% endblock %}
