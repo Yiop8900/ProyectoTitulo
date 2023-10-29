@@ -57,6 +57,7 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Inicio</a>
             </li>
+            {% if is_login_successful %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'sistema_Profe' %}">Profesor</a>
             </li>
@@ -66,7 +67,6 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'admin_apoderado' %}">Administracion</a>
             </li>
-            {% if is_login_successful %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'index' %}">Cerrar Sesión</a>
             </li>
@@ -81,6 +81,63 @@
       </div>
     </div>
   </nav>
+
+
+  <!--<nav class="navbar navbar-expand-lg bg-dark " data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="">
+        <Esta linea indica que si estamos en el home el nombre del colegio no se mostrara mientras que en las otras vistas si ->
+        {% if is_home %}
+        #No mostrar "Colegio X" en la página de inicio
+        {% else %}
+        <img src="{% static 'img/logoDuocpng.png' %}" alt="" style="max-height: 40px;">
+        {% endif %}
+      </a>
+
+      #Mover el bloque de menú a la derecha
+      <div class="ml-auto">
+        #Botón del menú colapsado personalizado
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-text">Menú</span>
+        </button>
+
+        #Contenido del menú colapsado
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Inicio</a>
+            </li>
+            {% if request.user.is_authenticated %}
+              {% if request.session.privilegios == 'Profesor' %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'sistema_Profe' %}">Profesor</a>
+                </li>
+              {% endif %}
+              {% if request.session.privilegios == 'Apoderado' %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'apoderado' %}">Apoderado-Alumno</a>
+                </li>
+              {% endif %}
+              {% if request.session.privilegios == 'Administrador' %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'admin_apoderado' %}">Administracion</a>
+                </li>
+              {% endif %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'iniciar_sesion' %}">Iniciar Sesión</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>-->
 
 
 

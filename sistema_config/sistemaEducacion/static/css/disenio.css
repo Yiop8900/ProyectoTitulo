@@ -9,6 +9,13 @@ body
 {
     text-align: center;
     margin-top: 2%;
+    font-family: 'Arial', sans-serif; /* Cambia la fuente a tu preferencia */
+    color: #102c38; /* Cambia el color del texto */
+    text-align: center; /* Alineación del texto al centro */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    letter-spacing: 2px; /* Espaciado entre letras */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra del texto */
+    margin: 20px 0; /* Márgenes superiores e inferiores */
 }
 
 .contenedorImg

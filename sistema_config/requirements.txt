@@ -3,3 +3,5 @@
 django
 requests
 cx_Oracle
+matplotlib
+pillow

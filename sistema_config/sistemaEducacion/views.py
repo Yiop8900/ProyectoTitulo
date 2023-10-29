@@ -7,9 +7,19 @@ import json
 from datetime import datetime
 import base64
 import hashlib
+import matplotlib.pyplot as plt
+import os
+from django.conf import settings
+
+
 
 # Create your views here.
 
+from django.contrib.auth import login as auth_login
+
+
+
+#ORIGINAL
 def login(p_correo, p_contrasenia):
     django_cursor = connection.cursor()
     out_cur = django_cursor.connection.cursor()
@@ -26,7 +36,7 @@ def login(p_correo, p_contrasenia):
 
 def index(request):
     is_login_successful = request.GET.get('is_login_successful', False)
-
+    rol = iniciar_sesion(request)
     imagen = listar_evento()
 
     arreglo = []
@@ -41,7 +51,8 @@ def index(request):
     context = {
         'is_home': True,  # Establece esto en True para la página de inicio
         'is_login_successful': is_login_successful,
-        'eventos' : arreglo
+        'eventos' : arreglo,
+        'rol': rol,
     
     }
 
@@ -49,13 +60,21 @@ def index(request):
 
 
 def base(request):
-    
-    return render(request, 'base.html')
+    is_login_successful = request.GET.get('is_login_successful', False)
+    context = {  # Establece esto en True para la página de inicio
+        'is_login_successful': is_login_successful,
+    }
+    return render(request, 'base.html', context)
 
 
 
 def sistema_Profe(request):
-    return render(request, 'Profesor/sistema_Profe.html')
+    is_login_successful = request.GET.get('is_login_successful', False)
+    context = {  # Establece esto en True para la página de inicio
+        'is_login_successful': is_login_successful,
+    
+    }
+    return render(request, 'Profesor/sistema_Profe.html',context)
 
 def clase(request):
     data = {
@@ -78,16 +97,14 @@ def iniciar_sesion(request):
         resultados = login(p_correo, p_contrasenia)
 
         if resultados:
-
             # Configuración específica de Swal para la alerta de éxito
             success_config = {
                 'icon': 'success',
                 'title': 'Inicio de sesión exitoso',
                 'position': 'top-end',
             }
-            # Redirige a la vista 'index' con la cadena de consulta
-            print(resultados)
-            return redirect(reverse('index') + '?is_login_successful=True&swal_config=' + json.dumps(success_config), resultados)
+
+            return redirect(reverse('index') + '?is_login_successful=True' + json.dumps(success_config), resultados)
 
 
         else:
@@ -109,6 +126,10 @@ def notificar (request):
     }
 
     return render (request, 'Profesor/notificar.html', data)
+
+def dashboards(request):
+    
+    return render(request, 'Administrador/dashboard.html')
 
 def admin_ap(request):
     if request.method == 'POST':
@@ -155,7 +176,7 @@ def admin_al (request):
         p_rol_id = request.POST.get("rol")
 
         insert = insertar_alumno(p_run, p_dv, p_nombre, p_apellido, p_fecha_nac, p_direccion, p_telefono, p_inf_adicional, p_curso_id, p_comuna_id, p_apoderado_id, p_notas_id, p_rol_id)
-        
+        delete = eliminar_alumno(p_run)
         if insert:
             print("INSERCION EXITOSA!!")
         else:
@@ -170,6 +191,14 @@ def admin_al (request):
         'nota': listar_nota()
     }
     return render (request, 'Administrador/admin_alum.html', data)
+
+def eliminar_alumno (p_run):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+
+    cursor.callproc("DELETE_ALUMNO", [p_run])
+       
+    return True
 
 def admin_pro (request):
     if request.method == 'POST':
@@ -266,6 +295,9 @@ def admin_evento (request):
 def admin_grafico (request):
     
     return render (request, 'Administrador/dashboard.html')
+
+def pagoMatricula(request):
+    return render(request, 'Apoderados_Alumnos/pagoMatricula.html')
 
 #-------- cosas ---------------
 
@@ -591,7 +623,18 @@ def eliminar_apoderado(p_run):
 
 
 
+def listar_eventos_finales():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
 
+    cursor.callproc("LIST_EVENTOS", [out_cur])
+
+    lista_e = []
+
+    for fila in out_cur:
+        lista_e.append(fila)
+    return lista_e
 
 
 
