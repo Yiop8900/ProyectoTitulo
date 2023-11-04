@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-4" style="border-left: 1px solid black;">
+      <h2 class="titCurso" style="text-align: center; margin-bottom: 1%;">Modificar Apoderado</h2>
+      <form class="formularioEVENTO" method="POST" style="margin-bottom: 5%;">
+        {% csrf_token %}
+        {% for x in apoderados %}
+        <div class="mb-3">
+          <label for="rut" class="form-label">Rut:</label>
+          <input type="text" value="{{x.0}}" class="form-control shadow" id="rut" name="rut"
+            placeholder="sin puntos ni digito verificador"  required>
+        </div>
+
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombres:</label>
+          <input class="form-control shadow" value="{{x.1}}" id="nombre" name="nombre">
+        </div>
+
+        <div class="mb-3">
+          <label for="telefono" class="form-label">Numero Telefonico</label>
+          <input class="form-control shadow" value="{{x.2}}" id="telefono" name="telefono">
+        </div>
+
+        <div class="mb-3">
+          <label for="direccion" class="form-label">Direccion</label>
+          <input class="form-control shadow" id="direccion" value="{{x.3}}" name="direccion">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">correo electronico:</label>
+            <input class="form-control shadow" id="email" value="{{x.5}}" name="email">
+          </div>
+
+        <div class="mb-3">
+          <label for="comuna" class="form-label">Comuna</label>
+          <select name="comuna" class="form-select shadow">
+            <option>Selecciona...</option>
+            {% for co in comuna %}
+            <option value="{{ co.0 }}">{{ co.1 }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="rol" class="form-label">Rol:</label>
+          <select name="rol" class="form-select shadow">
+            <option>Selecciona...</option>
+            {% for r in rol %}
+            <option value="{{ r.0 }}">{{ r.1 }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <a href="{% url 'update_apoderado' x.0 %}" class="btn btn-warning">Modificar</a>
+    </form>
+    </div>
+        {% endfor%}
+        </script>
+
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            var enlacesTexto = document.querySelectorAll(".enlaceTexto");
+            var formulario = document.querySelector(".formularioReunion");
+
+            enlacesTexto.forEach(function (enlace) {
+              enlace.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                // Obtiene los valores de la fila
+                var rut = this.textContent;
+                var nombre = this.parentNode.nextElementSibling.textContent;
+                var telefono = this.parentNode.nextElementSibling.nextElementSibling.textContent;
+                var direccion = this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+
+                // Llena los campos del formulario con los valores
+                formulario.querySelector("#rut").value = rut;
+                formulario.querySelector("#nombre").value = nombre;
+                formulario.querySelector("#telefono").value = telefono;
+                formulario.querySelector("#direccion").value = direccion;
+              });
+            });
+          });
+        </script>
+        <script>
+          (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+              .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                  if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                  }
+
+                  form.classList.add('was-validated')
+                }, false)
+              })
+          })()
+        </script>
+
+       
+
+      </table>
+
+
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+{% endblock %}

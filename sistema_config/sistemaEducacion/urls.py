@@ -2,6 +2,7 @@ from django.urls import path
 from .views import *
 
 
+
 urlpatterns = [
     path('', index, name='index'),
     path('base/', base, name='base'),
@@ -10,6 +11,7 @@ urlpatterns = [
     path('planificar/', planificar, name='planificar'),
     path('clase/', clase, name='clase'), 
     path('iniciar_sesion/', iniciar_sesion, name='iniciar_sesion'),
+    path('cerrar_sesion/', cerrar_sesion, name='cerrar_sesion'),
     path('apoderado/', apoderado , name= 'apoderado'),
     path('revisar_notas/', revisar_notas , name= 'revisar_notas'),
     path('notificar/', notificar , name= 'notificar'),
@@ -19,4 +21,10 @@ urlpatterns = [
     path('admin_user/', admin_user , name= 'admin_user'),
     path('control_plan/', control_plan , name= 'control_plan'),
     path('admin_evento/', admin_evento , name= 'admin_evento'),
+    #eliminar
+    path('deleteapoderado/<p_run>/',delete_apoderado, name='delete_apoderado'),
+    #modificar
+    path('admin_apoderadoModi/<str:p_run>/', admin_apoderadoModi, name='admin_apoderadoModi'),
+    path('admin_apoderado/modificar/<p_run>/', update_apoderado, name='update_apoderado'),
+
 ]

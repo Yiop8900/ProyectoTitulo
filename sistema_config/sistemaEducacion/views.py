@@ -7,25 +7,27 @@ import json
 from datetime import datetime
 import base64
 import hashlib
+from django.shortcuts import render, redirect
+import cx_Oracle
+from django.views.decorators.csrf import csrf_exempt
+
+#importar el modelo de la tabla user
+from django.contrib.auth.models import User
+#libreria para autentificar usuarios
+from django.contrib.auth import authenticate,logout, login as login_aut
+#importar una libreria decoradora que evita el ingreso a las paginas
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-def login(p_correo, p_contrasenia):
-    django_cursor = connection.cursor()
-    out_cur = django_cursor.connection.cursor()
+def cerrar_sesion(request):
+    logout(request)
+    return render (request, "index.html")
 
-    # Llama al procedimiento PL/SQL
-    django_cursor.callproc("LOGIN", [p_correo, p_contrasenia, out_cur])
-
-    # Recopila los resultados del cursor de referencia
-    result = []
-    for row in out_cur:
-        result.append(row)
-
-    return result
+def login(request):
+        return render(request,"iniciar_sesion.html")
 
 def index(request):
-    is_login_successful = request.GET.get('is_login_successful', False)
 
     imagen = listar_evento()
 
@@ -40,7 +42,6 @@ def index(request):
     
     context = {
         'is_home': True,  # Establece esto en True para la página de inicio
-        'is_login_successful': is_login_successful,
         'eventos' : arreglo
     
     }
@@ -52,8 +53,41 @@ def base(request):
     
     return render(request, 'base.html')
 
+def iniciar_sesion(request):
+    if request.method == 'POST':
+        p_correo = request.POST.get('correo')
+        p_contrasenia = request.POST.get('contrasenia')
 
+        user = authenticate(request, username=p_correo, password=p_contrasenia)
 
+        if user is not None and user.is_active:
+            if user.is_active:
+
+                # Iniciar sesión
+                login_aut(request, user)
+
+                # Configuración específica de Swal para la alerta de éxito
+                success_config = {
+                    'icon': 'success',
+                    'title': 'Inicio de sesión exitoso',
+                    'position': 'top-end',
+                }
+
+                # Agrega una alerta de éxito
+                success_alert = f"swal({json.dumps(success_config)});"
+                
+                # Redirige a la vista 'index' con la cadena de consulta
+                return redirect(reverse('index') + '?is_login_successful=True' + json.dumps(success_config))
+            else:
+                # Cuenta desactivada
+                messages.error(request, "Tu cuenta está desactivada.")
+        else:
+            # Credenciales incorrectas
+            messages.error(request, "Correo o contraseña incorrectos")
+
+    return render(request, 'iniciar_sesion.html')
+
+@login_required
 def sistema_Profe(request):
     return render(request, 'Profesor/sistema_Profe.html')
 
@@ -69,32 +103,6 @@ def planificar(request):
 
 def calificar(request):
     return render(request, 'Profesor/calificar.html')
-
-def iniciar_sesion(request):
-    if request.method == 'POST':
-        p_correo = request.POST.get('correo')
-        p_contrasenia = request.POST.get('contrasenia')
-
-        resultados = login(p_correo, p_contrasenia)
-
-        if resultados:
-
-            # Configuración específica de Swal para la alerta de éxito
-            success_config = {
-                'icon': 'success',
-                'title': 'Inicio de sesión exitoso',
-                'position': 'top-end',
-            }
-            # Redirige a la vista 'index' con la cadena de consulta
-            print(resultados)
-            return redirect(reverse('index') + '?is_login_successful=True&swal_config=' + json.dumps(success_config), resultados)
-
-
-        else:
-            # En caso de error, puedes manejar los mensajes de error como lo hacías antes
-            messages.error(request, 'Correo o contraseña incorrectos')
-
-    return render(request, 'iniciar_sesion.html')
 
 def apoderado (request):
 
@@ -199,7 +207,6 @@ def admin_pro (request):
     }
     return render (request, 'Administrador/admin_profe.html',data)
 
-
 def admin_user (request):
     if request.method == 'POST':
         p_correo = request.POST.get("correo")
@@ -233,8 +240,6 @@ def admin_evento (request):
         p_imagen = imagen_data.read()
 
         # Luego, debes usar imagen_data para insertar la imagen en tu base de datos (esto depende de cómo esté definida tu función insertar_evento).
-        
-        # Por ejemplo, si tu función insertar_evento toma imagen_data como argumento, puedes llamarla de la siguiente manera:
         insert = insertar_evento(p_descripcion, p_imagen, p_profesor_id)
 
         if insert:
@@ -326,7 +331,6 @@ def listar_profesores_esp():
 
     return lista_prof
 
-
 def listar_comunas():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -367,7 +371,6 @@ def listar_cursos():
         lista_curso.append(fila)
 
     return lista_curso
-
 
 def cbo_usuario():
     django_cursor = connection.cursor()
@@ -534,7 +537,7 @@ def insertar_evento(p_descripcion, p_imagen, p_profesor_id):
         cursor.callproc("INSERT_EVENTOS", (p_descripcion, p_imagen, p_profesor_id))
 
         cursor.connection.commit()
-        
+
         print("correcto")
         
 
@@ -567,39 +570,44 @@ def eliminar_evento(p_evento_id):
         cursor.close()
 
 
-
-        
-def eliminar_apoderado(p_run):
+    
+def delete_apoderado(request, p_run):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    # Llamar al procedimiento almacenado "DELETE_EVENTO" con el parámetro
+    cursor.callproc('DELETE_APODERADO', (p_run))
+    cursor.connection.commit()
 
-    try:
+    return render(request,"admin_apoderado.html", salida)
 
-        cursor.callproc("DELETE_APODERADO", (p_run))
-        cursor.connection.commit()
+
+
+#modificar
+@csrf_exempt  # Esto deshabilita la protección CSRF para simplificar el ejemplo
+def update_apoderado(request, p_run,):
+    if request.method == 'POST':
+        p_run = request.POST.get('run')
+        p_nombre = request.POST.get('nombre')
+        p_apellido = request.POST.get('apellido')
+        p_telefono = request.POST.get('telefono')
+        p_direccion = request.POST.get('direccion')
+        p_comuna_id = request.POST.get('comuna_id')
+        p_usuario_id = request.POST.get('usuario_id')
+
+        # Llama al procedimiento almacenado
+        with connection.cursor() as cursor:
+            cursor.callproc('UPDATE_APODERADO', [p_run, p_nombre, p_apellido, p_telefono, p_direccion, p_comuna_id, p_usuario_id])
         
-        print("eliminado")
+        return JsonResponse({'message': 'Apoderado modificado correctamente'})
 
-    except Exception as e:
+    return JsonResponse({'message': 'Solicitud no válida'})
 
-        print(f"Error al insertar notificacion: {e}")
-        return False
-    finally:
-        # Asegúrate de cerrar el cursor y liberar los recursos
-        cursor.close()
+def admin_apoderadoModi(request, p_run):
 
-
-
-
-
-
-
-
-        
-
-
-    
-
-
-
-        
+    data = {
+        'apoderados': listar_apoderado(),
+        'rol': listar_rol(),
+        'comuna': listar_comunas(),
+    }
+    return render(request, 'Administrador/admin_apoderadoModi.html', data)
