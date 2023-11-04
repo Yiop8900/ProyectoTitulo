@@ -147,5 +147,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+<<<<<<< HEAD
 #autenticacion 
 AUTH_USER_MODEL = 'sistemaEducacion.User'
+=======
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+>>>>>>> df718800e81134f60bb61d4aeacf48d601e5e7d9

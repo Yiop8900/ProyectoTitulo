@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import *
+from django.conf.urls.static import static
 
 
 
@@ -21,6 +22,7 @@ urlpatterns = [
     path('admin_user/', admin_user , name= 'admin_user'),
     path('control_plan/', control_plan , name= 'control_plan'),
     path('admin_evento/', admin_evento , name= 'admin_evento'),
+<<<<<<< HEAD
     #eliminar
     path('deleteapoderado/<p_run>/',delete_apoderado, name='delete_apoderado'),
     #modificar
@@ -28,3 +30,11 @@ urlpatterns = [
     path('admin_apoderado/modificar/<p_run>/', update_apoderado, name='update_apoderado'),
 
 ]
+=======
+    path('dashboards/', dashboards , name= 'dashboards'),
+    path('pagoMatricula/', pagoMatricula , name= 'pagoMatricula'),
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+>>>>>>> df718800e81134f60bb61d4aeacf48d601e5e7d9

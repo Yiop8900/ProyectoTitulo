@@ -7,6 +7,7 @@ import json
 from datetime import datetime
 import base64
 import hashlib
+<<<<<<< HEAD
 from django.shortcuts import render, redirect
 import cx_Oracle
 from django.views.decorators.csrf import csrf_exempt
@@ -23,12 +24,37 @@ from django.contrib.auth.decorators import login_required
 def cerrar_sesion(request):
     logout(request)
     return render (request, "index.html")
+=======
+import matplotlib.pyplot as plt
+import os
+from django.conf import settings
+
+
+
+# Create your views here.
+
+from django.contrib.auth import login as auth_login
+
+
+
+
+
+#ORIGINAL
+def login(p_correo, p_contrasenia):
+    django_cursor = connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+>>>>>>> df718800e81134f60bb61d4aeacf48d601e5e7d9
 
 def login(request):
         return render(request,"iniciar_sesion.html")
 
 def index(request):
+<<<<<<< HEAD
 
+=======
+    is_login_successful = request.GET.get('is_login_successful', False)
+    rol = iniciar_sesion(request)
+>>>>>>> df718800e81134f60bb61d4aeacf48d601e5e7d9
     imagen = listar_evento()
 
     arreglo = []
@@ -42,7 +68,13 @@ def index(request):
     
     context = {
         'is_home': True,  # Establece esto en True para la página de inicio
+<<<<<<< HEAD
         'eventos' : arreglo
+=======
+        'is_login_successful': is_login_successful,
+        'eventos' : arreglo,
+        'rol': rol,
+>>>>>>> df718800e81134f60bb61d4aeacf48d601e5e7d9
     
     }
 
@@ -50,8 +82,11 @@ def index(request):
 
 
 def base(request):
-    
-    return render(request, 'base.html')
+    is_login_successful = request.GET.get('is_login_successful', False)
+    context = {  # Establece esto en True para la página de inicio
+        'is_login_successful': is_login_successful,
+    }
+    return render(request, 'base.html', context)
 
 def iniciar_sesion(request):
     if request.method == 'POST':
@@ -89,7 +124,12 @@ def iniciar_sesion(request):
 
 @login_required
 def sistema_Profe(request):
-    return render(request, 'Profesor/sistema_Profe.html')
+    is_login_successful = request.GET.get('is_login_successful', False)
+    context = {  # Establece esto en True para la página de inicio
+        'is_login_successful': is_login_successful,
+    
+    }
+    return render(request, 'Profesor/sistema_Profe.html',context)
 
 def clase(request):
     data = {
@@ -104,6 +144,33 @@ def planificar(request):
 def calificar(request):
     return render(request, 'Profesor/calificar.html')
 
+<<<<<<< HEAD
+=======
+def iniciar_sesion(request):
+    if request.method == 'POST':
+        p_correo = request.POST.get('correo')
+        p_contrasenia = request.POST.get('contrasenia')
+
+        resultados = login(p_correo, p_contrasenia)
+
+        if resultados:
+            # Configuración específica de Swal para la alerta de éxito
+            success_config = {
+                'icon': 'success',
+                'title': 'Inicio de sesión exitoso',
+                'position': 'top-end',
+            }
+
+            return redirect(reverse('index') + '?is_login_successful=True' + json.dumps(success_config), resultados)
+
+
+        else:
+            # En caso de error, puedes manejar los mensajes de error como lo hacías antes
+            messages.error(request, 'Correo o contraseña incorrectos')
+
+    return render(request, 'iniciar_sesion.html')
+
+>>>>>>> df718800e81134f60bb61d4aeacf48d601e5e7d9
 def apoderado (request):
 
     return render (request, 'Apoderados_Alumnos/apoderado.html')
@@ -117,6 +184,10 @@ def notificar (request):
     }
 
     return render (request, 'Profesor/notificar.html', data)
+
+def dashboards(request):
+    
+    return render(request, 'Administrador/dashboard.html')
 
 def admin_ap(request):
     if request.method == 'POST':
@@ -163,7 +234,7 @@ def admin_al (request):
         p_rol_id = request.POST.get("rol")
 
         insert = insertar_alumno(p_run, p_dv, p_nombre, p_apellido, p_fecha_nac, p_direccion, p_telefono, p_inf_adicional, p_curso_id, p_comuna_id, p_apoderado_id, p_notas_id, p_rol_id)
-        
+        delete = eliminar_alumno(p_run)
         if insert:
             print("INSERCION EXITOSA!!")
         else:
@@ -178,6 +249,14 @@ def admin_al (request):
         'nota': listar_nota()
     }
     return render (request, 'Administrador/admin_alum.html', data)
+
+def eliminar_alumno (p_run):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+
+    cursor.callproc("DELETE_ALUMNO", [p_run])
+       
+    return True
 
 def admin_pro (request):
     if request.method == 'POST':
@@ -271,6 +350,9 @@ def admin_evento (request):
 def admin_grafico (request):
     
     return render (request, 'Administrador/dashboard.html')
+
+def pagoMatricula(request):
+    return render(request, 'Apoderados_Alumnos/pagoMatricula.html')
 
 #-------- cosas ---------------
 
@@ -605,9 +687,38 @@ def update_apoderado(request, p_run,):
 
 def admin_apoderadoModi(request, p_run):
 
+<<<<<<< HEAD
     data = {
         'apoderados': listar_apoderado(),
         'rol': listar_rol(),
         'comuna': listar_comunas(),
     }
     return render(request, 'Administrador/admin_apoderadoModi.html', data)
+=======
+
+
+
+def listar_eventos_finales():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("LIST_EVENTOS", [out_cur])
+
+    lista_e = []
+
+    for fila in out_cur:
+        lista_e.append(fila)
+    return lista_e
+
+
+
+        
+
+
+    
+
+
+
+        
+>>>>>>> df718800e81134f60bb61d4aeacf48d601e5e7d9
