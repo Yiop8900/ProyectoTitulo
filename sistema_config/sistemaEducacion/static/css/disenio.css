@@ -1,0 +1,119 @@
+body
+{
+    background: rgb(255, 255, 255);
+}
+
+
+  
+.tituloCole
+{
+    text-align: center;
+    margin-top: 2%;
+    font-family: 'Arial', sans-serif; /* Cambia la fuente a tu preferencia */
+    color: #102c38; /* Cambia el color del texto */
+    text-align: center; /* Alineación del texto al centro */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    letter-spacing: 2px; /* Espaciado entre letras */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra del texto */
+    margin: 20px 0; /* Márgenes superiores e inferiores */
+}
+
+.contenedorImg
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.contenido
+{
+    text-align: center;
+}
+
+.contenido img {
+    max-width: 65%;
+    max-height: 60%;
+    display: inline-block;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+}
+
+.info
+{
+    text-align: center;
+    margin-top: 2%;
+}
+
+.acerca
+{
+    text-align: center;
+    margin-top: 2%;
+}
+
+
+.eve
+{
+    margin-top: 2%;
+}
+
+.eventos
+{
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 5%;
+}
+
+.card
+{
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+
+img{
+    border-radius: 15px ;
+}
+
+.frame
+{
+    border-radius: 15px;
+}
+
+#interiorCurso
+{
+    margin: 2%;
+}
+
+.curso
+{
+    margin-top: 2%;
+}
+
+.cursoAlumno
+{
+    margin-top: 10%;
+}
+
+
+.tabla{
+    color: #a5e4ec;
+}
+
+#miVentanaEmergente {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}

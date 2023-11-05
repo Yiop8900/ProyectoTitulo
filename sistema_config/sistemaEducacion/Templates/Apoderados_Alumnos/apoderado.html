@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3" style="border-right: 3px solid  black;">
+            <h1 class="titCurso" style="text-align: center;">Curso: 8vo A</h1>
+            <hr style="border: 1px solid black;">
+            <h6>Profesor Jefe: Francisco Juillet  </h6>
+            <h6>Asignatura: Educacion Fisica</h6>
+            <hr style="border: 1px solid black;">
+            <H2>PAGAR MATRICULA</H2>
+            <form name='rec20108_btn1' method='post' action='https://www.webpay.cl/backpub/external/form-pay'>
+                <input type='hidden' name='idFormulario' value='99521' />
+                <input type='hidden' name='monto' value='1000' readonly />
+                <input type='image' title='Imagen' name='button1' src='https://www.webpay.cl/assets/img/boton_webpaycl.svg' value='Boton 1' />
+            </form>
+        </div>
+        <div class="col-md-9">
+            <h2 class="titCurso" style="text-align: center; margin-bottom: 2%;">Cursos
+            </h2>
+            <div class="curso">
+                <div id="interiorCurso">
+                    <h5>Matematicas | Profesor: Profesor asignado</h5>
+                    <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso" data-bs-toggle="modal" data-bs-target="#planificacionModal">Revisar Planificación</a>
+                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso">Revisar
+                        Calificaciones</a>
+                </div>
+            </div>
+            <div class="curso">
+                <div id="interiorCurso">
+                    <h5>Ciencias Naturales| Profesor: Profesor asignado</h5>
+                    <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso" data-bs-toggle="modal" data-bs-target="#planificacionModal">Revisar Planificación</a>
+                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso">Revisar
+                        Calificaciones</a>
+                </div>
+            </div>
+            <div class="curso">
+                <div id="interiorCurso">
+                    <h5>Lenguaje & Comunicaciones | Profesor: Profesor asignado</h5>
+                    <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso" data-bs-toggle="modal" data-bs-target="#planificacionModal">Revisar Planificación</a>
+                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso">Revisar
+                        Calificaciones</a>
+                </div>
+            </div>
+            <div class="curso">
+                <div id="interiorCurso">
+                    <h5>Musica | Profesor: Profesor asignado</h5>
+                    <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso" data-bs-toggle="modal" data-bs-target="#planificacionModal">Revisar Planificación</a>
+                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso">Revisar
+                        Calificaciones</a>
+                </div>
+            </div>
+            <div class="curso">
+                <div id="interiorCurso">
+                    <h5>Ingles | Profesor: Profesor asignado</h5>
+                    <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso" data-bs-toggle="modal" data-bs-target="#planificacionModal">Revisar Planificación</a>
+                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso">Revisar
+                        Calificaciones</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<div class="modal fade" id="planificacionModal" tabindex="-1" aria-labelledby="planificacionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content" style=" height: 900px;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="pdfModalLabel">Visor de PDF</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenedor del visor de PDF -->
+          <iframe src="{% static 'PDF/Definicion Proyecto APT Fase1.pdf' %}" width="100%" height="90%"
+            style="margin-bottom: 2%;"></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+<style>
+    /* Estilo personalizado para las notas en rojo */
+    .nota-roja {
+        color: red;
+    }
+</style>
+
+<a type="button" class="btn btn-secondary" href="{% url 'sistema_Profe' %}">⬅ Volver</a>
+<h1 class="titCurso" style="text-align: center;">Calificar Alumnos</h1>
+<div style="padding: 2%;">
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Nota 1</th>
+                <th>Nota 2</th>
+                <th>Nota 3</th>
+                <th>Nota 4</th>
+                <th>Nota 5</th>
+                <th>Nota 6</th>
+                <th>Promedio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Alumno 1 -->
+            <tr>
+                <td>Alejandro López</td>
+                <td contenteditable="true">5.0</td>
+                <td contenteditable="true">6.0</td>
+                <td contenteditable="true">4.0</td>
+                <td contenteditable="true" class="nota-roja">3.5</td>
+                <td contenteditable="true">6.0</td>
+                <td contenteditable="true">5.5</td>
+                <td>5.1</td>
+            </tr>
+            <!-- Alumno 2 -->
+            <tr>
+                <td>Ana Rodríguez</td>
+                <td contenteditable="true">6.5</td>
+                <td contenteditable="true">4.0</td>
+                <td contenteditable="true" class="nota-roja">3.0</td>
+                <td contenteditable="true">5.5</td>
+                <td contenteditable="true">6.5</td>
+                <td contenteditable="true">7.0</td>
+                <td>5.2</td>
+            </tr>
+            <!-- Alumno 3 -->
+            <tr>
+                <td>Carlos Martínez</td>
+                <td contenteditable="true">4.5</td>
+                <td contenteditable="true">6.5</td>
+                <td contenteditable="true">5.0</td>
+                <td contenteditable="true">6.5</td>
+                <td contenteditable="true">4.5</td>
+                <td contenteditable="true">6.0</td>
+                <td>5.3</td>
+            </tr>
+            <!-- Alumno 4 -->
+            <tr>
+                <td>Laura Pérez</td>
+                <td contenteditable="true">6.0</td>
+                <td contenteditable="true">5.0</td>
+                <td contenteditable="true">6.5</td>
+                <td contenteditable="true">6.0</td>
+                <td contenteditable="true">4.5</td>
+                <td contenteditable="true">5.0</td>
+                <td>5.4</td>
+            </tr>
+            <!-- Alumno 5 -->
+            <tr>
+                <td>Juan García</td>
+                <td contenteditable="true">4.5</td>
+                <td contenteditable="true">4.0</td>
+                <td contenteditable="true">5.5</td>
+                <td contenteditable="true">6.0</td>
+                <td contenteditable="true">6.5</td>
+                <td contenteditable="true">6.0</td>
+                <td>5.2</td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="button" class="btn" id="btnCurso"
+        style=" margin-bottom: 5%; background-color: rgb(195, 212, 39);">Guardar Cambios</button>
+    <button type="button" class="btn" id="btnCurso"
+        style=" margin-bottom: 5%; background-color: mediumseagreen;">Descargar Notas</button>
+</div>
+<div>
+    
+</div>
+{% endblock %}

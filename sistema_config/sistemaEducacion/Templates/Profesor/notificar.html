@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+
+
+<div class="container-fluid row" >
+    <a type="button" class="btn btn-secondary" href="{% url 'sistema_Profe' %}">⬅ Volver</a>
+    <div class="col-md" style="margin-left: 2%; margin-right: 2%;">
+        <h2 style="text-align: center; margin-bottom: 6%; margin-top: 5%;">Formulario de Reunión</h2>
+        <form class="formularioReunion">
+            <div class="mb-3">
+                <label for="fecha" class="form-label">Fecha de la Reunion</label>
+                <input type="date" class="form-control shadow" id="fecha" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Asunto del Mensaje</label>
+                <input class="form-control shadow" id="exampleFormControlTextarea1" rows="3"></input>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Cuerpo del Mensaje</label>
+                <textarea class="form-control shadow" id="exampleFormControlTextarea1" rows="7"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Notificar</button>
+        </form>
+    </div>
+    <div class="col-md">
+        <h2 class="titCurso" style="text-align: center; margin-bottom: 6%; margin-top: 5%;">Lista Apoderados</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    
+                    <th>RUT</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for a in apoderados %}
+                <tr data-toggle="modal" data-target="#alumnoModal">
+                    <td>{{ a.0 }}</td>
+                    <td>{{ a.1 }}</td>
+                    <td>{{ a.5 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

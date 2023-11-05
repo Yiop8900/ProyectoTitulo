@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+
+
+<div class="container-fluid">
+  <div class="row">
+    <a type="button" class="btn btn-secondary" href="{% url 'sistema_Profe' %}">⬅ Volver</a>
+    <div class="col-xl-8" style="border-right: 3px solid  black;">
+      <h1 class="titCurso" style="text-align: center;">8vo | Profesor Asignado</h1>
+      <div class="d-grid gap-2">
+        <button class="btn btnblanco"
+          style="border: 1px solid black; background-color: white; padding: 5%; margin-right: 5%; margin-left: 5%; margin-top: 5%; "
+          type="button" data-bs-toggle="modal" data-bs-target="#planificacionModal">Planificacion</button>
+        <a class="btn btnblanco"
+          style="border: 1px solid black; background-color: white; padding: 5%; margin-right: 5%; margin-left: 5%; margin-top: 2%; margin-bottom: 5%;"
+          type="button" href="{% url 'notificar'%}">Notificar Evento</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h2 class="titCurso" style="text-align: center; margin-bottom: 6%; margin-top: 5%;">Lista Estudiantes</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>RUT</th>
+            <th>Nombre Completo</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for al in alumnos %}
+          <tr data-toggle="modal" data-target="#alumnoModal">
+            <td><a href="#" value="{{al.0}}">{{al.0}}</td>
+            <td>{{al.1}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <!-- Modal -->
+      <div class="modal fade" id="alumnoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Información del Alumno</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="{% static 'img/alumno.png' %}" alt="Imagen Alumno" width="100%">
+                </div>
+                <div class="col-md-4">
+                  <p><strong>Nombre:</strong> Juan Pérez</p>
+                  <p><strong>RUT:</strong> 12345678-9</p>
+                  <p><strong>Edad:</strong> 15 anios</p>
+                </div>
+                <div class="col-md-4">
+                  <p><strong>Nombre Apoderado:</strong> Maria de las Nieves</p>
+                  <p><strong>Numero Emergencia:</strong> +56985246585</p>
+                  <p><strong>Correo Electronico:</strong> maria@gmail.com</p>
+                </div>
+                <!-- Aquí puedes mostrar la información del alumno -->
+                <div class="tituloAlumnado">
+                  <h4 style="text-align: center; margin-top: 2%;">Informacion Adicional</h4>
+                  <p style="margin-left: 2%; margin-right: 2%;">Lorem ipsum dolor sit, amet consectetur adipisicing
+                    elit. Velit accusantium rem deserunt doloribus
+                    beatae nulla consequuntur quas ipsum laborum! Quae, odio amet. Excepturi, eveniet provident id
+                    corporis non nam laboriosam?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id, quam
+                    tenetur repellat sint maiores quia, nulla veritatis, nostrum quas ad vitae perspiciatis repudiandae
+                    fugit? Atque, nam asperiores! Magni, fugit earum!Lorem</p>
+                </div>
+
+                <!-- Agrega más detalles según tus necesidades -->
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="planificacionModal" tabindex="-1" aria-labelledby="planificacionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content" style=" height: 900px;">
+            <div class="modal-header">
+              <h5 class="modal-title" id="pdfModalLabel">Visor de PDF</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <!-- Contenedor del visor de PDF -->
+              <iframe src="{% static 'PDF/Definicion Proyecto APT Fase1.pdf' %}" width="100%" height="90%"
+                style="margin-bottom: 2%;"></iframe>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
