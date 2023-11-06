@@ -70,6 +70,7 @@
                 <th>Correo</th>
                 <th>Contraseña</th>
                 <th>Rol</th>
+                <th>Opciones</th>
               </tr>
             </thead>
             <tbody>
@@ -79,6 +80,12 @@
                 <td>{{ user.1 }}</td>
                 <td>{{ user.2 }}</td>
                 <td>{{ user.3 }}</td>
+                <td>
+                  <a href="{% url 'borrar_usuario' user.0 %}" class="btn btn-danger" style="margin-bottom: 10px;"
+                    >Eliminar</a>
+    
+                  
+                </td>
               </tr>
               {% endfor %}
               <!-- Agrega más filas para otros alumnos -->

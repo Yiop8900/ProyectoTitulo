@@ -4,12 +4,11 @@
   
 .curso
 {
-    border: 2px solid black; 
-    border-radius: 10px; 
+    
     margin: 2%; 
     background-color: white;
     transition: transform 0.3s;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6); 
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7); 
 }
 
     .curso:hover
@@ -30,7 +29,6 @@
     padding: 10px 20px;
     border: none;
     margin-right: 1%;
-    border-radius: 5px;
     cursor: pointer;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
   }

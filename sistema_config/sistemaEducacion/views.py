@@ -73,7 +73,7 @@ def sistema_Profe(request):
     is_login_successful = request.GET.get('is_login_successful', False)
     context = {  # Establece esto en True para la página de inicio
         'is_login_successful': is_login_successful,
-    
+        'cursos': listar_cursos()
     }
     return render(request, 'Profesor/sistema_Profe.html',context)
 
@@ -403,6 +403,9 @@ def listar_usuarios():
 
     return lista_user
 
+
+
+
 def listar_cursos():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -672,11 +675,28 @@ def borrar_profesor(request, p_run):
     cursor.connection.commit()
 
     # Redireccionar a una página diferente después de eliminar el apoderado
-    return HttpResponseRedirect('/admin_profesor/')  # Reemplaza '/pagina_de_exito/' con la URL que desees redirigir
+    return HttpResponseRedirect('/admin_profe/')  # Reemplaza '/pagina_de_exito/' con la URL que desees redirigir
+
+def borrar_alumno(request, p_run):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+
+    cursor.callproc('DELETE_ALUMNO', (p_run,))
+    cursor.connection.commit()
+
+    # Redireccionar a una página diferente después de eliminar el apoderado
+    return HttpResponseRedirect('/admin_alum/')  # Reemplaza '/pagina_de_exito/' con la URL que desees redirigir
 
 
+def borrar_usuario(request, p_id):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
 
-    
+    cursor.callproc('DELETE_USUARIO', (p_id,))
+    cursor.connection.commit()
+
+    # Redireccionar a una página diferente después de eliminar el apoderado
+    return HttpResponseRedirect('/admin_user/')  # Reemplaza '/pagina_de_exito/' con la URL que desees redirigir   
 
 
 

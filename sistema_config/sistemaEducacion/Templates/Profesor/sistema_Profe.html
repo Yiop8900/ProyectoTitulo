@@ -3,70 +3,44 @@
 {% block contenido %}
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-xl-8" style="border-right: 3px solid  black;">
-      <h1 class="titCurso" style="text-align: center;">Cursos</h1>
-      <div class="curso">
+  <div>
+    <h1 class="titCurso" style="text-align: center;">
+        <a href="" style="text-decoration: none; color: black;">Cursos</a>
+        <a href="" onclick="mostrarCalendario(event)" style="text-decoration: none; color: black;">/Calendario</a>
+    </h1>
+    {% for c in cursos %}
+    <div class="curso">
         <div id="interiorCurso">
-          <h5>8vo A | Profesor: Profesor asignado en un futuro</h5>
-          <div class="btn-group d-flex justify-content-center">
-            <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso">Planificar Clase</a>
-            <a href="{% url 'clase' %}" type="button" class="btn" id="btnCurso">Iniciar Clase</a>
-            <a href="{% url 'calificar' %}" type="button" class="btn" id="btnCurso">Calificar Alumnos</a>
-          </div>
+            <h5 style="text-align: center;">{{c.0}} | Profesor: {{c.1}}</h5>
+            <div class="btn-group d-flex justify-content-center">
+                <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso" style="background-color: rgb(244,179,70);">Planificar Clase</a>
+                <a href="{% url 'clase' %}" type="button" class="btn" id="btnCurso" style="background-color: rgb(237,123,61);">Iniciar Clase</a>
+                <a href="{% url 'calificar' %}" type="button" class="btn" id="btnCurso" style="background-color: rgb(15,48,74); color: white;">Calificar Alumnos</a>
+            </div>
         </div>
-      </div>
-      <div class="curso">
-        <div id="interiorCurso">
-          <h5>8vo B | Profesor: Profesor asignado en un futuro</h5>
-          <div class="btn-group d-flex justify-content-center">
-            <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso">Planificar Clase</a>
-            <a href="{% url 'clase' %}" type="button" class="btn" id="btnCurso">Iniciar Clase</a>
-            <a href="{% url 'calificar' %}" type="button" class="btn" id="btnCurso">Calificar Alumnos</a>
-          </div>
-        </div>
-      </div>
-      <div class="curso">
-        <div id="interiorCurso">
-          <h5>8vo C | Profesor: Profesor asignado en un futuro</h5>
-          <div class="btn-group d-flex justify-content-center">
-            <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso">Planificar Clase</a>
-            <a href="{% url 'clase' %}" type="button" class="btn" id="btnCurso">Iniciar Clase</a>
-            <a href="{% url 'calificar' %}" type="button" class="btn" id="btnCurso">Calificar Alumnos</a>
-          </div>
-        </div>
-      </div>
-      <div class="curso">
-        <div id="interiorCurso">
-          <h5>7mo A | Profesor: Profesor asignado en un futuro</h5>
-          <div class="btn-group d-flex justify-content-center">
-            <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso">Planificar Clase</a>
-            <a href="{% url 'clase' %}" type="button" class="btn" id="btnCurso">Iniciar Clase</a>
-            <a href="{% url 'calificar' %}" type="button" class="btn" id="btnCurso">Calificar Alumnos</a>
-          </div>
-        </div>
-      </div>
-      <div class="curso">
-        <div id="interiorCurso">
-          <h5>7mo B | Profesor: Profesor asignado en un futuro</h5>
-          <div class="btn-group d-flex justify-content-center">
-            <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso">Planificar Clase</a>
-            <a href="{% url 'clase' %}" type="button" class="btn" id="btnCurso">Iniciar Clase</a>
-            <a href="{% url 'calificar' %}" type="button" class="btn" id="btnCurso">Calificar Alumnos</a>
-          </div>
-        </div>
-      </div>
-
     </div>
-    <div class="col-md-4">
-      <h2 class="titCurso" style="text-align: center; margin-bottom: 6%;">Calendario</h2>
-      <iframe
-        src="https://calendar.google.com/calendar/embed?height=600&wkst=2&bgcolor=%23ffffff&ctz=America%2FSantiago&showTitle=0&showNav=0&showDate=0&showPrint=0&showTabs=0&showTz=0&showCalendars=0"
-        style="border-width:0; border-radius: 10px;" width="100%" height="500px" frameborder="0"
-        scrolling="no"></iframe>
-    </div>
-  </div>
+    {% endfor %}
 </div>
+
+<div id="calendario" style="height: 0; overflow: hidden; margin-left: 5%; margin-right: 5%;">
+    <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&bgcolor=%23ffffff&ctz=America%2FSantiago&showTitle=0&showNav=0&showDate=0&showPrint=0&showTabs=0&showTz=0&showCalendars=0" style="border-width:0; border-radius: 10px; " width="100%" height="500px" frameborder="0" scrolling="no"></iframe>
+</div>
+
+</div>
+
+
+<script>
+  function mostrarCalendario(event) {
+      event.preventDefault();
+      var calendario = document.getElementById("calendario");
+      var elementosACerrar = document.getElementsByClassName("curso");
+      // Ocultar elementos con clase "curso"
+      for (var i = 0; i < elementosACerrar.length; i++) {
+          elementosACerrar[i].style.display = "none";
+      }
+      calendario.style.height = "500px"; // Mostrar el calendario
+  }
+</script>
 
 
 

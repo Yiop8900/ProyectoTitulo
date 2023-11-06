@@ -4,9 +4,9 @@
 
 <div class="container-fluid row">
   <div class="dropdown">
-    <button style="margin-left: 1%; margin-top: 0.5%;" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Menu de Administracion
-    </button>
+    <button style="background-color: rgb(255, 255, 255); color: rgb(30, 38, 100);box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" class="btn btn-secondary btn-block" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Menu de Administración
+    </button> 
     <ul class="dropdown-menu">
       <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
           style="text-decoration: none; color: black;" href="{% url 'admin_apoderado' %}">Administrar Apoderados</a>
@@ -32,11 +32,11 @@
           style="text-decoration: none; color: black; " href="{% url 'dashboards' %}">Dashboards</a></li>
     </ul>
   </div>
-  <div class="col-md-12">
+  <div class="">
     <div class="row">
-      <div class="col-md-4" style="border-left: 1px solid black;">
+      <div style="border-left: 1px solid black;">
         <h2 class="titCurso" style="text-align: center; margin-bottom: 1%; ">Administrar Profesores</h2>
-        <form class="formularioReunion" method="POST" style="margin-bottom: 5%;">
+        <form class="formularioReunion row row-cols-md-2" method="POST" style="margin-bottom: 5%;">
           {% csrf_token %}
           <div class="mb3">
             <label for="rut" class="form-label">Rut:</label>
@@ -89,12 +89,14 @@
               {% endfor %}
             </select>
           </div>
+          <div class="mb3" style="margin-bottom: 2%;">
+
+          </div>
           <button type="submit" class="btn btn-success">Guardar</button>
           <button class="btn btn-primary">Modificar</button>
-          <button class="btn btn-danger">Eliminar</button>
         </form>
       </div>
-      <div class="col-md-8">
+      <div class=>
         <h2 class="titCurso" style="text-align: center;">Lista Profesores</h2>
         <table class="table table-striped table-hover">
           <thead>
@@ -118,6 +120,10 @@
               <td>{{ pro.6 }}</td>
               <td>{{ pro.4 }}</td>
               <td>{{ pro.5 }}</td>
+              <td>
+                <a href="{% url 'borrar_profesor' pro.0 %}" class="btn btn-danger" style="margin-bottom: 10px;"
+                  >Eliminar</a>
+              </td>
             </tr>
             {% endfor %}
           </tbody>

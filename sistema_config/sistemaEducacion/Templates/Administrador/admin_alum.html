@@ -4,9 +4,9 @@
 
 <div class="container-fluid row">
   <div class="dropdown">
-    <button style="margin-left: 1%; margin-top: 0.5%;" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Menu de Administracion
-    </button>
+    <button style="background-color: rgb(255, 255, 255); color: rgb(30, 38, 100);box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" class="btn btn-secondary btn-block" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Menu de Administración
+    </button>    
     <ul class="dropdown-menu">
       <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
           style="text-decoration: none; color: black;" href="{% url 'admin_apoderado' %}">Administrar Apoderados</a>
@@ -32,51 +32,51 @@
           style="text-decoration: none; color: black; " href="{% url 'dashboards' %}">Dashboards</a></li>
     </ul>
   </div>
-  <div class="col-md-12">
+  <div>
     <div class="row">
-      <div class="col-md-4" style="border-left: 1px solid black; ">
-        <h2 class="titCurso" style="text-align: center; margin-bottom: 1%;">Administrar Alumnos</h2>
-        <form class="formularioReunion" method="POST" style="margin-bottom: 5%; height: 700px; overflow-y: scroll;">
+      <div class="col-md-13" style="border-left: 1px solid black;  ">
+        <h2 class="titCurso" style="text-align: center; margin-bottom: 1%;color: rgb(30, 38, 100);">Administrar Alumnos</h2>
+        <form class="formularioReunion row row-cols-md-2" method="POST" style="margin-bottom: 5%; height: 500px;">
           {% csrf_token %}
           <div class="mb3">
-            <label for="rut" class="form-label">Rut:</label>
-            <input type="text" class="form-control shadow" id="rut" name="rut" placeholder="Rut sin puntos ni guion" > 
+            <label for="nombre" class="form-label">Rut:</label>
+            <input type="text" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" id="rut" name="rut" placeholder="Rut sin puntos ni guion" > 
           </div>
           <div class="mb3">
-            <label for="dv" class="form-label">Dv:</label>
-            <input type="text" class="form-control shadow" id="dv" name="dv" placeholder="Digito verificador">
+            <label for="nombre" class="form-label">DV:</label>
+            <input type="text" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" id="dv" name="dv" placeholder="Digito verificador">
           </div>
           <div class="mb3">
             <label for="nombre" class="form-label">Nombre:</label>
-            <input type="text" class="form-control shadow" id="nombre" name="nombre">
+            <input type="text" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" id="nombre" name="Nombre" placeholder="Nombre">
           </div>
           <div class="mb3">
             <label for="apellido" class="form-label">Apellido:</label>
-            <input type="text" class="form-control shadow" id="apellido" name="apellido">
+            <input type="text" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);"id="apellido" name="apellido" placeholder="Apellido" >
           </div>
           <div class="mb3">
             <label for="fecha">Fecha de Nacimiento</label>
-            <input type="date" class="form-control shadow" id="fecha" name="fecha" max="" >
+            <input type="date" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);"id="fecha" name="fecha" max="" placeholder="Fecha de Nacimiento">
           </div>
           <div class="mb3">
             <label for="direccion" class="form-label">Direccion:</label>
-            <input type="text" class="form-control shadow" id="direccion" name="direccion">
+            <input type="text" class="form-control"style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" id="direccion" name="direccion" placeholder="Direccion">
           </div>
           <div class="mb3" >
             <label for="telefono" class="from-label">Telefono:</label>
-            <input type="text" class="form-control shadow" id="telefono" name="telefono">
+            <input type="text" class="form-control"style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" id="telefono" name="telefono" placeholder="Telefono">
           </div>
           <div class="mb3">
             <label for="apoderado" class="form-label">Apoderado:</label>
-            <input name="apoderado" id="apoderado" class="form-control shadow" placeholder="Rut del apoderado sin puntos ni guion" >
+            <input name="apoderado" id="apoderado" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);"placeholder="Rut del apoderado sin puntos ni guion" >
           </div>
           <div class="mb3">
             <label for="inf_adicional" class="form-label">Informacion Adicional:</label>
-            <textarea type="text-area" class="form-control shadow" id="inf_adicional" name="inf_adicional" rows="3"></textarea>
+            <textarea type="text-area" class="form-control " style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" id="inf_adicional" name="inf_adicional" rows="3" placeholder="Información Adicional"></textarea>
           </div>
           <div class="mb3">
             <label for="comuna" class="form-label">Comuna:</label>
-            <select name="comuna" id="comuna" class="form-select shadow">
+            <select name="comuna" id="comuna" class="form-select "style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);">
               <option value="">Selecciona...</option>
               {% for co in comuna %}
               <option value="{{ co.0}}">{{co.1}}</option>
@@ -85,7 +85,7 @@
           </div>
           <div class="mb3">
             <label for="curso" class="form-label">Curso:</label>
-            <select name="curso" id="curso" class="form-select shadow">
+            <select name="curso" id="curso" class="form-select " style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);">
               <option value="">Seleccione....</option>
               {% for c in curso %}
               <option value="{{c.0}}">{{c.1}}</option>
@@ -94,7 +94,7 @@
           </div>
           <div class="mb3" style="margin-bottom: 2%;">
             <label for="rol" class="form-label">Rol:</label>
-            <select name="rol" id="rol" class="form-select shadow">
+            <select name="rol" id="rol" class="form-select" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);">
               <option value="">Selecccione...</option>
               {% for r in rol %}
               <option value="{{r.0}}">{{r.1}}</option>
@@ -106,7 +106,7 @@
           
         </form>
       </div>
-      <div class="col-md-8">
+      <div>
         <h2 class="titCurso" style="text-align: center; ">Lista Alumnos</h2>
         <table class="table table-bordered">
           <thead>
@@ -131,7 +131,12 @@
               <td>{{ a.6 }}</td>
               <td>{{ a.5 }}</td>
               <td>{{ a.3 }}</td>
-              <td><button class="btn btn-danger" value="{{ a.0 }}">Eliminar</button></td>
+              <td>
+                <a href="{% url 'borrar_alumno' a.0 %}" class="btn btn-danger" style="margin-bottom: 10px;"
+                  >Eliminar</a>
+  
+                
+              </td>
             </tr>
             {% endfor %}
           </tbody>

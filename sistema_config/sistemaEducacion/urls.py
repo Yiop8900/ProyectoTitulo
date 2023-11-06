@@ -23,6 +23,9 @@ urlpatterns = [
     path('dashboards/', dashboards , name= 'dashboards'),
     path('pagoMatricula/', pagoMatricula , name= 'pagoMatricula'),
     path('borrar_apoderado/<str:p_run>/', borrar_apoderado , name= 'borrar_apoderado'),
+    path('borrar_profesor/<str:p_run>/', borrar_profesor , name= 'borrar_profesor'),
+    path('borrar_alumno/<str:p_run>/', borrar_alumno , name= 'borrar_alumno'),
+    path('borrar_usuario/<str:p_id>/', borrar_usuario , name= 'borrar_usuario'),
 ]
 
 if settings.DEBUG:

@@ -3,23 +3,21 @@
 {% block contenido %}
 
 <div class="preparando">
-    <div class="contenedorSes">
-        <h4 style="text-align: center; margin-top: 2%;">Iniciar Sesion</h4>
+    <div class="contenedorInicio" style="margin-top: 7%; margin-bottom: 8%; margin-left: 25%;margin-right: 25%;color: rgb(104, 104, 104);background: white; box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);;border-radius: 10px;">
+        <h4 style="text-align: center; margin: 1%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: rgb(30, 38, 100);">INICIAR SESIÓN</h4>
         <form method="POST" class="formularioSes">
             {% csrf_token %}
             <div class="mb-3">
-                <label for="correo" class="form-label">Usuario</label>
-                <input style="border: 1px solid black;" type="text" class="form-control" id="correo" name="correo" placeholder="Ejemplo: Manuel@algo">
+                <input style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" type="text" class="form-control" id="correo" name="correo" placeholder="Usuario">
             </div>
             <div class="mb-3">
-                <label for="contrasenia" class="form-label">Contraseña</label>
-                <input style="border: 1px solid black;" type="password" class="form-control" id="contrasenia" name="contrasenia" placeholder="Contraseña"></input>
+                <input style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" type="password" class="form-control" id="contrasenia" name="contrasenia" placeholder="Contraseña"></input>
             </div>
             <div style="text-align: center;">
-                <a href="" style="text-decoration: none; color: rgb(0, 0, 0);">¿Olvidaste tu contraseña?</a>
+                <a href="" style="text-decoration: none; color: rgb(30, 38, 100);font-style: italic;" >¿Has olvidado tu contraseña?</a>
             </div>
             <div style="text-align: center; margin-top: 4%;">
-                <button type="submit" class="btn btn-primary">Inicar Sesion</button>
+                <button type="submit" class="btn" style="background-color: rgb(237,123,61); color: black;margin: 2%;">Inicar Sesion</button>
             </div>
             <div style="text-align: center;">
             </div>
