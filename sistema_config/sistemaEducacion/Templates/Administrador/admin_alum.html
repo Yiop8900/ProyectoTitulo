@@ -2,12 +2,12 @@
 {% load static %}
 {% block contenido %}
 
-<div class="container-fluid row">
+<div style="margin-left: 10%; margin-right: 10%;">
   <div class="dropdown">
-    <button style="background-color: rgb(255, 255, 255); color: rgb(30, 38, 100);box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" class="btn btn-secondary btn-block" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Menu de Administración
+    <button style="background-color: rgb(15,48,74);box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" class="btn btn-secondary btn-block" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Menu de Administración   ↓
     </button>    
-    <ul class="dropdown-menu">
+    <ul class="dropdown-menu shadow" style="background-color: rgb(255, 255, 255);">
       <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
           style="text-decoration: none; color: black;" href="{% url 'admin_apoderado' %}">Administrar Apoderados</a>
       </li>
@@ -34,68 +34,56 @@
   </div>
   <div>
     <div class="row">
-      <div class="col-md-13" style="border-left: 1px solid black;  ">
+      <div class="col-md-13" >
         <h2 class="titCurso" style="text-align: center; margin-bottom: 1%;color: rgb(30, 38, 100);">Administrar Alumnos</h2>
-        <form class="formularioReunion row row-cols-md-2" method="POST" style="margin-bottom: 5%; height: 500px;">
+        <form class="formularioReunion row row-cols-md-2" method="POST" style="margin-bottom: 10%; height: 500px;">
           {% csrf_token %}
           <div class="mb3">
-            <label for="nombre" class="form-label">Rut:</label>
-            <input type="text" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" id="rut" name="rut" placeholder="Rut sin puntos ni guion" > 
+            <input type="text" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" id="rut" name="rut" placeholder="Rut sin puntos ni guion" > 
           </div>
           <div class="mb3">
-            <label for="nombre" class="form-label">DV:</label>
-            <input type="text" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" id="dv" name="dv" placeholder="Digito verificador">
+            <input type="text" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" id="dv" name="dv" placeholder="Digito verificador">
           </div>
           <div class="mb3">
-            <label for="nombre" class="form-label">Nombre:</label>
-            <input type="text" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" id="nombre" name="Nombre" placeholder="Nombre">
+            <input type="text" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" id="nombre" name="Nombre" placeholder="Nombre">
           </div>
           <div class="mb3">
-            <label for="apellido" class="form-label">Apellido:</label>
-            <input type="text" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);"id="apellido" name="apellido" placeholder="Apellido" >
+            <input type="text" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;"id="apellido" name="apellido" placeholder="Apellido" >
           </div>
           <div class="mb3">
-            <label for="fecha">Fecha de Nacimiento</label>
-            <input type="date" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);"id="fecha" name="fecha" max="" placeholder="Fecha de Nacimiento">
+            <input type="date" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;"id="fecha" name="fecha" max="" placeholder="Fecha de Nacimiento">
           </div>
           <div class="mb3">
-            <label for="direccion" class="form-label">Direccion:</label>
-            <input type="text" class="form-control"style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" id="direccion" name="direccion" placeholder="Direccion">
+            <input type="text" class="form-control"style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" id="direccion" name="direccion" placeholder="Direccion">
           </div>
           <div class="mb3" >
-            <label for="telefono" class="from-label">Telefono:</label>
-            <input type="text" class="form-control"style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" id="telefono" name="telefono" placeholder="Telefono">
+            <input type="text" class="form-control"style="box-shadow: in set0 0 5px rgba(0, 0, 0, 0.5);margin-bottom: 5%;" id="telefono" name="telefono" placeholder="Telefono">
           </div>
           <div class="mb3">
-            <label for="apoderado" class="form-label">Apoderado:</label>
-            <input name="apoderado" id="apoderado" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);"placeholder="Rut del apoderado sin puntos ni guion" >
+            <input name="apoderado" id="apoderado" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5) ;margin-bottom: 5%;"placeholder="Rut del apoderado sin puntos ni guion" >
           </div>
           <div class="mb3">
-            <label for="inf_adicional" class="form-label">Informacion Adicional:</label>
-            <textarea type="text-area" class="form-control " style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" id="inf_adicional" name="inf_adicional" rows="3" placeholder="Información Adicional"></textarea>
+            <textarea type="text-area" class="form-control " style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5) ;margin-bottom: 5%;" id="inf_adicional" name="inf_adicional" rows="3" placeholder="Información Adicional"></textarea>
           </div>
           <div class="mb3">
-            <label for="comuna" class="form-label">Comuna:</label>
-            <select name="comuna" id="comuna" class="form-select "style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);">
-              <option value="">Selecciona...</option>
+            <select name="comuna" id="comuna" class="form-select "style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5) ;margin-bottom: 5%;" >
+              <option value="">Selecciona Comuna...</option>
               {% for co in comuna %}
               <option value="{{ co.0}}">{{co.1}}</option>
               {% endfor %}
             </select>
           </div>
           <div class="mb3">
-            <label for="curso" class="form-label">Curso:</label>
-            <select name="curso" id="curso" class="form-select " style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);">
-              <option value="">Seleccione....</option>
+            <select name="curso" id="curso" class="form-select " style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5) ;margin-bottom: 5%;">
+              <option value="">Seleccione CURSO....</option>
               {% for c in curso %}
               <option value="{{c.0}}">{{c.1}}</option>
               {% endfor %}
             </select>
           </div>
           <div class="mb3" style="margin-bottom: 2%;">
-            <label for="rol" class="form-label">Rol:</label>
-            <select name="rol" id="rol" class="form-select" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);">
-              <option value="">Selecccione...</option>
+            <select name="rol" id="rol" class="form-select" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;">
+              <option value="">Selecccione ROL...</option>
               {% for r in rol %}
               <option value="{{r.0}}">{{r.1}}</option>
               {% endfor %}
@@ -103,7 +91,6 @@
           </div>
           <button type="submit" class="btn btn-success">Guardar</button>
           <button class="btn btn-primary">Modificar</button>
-          
         </form>
       </div>
       <div>

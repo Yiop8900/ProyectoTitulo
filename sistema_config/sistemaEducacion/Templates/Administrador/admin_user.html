@@ -2,11 +2,11 @@
 {% load static %}
 {% block contenido %}
 
-<div class="container-fluid row">
+<div style="margin-left: 10%; margin-right: 10%;">
   <div class="dropdown">
-    <button style="margin-left: 1%; margin-top: 0.5%;" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Menu de Administracion
-    </button>
+    <button style="background-color: rgb(15,48,74);box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" class="btn btn-secondary btn-block" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Menu de Administración   ↓
+    </button>   
     <ul class="dropdown-menu">
       <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
           style="text-decoration: none; color: black;" href="{% url 'admin_apoderado' %}">Administrar Apoderados</a>
@@ -32,35 +32,35 @@
           style="text-decoration: none; color: black; " href="{% url 'dashboards' %}">Dashboards</a></li>
     </ul>
   </div>
-  <div class="col-md-12">
+  <div>
     <div class="row">
-      <div class="col-md-4" style="border-left: 1px solid black;">
+      <div>
         <h2 class="titCurso" style="text-align: center; margin-bottom: 1%; ">Crear Admin</h2>
-        <form class="formularioReunion" method="POST" style="margin-bottom: 5%;">
+        <form class="formularioReunion row row-cols-md-2" method="POST" style="margin-bottom: 5%;">
           {% csrf_token %}
           <div class="mb-3">
-            <label for="correo" class="form-label">Correo:</label>
-            <input class="form-control shadow" id="correo" name="correo"></input>
+            <input class="form-control" id="correo" name="correo"
+            style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" placeholder="Correo"></input>
           </div>
           <div class="mb-3">
-            <label for="contrasenia" class="form-label">Contraseña:</label>
-            <input type="password" class="form-control shadow" id="contrasenia" name="contrasenia"></input>
+            <input type="password" class="form-control" id="contrasenia" name="contrasenia"
+            style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" placeholder="Contraseña"></input>
           </div>
           <div class="mb3" style="margin-bottom: 2%;">
-            <label for="rol" class="form-label">Rol:</label>
-            <select name="rol" id="rol" class="form-select shadow">
-              <option value="">Selecccione...</option>
+            <select name="rol" id="rol" class="form-select" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;">
+              <option value="">Selecccione ROL...</option>
               {% for r in rol %}
               <option value="{{r.0}}">{{r.1}}</option>
               {% endfor %}
             </select>
           </div>
+          <div>
+          </div>
           <button type="submit" class="btn btn-success">Guardar</button>
           <button type="" class="btn btn-primary">Modificar</button>
-          <button type="" class="btn btn-danger">Eliminar</button>
         </form>
       </div>
-      <div class="col-md-8">
+      <div>
         <h2 class="titCurso" style="text-align: center; ">Lista Usuarios</h2>
         <div style="overflow-x: auto;">
           <table class="table table-bordered">

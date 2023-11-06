@@ -8,7 +8,7 @@
 <!--Imagen del colegio-->
 <div style="position: relative; display: inline-block;">
     <img src="{% static 'img/Colegio3.jpeg' %}" alt="" width="100%" height="100%">
-    <div style="position: absolute; top: 0; right: 0; width: 30%; height: 100%; background-color: rgba(37, 37, 37, 0.7); padding: 20px;">
+    <div style="position: absolute; top: 0; right: 0; width: 40%; height: 100%; background-color: rgba(37, 37, 37, 0.7); padding: 20px;">
         <h2 style="color: white; align-items: center;text-align: justify">SOBRE NOSOTROS</h2>
         <p style="color: white; align-items: center; text-align: justify;">El Colegio San Carlos, fundado en 1960, es una institución educativa comprometida con la excelencia académica y la formación integral de sus estudiantes. Nuestro enfoque se centra en valores como el respeto, la responsabilidad y la empatía. Contamos con un equipo de profesores apasionados que fomentan el aprendizaje y el desarrollo de habilidades.</p>
     </div>
@@ -17,7 +17,8 @@
 
 <!--Informacion del colegio-->
 <div class="informacionCole">
-    <h2 class="acerca">EVENTOS ESCOLARES</h2>
+    <h2 class="acerca" style="margin-top: 5%;">EVENTOS ESCOLARES</h2>
+    <hr style="border: 1px solid black;">
 </div>
 
 
@@ -28,6 +29,9 @@
             <div class="card h-100">
                 <img src="data:imagen/jpeg;base64,{{ e.imagen }}" class="card-img-top" alt="..." height="350"
                     style="border-radius: 15px;">
+                    <div style="position: absolute; top: 0; right: 0; width: 100%; height: 100%; background-color: rgba(37, 37, 37, 0.7); padding: 20px; border-radius: 10px;">
+                        <p style="color: white; align-items: center; text-align: justify;">{{ e.data.1 }}</p>
+                    </div>
             </div>
         </div>
         {% endfor %}

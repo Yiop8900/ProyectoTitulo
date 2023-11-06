@@ -2,11 +2,11 @@
 {% load static %}
 {% block contenido %}
 
-<div class="container-fluid row">
+<div style="margin-left: 10%; margin-right: 10%;">
     <div class="dropdown">
-      <button style="margin-left: 1%; margin-top: 0.5%;" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Menu de Administracion
-      </button>
+        <button style="background-color: rgb(15,48,74);box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" class="btn btn-secondary btn-block" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Menu de Administración   ↓
+          </button> 
       <ul class="dropdown-menu">
         <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
             style="text-decoration: none; color: black;" href="{% url 'admin_apoderado' %}">Administrar Apoderados</a>
@@ -34,9 +34,9 @@
     </div>
     <div class="col-md-12">
         <div class="row">
-            <div class="col-md-12" style="border-left: 1px solid black;">
-                <h2 class="titCurso" style="text-align: center; margin-bottom:1%;">Lista Apoderados</h2>
-                <table class="table tablaPlan" style="margin-bottom: 5%;">
+            <div class="col-md-12">
+                <h2 class="titCurso" style="text-align: center; margin-bottom:1%;">Lista de Planificaciones</h2>
+                <table class="table tablaPlan shadow" style="margin-bottom: 5%; border-radius: 30px;">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>

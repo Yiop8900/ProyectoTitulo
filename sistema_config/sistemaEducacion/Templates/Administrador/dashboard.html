@@ -2,5 +2,44 @@
 {% load static %}
 {% block contenido %}
 
-<iframe title="Report Section" src="https://app.powerbi.com/view?r=eyJrIjoiNTY0ZjhiYWYtZDlhZi00MmJmLWJhNzEtMGRkMzY1ZmRmZGNmIiwidCI6IjcyZmQwYjVhLThhNmEtNGNmZi04OWY2LWJkZTk2MWY3ZTI1MCIsImMiOjR9" frameborder="0" allowFullScreen="true" height="100%" width="100%"></iframe>
+<div style="margin-left: 10%; margin-right: 10%;">
+    <div class="dropdown">
+        <button style="background-color: rgb(15,48,74);box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);"
+            class="btn btn-secondary btn-block" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Menu de Administración ↓
+        </button>
+        <ul class="dropdown-menu">
+            <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+                    style="text-decoration: none; color: black;" href="{% url 'admin_apoderado' %}">Administrar
+                    Apoderados</a>
+            </li>
+            <hr>
+            <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+                    style="text-decoration: none; color: black; " href="{% url 'admin_profe' %}">Administrar
+                    Profesores</a></li>
+            <hr>
+            <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+                    style="text-decoration: none; color: black; " href="{% url 'admin_alum' %}">Administrar Alumnos</a>
+            </li>
+            <hr>
+            <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+                    style="text-decoration: none; color: black; " href="{% url 'admin_user' %}">Generar
+                    Administrador</a></li>
+            <hr>
+            <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+                    style="text-decoration: none; color: black; " href="{% url 'control_plan' %}">Control de
+                    Planificaciones</a>
+            </li>
+            <hr>
+            <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+                    style="text-decoration: none; color: black; " href="{% url 'admin_evento' %}">Gestionar Eventos</a>
+            </li>
+            <hr>
+            <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+                    style="text-decoration: none; color: black; " href="{% url 'dashboards' %}">Dashboards</a></li>
+        </ul>
+    </div>
+    <iframe title="PBI_Colegio" width="1519" height="700" src="https://app.powerbi.com/reportEmbed?reportId=ce21e42a-218c-4afd-932e-a17d90213e06&autoAuth=true&ctid=72fd0b5a-8a6a-4cff-89f6-bde961f7e250" frameborder="0" allowFullScreen="true"></iframe>
+</div>
+
 {% endblock %}

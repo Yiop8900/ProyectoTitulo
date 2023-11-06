@@ -3,23 +3,23 @@
 {% block contenido %}
 
 
-<div class="container-fluid">
+<div style="margin-left: 10%; margin-right: 10%;">
   <div class="row">
-    <a type="button" class="btn btn-secondary" href="{% url 'sistema_Profe' %}">⬅ Volver</a>
-    <div class="col-xl-8" style="border-right: 3px solid  black;">
+    <a type="button" class="btn btn-secondary" href="{% url 'sistema_Profe' %}" style="background-color: rgb(15,48,74);box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);">Volver  ←</a>
+    <div>
       <h1 class="titCurso" style="text-align: center;">8vo | Profesor Asignado</h1>
       <div class="d-grid gap-2">
         <button class="btn btnblanco"
-          style="border: 1px solid black; background-color: white; padding: 5%; margin-right: 5%; margin-left: 5%; margin-top: 5%; "
-          type="button" data-bs-toggle="modal" data-bs-target="#planificacionModal">Planificacion</button>
+        style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);background-color: rgb(244,179,70); padding: 3%;margin: 1%; border-radius: 10px;"
+        type="button" data-bs-toggle="modal" data-bs-target="#planificacionModal">PLANIFICACIÓN</button>
         <a class="btn btnblanco"
-          style="border: 1px solid black; background-color: white; padding: 5%; margin-right: 5%; margin-left: 5%; margin-top: 2%; margin-bottom: 5%;"
-          type="button" href="{% url 'notificar'%}">Notificar Evento</a>
+        style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);background-color: rgb(237,123,61); padding: 3%;margin: 1%; border-radius: 10px;"
+          type="button" href="{% url 'notificar'%}">NOTIFICAR EVENTO</a>
       </div>
     </div>
-    <div class="col-md-4">
+    <div>
       <h2 class="titCurso" style="text-align: center; margin-bottom: 6%; margin-top: 5%;">Lista Estudiantes</h2>
-      <table class="table table-bordered">
+      <table class="table table-bordered shadow" style="border-radius: 10px;">
         <thead>
           <tr>
             <th>RUT</th>

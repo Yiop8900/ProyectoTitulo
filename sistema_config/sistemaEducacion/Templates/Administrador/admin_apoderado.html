@@ -2,75 +2,74 @@
 {% load static %}
 {% block contenido %}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<div class="dropdown">
-  <button style="background-color: rgb(255, 255, 255); color: rgb(30, 38, 100);box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" class="btn btn-secondary btn-block" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Menu de Administración
-  </button>   
-  <ul class="dropdown-menu">
-    <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
-        style="text-decoration: none; color: black;" href="{% url 'admin_apoderado' %}">Administrar Apoderados</a>
-    </li>
-    <hr>
-    <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
-        style="text-decoration: none; color: black; " href="{% url 'admin_profe' %}">Administrar Profesores</a></li>
-    <hr>
-    <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
-        style="text-decoration: none; color: black; " href="{% url 'admin_alum' %}">Administrar Alumnos</a></li>
-    <hr>
-    <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
-        style="text-decoration: none; color: black; " href="{% url 'admin_user' %}">Generar Administrador</a></li>
-    <hr>
-    <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
-        style="text-decoration: none; color: black; " href="{% url 'control_plan' %}">Control de Planificaciones</a>
-    </li>
-    <hr>
-    <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
-        style="text-decoration: none; color: black; " href="{% url 'admin_evento' %}">Gestionar Eventos</a></li>
-    <hr>
-    <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
-        style="text-decoration: none; color: black; " href="{% url 'dashboards' %}">Dashboards</a></li>
-  </ul>
-</div>
-<div>
+<div style="margin-left: 10%; margin-right: 10%;">
+  <div class="dropdown">
+    <button style="background-color: rgb(15,48,74);box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);"
+      class="btn btn-secondary btn-block" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Menu de Administración ↓
+    </button>
+    <ul class="dropdown-menu">
+      <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+          style="text-decoration: none; color: black;" href="{% url 'admin_apoderado' %}">Administrar Apoderados</a>
+      </li>
+      <hr>
+      <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+          style="text-decoration: none; color: black; " href="{% url 'admin_profe' %}">Administrar Profesores</a></li>
+      <hr>
+      <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+          style="text-decoration: none; color: black; " href="{% url 'admin_alum' %}">Administrar Alumnos</a></li>
+      <hr>
+      <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+          style="text-decoration: none; color: black; " href="{% url 'admin_user' %}">Generar Administrador</a></li>
+      <hr>
+      <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+          style="text-decoration: none; color: black; " href="{% url 'control_plan' %}">Control de Planificaciones</a>
+      </li>
+      <hr>
+      <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+          style="text-decoration: none; color: black; " href="{% url 'admin_evento' %}">Gestionar Eventos</a></li>
+      <hr>
+      <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
+          style="text-decoration: none; color: black; " href="{% url 'dashboards' %}">Dashboards</a></li>
+    </ul>
+  </div>
+
   <div class="row">
-    <div class="col-md-11" style="border-left: 1px solid black;">
+    <div class="col-md-13">
       <h2 class="titCurso" style="text-align: center; margin-bottom: 1%;">Administrar Apoderados</h2>
       <form class="formularioApoderado row row-cols-md-2" method="POST" style="margin-bottom: 5%;">
         {% csrf_token %}
         <div class="mb-3">
-          <label for="rut" class="form-label">Rut:</label>
-          <input type="text" class="form-control shadow" id="rut" name="rut"
-            placeholder="sin puntos ni digito verificador" required>
+          <input type="text" class="form-control rut" name="rut"
+            placeholder="Rut sin puntos ni digito verificador" required style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;">
         </div>
         <div class="mb-3">
-          <label for="dv" class="form-label">DV:</label>
-          <input type="text" class="form-control shadow" id="dv" name="dv" placeholder="Digito verificador">
+          <input type="text" class="form-control  " id="dv" name="dv" placeholder="Digito verificador"style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;">
         </div>
 
         <div class="mb-3">
-          <label for="nombre" class="form-label">Nombres:</label>
-          <input class="form-control shadow" id="nombre" name="nombre">
+          <input class="form-control  " id="nombre" name="nombre"
+            style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" placeholder="Nombre">
         </div>
 
         <div class="mb-3">
-          <label for="apellido" class="form-label">Apellido</label>
-          <input class="form-control shadow" id="apellido" name="apellido">
+          <input class="form-control  " id="apellido" name="apellido"
+            style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" placeholder="Apellido">
         </div>
 
         <div class="mb-3">
-          <label for="telefono" class="form-label">Numero Telefonico</label>
-          <input class="form-control shadow" id="telefono" name="telefono">
+          <input class="form-control  " id="telefono" name="telefono"
+            style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" placeholder="Numero Telefonico">
         </div>
 
         <div class="mb-3">
-          <label for="direccion" class="form-label">Direccion</label>
-          <input class="form-control shadow" id="direccion" name="direccion">
+          <input class="form-control  " id="direccion" name="direccion"
+            style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" placeholder="Direccion">
         </div>
 
         <div class="mb-3">
-          <label for="comuna" class="form-label">Comuna</label>
-          <select name="comuna" class="form-select shadow">
-            <option>Selecciona...</option>
+          <select name="comuna" class="form-select  " style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;">
+            <option>Selecciona COMUNA...</option>
             {% for co in comuna %}
             <option value="{{ co.0 }}">{{ co.1 }}</option>
             {% endfor %}
@@ -78,9 +77,8 @@
         </div>
 
         <div class="mb-3">
-          <label for="rol" class="form-label">Rol:</label>
-          <select name="rol" class="form-select shadow">
-            <option>Selecciona...</option>
+          <select name="rol" class="form-select  " style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;">
+            <option>Selecciona ROL...</option>
             {% for r in rol %}
             <option value="{{ r.0 }}">{{ r.1 }}</option>
             {% endfor %}
@@ -94,9 +92,9 @@
     </div>
     <div>
       <h2 class="titCurso" style="text-align: center;">Lista Apoderados</h2>
-      <table class="table table-bordered">
+      <table class="table table-bordered shadow">
         <thead>
-          <tr>
+          <tr style="color: rgb(15,48,74) ;">
             <th>RUT</th>
             <th>Nombre Completo</th>
             <th>Numero Telefonico</th>
@@ -117,10 +115,10 @@
             <td>{{ ap.4 }}</td>
             <td>{{ ap.5 }}</td>
             <td>
-              <a href="{% url 'borrar_apoderado' ap.0 %}" class="btn btn-danger" style="margin-bottom: 10px;"
-                >Eliminar</a>
+              <a href="{% url 'borrar_apoderado' ap.0 %}" class="btn btn-danger"
+                style="margin-bottom: 10px;">Eliminar</a>
 
-              
+
             </td>
           </tr>
           {% endfor %}

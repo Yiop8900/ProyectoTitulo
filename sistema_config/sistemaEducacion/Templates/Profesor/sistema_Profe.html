@@ -2,20 +2,20 @@
 {% load static %}
 {% block contenido %}
 
-<div class="container-fluid">
+<div style="margin-left: 10%; margin-right: 10%;">
   <div>
     <h1 class="titCurso" style="text-align: center;">
         <a href="" style="text-decoration: none; color: black;">Cursos</a>
         <a href="" onclick="mostrarCalendario(event)" style="text-decoration: none; color: black;">/Calendario</a>
     </h1>
     {% for c in cursos %}
-    <div class="curso">
+    <div class="curso" style="border-radius: 10px;">
         <div id="interiorCurso">
             <h5 style="text-align: center;">{{c.0}} | Profesor: {{c.1}}</h5>
             <div class="btn-group d-flex justify-content-center" style="margin-bottom: 1%;">
-                <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso" style="background-color: rgb(244,179,70);">Planificar Clase</a>
-                <a href="{% url 'clase' %}" type="button" class="btn" id="btnCurso" style="background-color: rgb(237,123,61);">Iniciar Clase</a>
-                <a href="{% url 'calificar' %}" type="button" class="btn" id="btnCurso" style="background-color: rgb(15,48,74); color: white;">Calificar Alumnos</a>
+                <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso" style="background-color: rgb(244,179,70);margin: 2%">Planificar Clase</a>
+                <a href="{% url 'clase' %}" type="button" class="btn" id="btnCurso" style="background-color: rgb(237,123,61);margin: 2%">Iniciar Clase</a>
+                <a href="{% url 'calificar' %}" type="button" class="btn" id="btnCurso" style="background-color: rgb(15,48,74); color: white; margin: 2%;">Calificar Alumnos</a>
             </div>
         </div>
     </div>

@@ -4,29 +4,26 @@
 
 
 <div class="container-fluid row" >
-    <a type="button" class="btn btn-secondary" href="{% url 'sistema_Profe' %}">⬅ Volver</a>
+    <a type="button" class="btn btn-secondary" href="{% url 'sistema_Profe' %}" style="background-color: rgb(15,48,74);box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);">Volver  ←</a>
     <div class="col-md" style="margin-left: 2%; margin-right: 2%;">
         <h2 style="text-align: center; margin-bottom: 6%; margin-top: 5%;">Formulario de Reunión</h2>
         <form class="formularioReunion">
             <div class="mb-3">
-                <label for="fecha" class="form-label">Fecha de la Reunion</label>
-                <input type="date" class="form-control shadow" id="fecha" required>
+                <input type="date" class="form-control" id="fecha" required style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);margin: 3%;"placeholder="Fecha de Reunion">
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Asunto del Mensaje</label>
-                <input class="form-control shadow" id="exampleFormControlTextarea1" rows="3"></input>
+                <input class="form-control " id="exampleFormControlTextarea1" rows="3"style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);margin: 3%;"placeholder="Asunto del Mensaje"></input>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Cuerpo del Mensaje</label>
-                <textarea class="form-control shadow" id="exampleFormControlTextarea1" rows="7"></textarea>
+                <textarea class="form-control " id="exampleFormControlTextarea1" rows="7"style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);margin: 3%;" placeholder="Cuerpo del Mensaje"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Notificar</button>
+            <button type="submit" class="btn btn-primary" style="margin: 2%;">Notificar</button>
         </form>
     </div>
     <div class="col-md">
         <h2 class="titCurso" style="text-align: center; margin-bottom: 6%; margin-top: 5%;">Lista Apoderados</h2>
-        <table class="table table-bordered">
+        <table class="table table-bordered shadow">
             <thead>
                 <tr>
                     

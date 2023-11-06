@@ -2,71 +2,76 @@
 {% load static %}
 {% block contenido %}
 
-<div class="tituloPlan">
-    <a style="margin-left: 1%;" type="button" class="btn btn-danger" href="{% url 'sistema_Profe' %}">⬅ Volver</a>
-    <h2 class="text-center">Planificar</h2>
-    <i style="margin-right: 5%;"></i>
-</div>
-
-
-
-<div class="container-fluid">
+<div style="margin-left: 10%; margin-right: 10%;">
     <div class="row">
-        <div class="col-md-4">
-            <form class="formularioPlan">
-                <div style="height: 500px; overflow-y: scroll;" id="inputs-extra">
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Objetivo de la clase</label>
-                        <input type="text" class="form-control shadow" id="exampleFormControlInput1"
-                            placeholder="Objetivo:">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Semana 1</label>
-                        <textarea class="form-control shadow" id="exampleFormControlTextarea1" name="semana1" rows="3"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Semana 2</label>
-                        <textarea class="form-control shadow" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Semana 3</label>
-                        <textarea class="form-control shadow" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Guardar Planificacion</button>
-                <button type="submit" class="btn btn-warning">Editar</button>
-                <button type="button" class="btn btn-success" id="agregar">Agregar Semanas</button>
-            </form>
-        </div>
-        <div class="col-md-4">
-            <iframe src="{% static 'PDF/Definicion Proyecto APT Fase1.pdf' %}" width="100%" height="90%"
-                style="margin-bottom: 2%;"></iframe>
-        </div>
-        <div class="col-md-4">
-            <div style="margin-right: 2%; margin-left: 2%;">
-                <table class="table tablaPlan">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Documento</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>02/09/2023</td>
-                            <td><a href="{% static 'PDF/Definicion Proyecto APT Fase1.pdf' %}"
-                                    target="_blank">Definicion Proyecto APT Fase1.pdf</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <a type="button" class="btn btn-secondary" href="{% url 'sistema_Profe' %}"
+            style="background-color: rgb(15,48,74);box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);">Volver ←</a>
+    </div>
+    <div>
+        <h2 class="text-center">Planificar</h2>
+        <i style="margin-right: 5%;"></i>
+    </div>
 
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <form class="formularioPlan">
+                    <div style="height: 500px; overflow-y: scroll;" id="inputs-extra">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Objetivo de la clase</label>
+                            <input type="text" class="form-control shadow" id="exampleFormControlInput1"
+                                placeholder="Objetivo:">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Semana 1</label>
+                            <textarea class="form-control shadow" id="exampleFormControlTextarea1" name="semana1"
+                                rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Semana 2</label>
+                            <textarea class="form-control shadow" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Semana 3</label>
+                            <textarea class="form-control shadow" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar Planificacion</button>
+                    <button type="submit" class="btn btn-warning">Editar</button>
+                    <button type="button" class="btn btn-success" id="agregar">Agregar Semanas</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <iframe src="{% static 'PDF/Definicion Proyecto APT Fase1.pdf' %}" width="100%" height="90%"
+                    style="margin-bottom: 2%;"></iframe>
+            </div>
+            <div class="col-md-4">
+                <div style="margin-right: 2%; margin-left: 2%;">
+                    <table class="table tablaPlan">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Documento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>02/09/2023</td>
+                                <td><a href="{% static 'PDF/Definicion Proyecto APT Fase1.pdf' %}"
+                                        target="_blank">Definicion Proyecto APT Fase1.pdf</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
-
 <script>
     $(document).ready(function () {
         var contador = 4;

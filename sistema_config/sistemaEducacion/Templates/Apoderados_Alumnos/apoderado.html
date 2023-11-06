@@ -1,66 +1,76 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block contenido %}
-<div class="container-fluid">
+<div style="margin-left: 10%; margin-right: 10%;">
     <div class="row">
-        <div class="col-md-3" style="border-right: 3px solid  black;">
+        <div>
             <h1 class="titCurso" style="text-align: center;">Curso: 8vo A</h1>
             <hr style="border: 1px solid black;">
+            <h2>Nombre: Manuel Herrera</h2>
             <h6>Profesor Jefe: Francisco Juillet  </h6>
             <h6>Asignatura: Educacion Fisica</h6>
             <hr style="border: 1px solid black;">
-            <H2>PAGAR MATRICULA</H2>
-            <form name='rec20108_btn1' method='post' action='https://www.webpay.cl/backpub/external/form-pay'>
-                <input type='hidden' name='idFormulario' value='99521' />
-                <input type='hidden' name='monto' value='1000' readonly />
-                <input type='image' title='Imagen' name='button1' src='https://www.webpay.cl/assets/img/boton_webpaycl.svg' value='Boton 1' />
-            </form>
+
         </div>
-        <div class="col-md-9">
-            <h2 class="titCurso" style="text-align: center; margin-bottom: 2%;">Cursos
-            </h2>
-            <div class="curso">
-                <div id="interiorCurso">
-                    <h5>Matematicas | Profesor: Profesor asignado</h5>
-                    <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso" data-bs-toggle="modal" data-bs-target="#planificacionModal">Revisar Planificación</a>
-                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso">Revisar
+        <div>
+            <h2 class="titCurso" style="text-align: center; margin-bottom: 2%;">Asignaturas</h2>
+            <div class="curso" style="border-radius: 10px;box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); height: 100px;">
+                <h5 style="text-align: center;">Matematicas | Profesor: Profesor asignado</h5>
+                <div id="interiorCurso" class="btn-group d-flex justify-content-center" style="margin-bottom: 1%;">
+                    
+                    <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso" data-bs-toggle="modal" data-bs-target="#planificacionModal" style="background-color: rgb(15,48,74); color: white;">Revisar Planificación</a>
+                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso" style="background-color: rgb(237,123,61);">Revisar
                         Calificaciones</a>
                 </div>
             </div>
-            <div class="curso">
-                <div id="interiorCurso">
-                    <h5>Ciencias Naturales| Profesor: Profesor asignado</h5>
-                    <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso" data-bs-toggle="modal" data-bs-target="#planificacionModal">Revisar Planificación</a>
-                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso">Revisar
+            <div class="curso" style="border-radius: 10px;box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); height: 100px;">
+                <h5 style="text-align: center;">Matematicas | Profesor: Profesor asignado</h5>
+                <div id="interiorCurso" class="btn-group d-flex justify-content-center" style="margin-bottom: 1%;">
+                    
+                    <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso" data-bs-toggle="modal" data-bs-target="#planificacionModal" style="background-color: rgb(15,48,74); color: white;">Revisar Planificación</a>
+                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso" style="background-color: rgb(237,123,61);">Revisar
                         Calificaciones</a>
                 </div>
             </div>
-            <div class="curso">
-                <div id="interiorCurso">
-                    <h5>Lenguaje & Comunicaciones | Profesor: Profesor asignado</h5>
-                    <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso" data-bs-toggle="modal" data-bs-target="#planificacionModal">Revisar Planificación</a>
-                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso">Revisar
+            <div class="curso" style="border-radius: 10px;box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); height: 100px;">
+                <h5 style="text-align: center;">Matematicas | Profesor: Profesor asignado</h5>
+                <div id="interiorCurso" class="btn-group d-flex justify-content-center" style="margin-bottom: 1%;">
+                    
+                    <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso" data-bs-toggle="modal" data-bs-target="#planificacionModal" style="background-color: rgb(15,48,74); color: white;">Revisar Planificación</a>
+                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso" style="background-color: rgb(237,123,61);">Revisar
                         Calificaciones</a>
                 </div>
             </div>
-            <div class="curso">
-                <div id="interiorCurso">
-                    <h5>Musica | Profesor: Profesor asignado</h5>
-                    <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso" data-bs-toggle="modal" data-bs-target="#planificacionModal">Revisar Planificación</a>
-                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso">Revisar
+            <div class="curso" style="border-radius: 10px;box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); height: 100px;">
+                <h5 style="text-align: center;">Matematicas | Profesor: Profesor asignado</h5>
+                <div id="interiorCurso" class="btn-group d-flex justify-content-center" style="margin-bottom: 1%;">
+                    
+                    <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso" data-bs-toggle="modal" data-bs-target="#planificacionModal" style="background-color: rgb(15,48,74); color: white;">Revisar Planificación</a>
+                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso" style="background-color: rgb(237,123,61);">Revisar
                         Calificaciones</a>
                 </div>
             </div>
-            <div class="curso">
-                <div id="interiorCurso">
-                    <h5>Ingles | Profesor: Profesor asignado</h5>
-                    <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso" data-bs-toggle="modal" data-bs-target="#planificacionModal">Revisar Planificación</a>
-                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso">Revisar
+<div class="curso" style="border-radius: 10px;box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); height: 100px;">
+                <h5 style="text-align: center;">Matematicas | Profesor: Profesor asignado</h5>
+                <div id="interiorCurso" class="btn-group d-flex justify-content-center" style="margin-bottom: 1%;">
+                    
+                    <a href="{% url 'planificar' %}" type="button" class="btn" id="btnCurso" data-bs-toggle="modal" data-bs-target="#planificacionModal" style="background-color: rgb(15,48,74); color: white;">Revisar Planificación</a>
+                    <a href="{% url 'revisar_notas' %}" type="button" class="btn" id="btnCurso" style="background-color: rgb(237,123,61);">Revisar
                         Calificaciones</a>
                 </div>
             </div>
         </div>
     </div>
+    <div>
+        <hr style="border: 1px solid black;text-align: center;">
+        <H2 style="text-align: center;">PAGAR MATRICULA</H2>
+        <H6 style="text-align: center;">Cancela tu matricula facil y desde cualquier lugar.</H6>
+        <form style="text-align: center;" name='rec20108_btn1' method='post' action='https://www.webpay.cl/backpub/external/form-pay'>
+            <input type='hidden' name='idFormulario' value='99521' />
+            <input type='hidden' name='monto' value='1000' readonly />
+            <input type='image' title='Imagen' name='button1' src='https://www.webpay.cl/assets/img/boton_webpaycl.svg' value='Boton 1' />
+        </form>
+      </div>
 </div>
 </div>
 
@@ -84,4 +94,5 @@
       </div>
     </div>
   </div>
+
 {% endblock %}
