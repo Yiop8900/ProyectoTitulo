@@ -16,7 +16,7 @@
 
     <div style="padding: 2%;">
 
-        <table class="table table-bordered shadow">
+        <table class="table table-bordered shadow" >
             <thead>
                 <tr>
                     <th>Nombre</th>
@@ -27,68 +27,32 @@
                     <th>Nota 5</th>
                     <th>Nota 6</th>
                     <th>Promedio</th>
+                    <th>Modificar</th>
                 </tr>
             </thead>
             <tbody>
+                <form method="POST">
+                    {% csrf_token %}
                 <!-- Alumno 1 -->
+                {% for n in nota %}
                 <tr>
-                    <td>Alejandro López</td>
-                    <td contenteditable="true">5.0</td>
-                    <td contenteditable="true">6.0</td>
-                    <td contenteditable="true">4.0</td>
-                    <td contenteditable="true" class="nota-roja">3.5</td>
-                    <td contenteditable="true">6.0</td>
-                    <td contenteditable="true">5.5</td>
-                    <td>5.1</td>
+                    {% csrf_token %}
+                    <td name="id" value="{{n.0}}">{{n.1}}</td>
+                    <td name="nota1" contenteditable="true">{{n.2}}</td>
+                    <td name="nota2" contenteditable="true">{{n.3}}</td>
+                    <td name="nota3" contenteditable="true">{{n.4}}</td>
+                    <td name="nota4" contenteditable="true">{{n.5}}</td>
+                    <td name="nota5" contenteditable="true">{{n.6}}</td>
+                    <td name="nota6" contenteditable="true">{{n.7}}</td>
+                    <td>{{ n.8 }}</td>
+                    <td> <button type="submit" class="btn" id="btnCurso"
+                        style=" margin-bottom: 5%; background-color: rgb(237,123,61);">Guardar Cambios</button></td>
+
                 </tr>
-                <!-- Alumno 2 -->
-                <tr>
-                    <td>Ana Rodríguez</td>
-                    <td contenteditable="true">6.5</td>
-                    <td contenteditable="true">4.0</td>
-                    <td contenteditable="true" class="nota-roja">3.0</td>
-                    <td contenteditable="true">5.5</td>
-                    <td contenteditable="true">6.5</td>
-                    <td contenteditable="true">7.0</td>
-                    <td>5.2</td>
-                </tr>
-                <!-- Alumno 3 -->
-                <tr>
-                    <td>Carlos Martínez</td>
-                    <td contenteditable="true">4.5</td>
-                    <td contenteditable="true">6.5</td>
-                    <td contenteditable="true">5.0</td>
-                    <td contenteditable="true">6.5</td>
-                    <td contenteditable="true">4.5</td>
-                    <td contenteditable="true">6.0</td>
-                    <td>5.3</td>
-                </tr>
-                <!-- Alumno 4 -->
-                <tr>
-                    <td>Laura Pérez</td>
-                    <td contenteditable="true">6.0</td>
-                    <td contenteditable="true">5.0</td>
-                    <td contenteditable="true">6.5</td>
-                    <td contenteditable="true">6.0</td>
-                    <td contenteditable="true">4.5</td>
-                    <td contenteditable="true">5.0</td>
-                    <td>5.4</td>
-                </tr>
-                <!-- Alumno 5 -->
-                <tr>
-                    <td>Juan García</td>
-                    <td contenteditable="true">4.5</td>
-                    <td contenteditable="true">4.0</td>
-                    <td contenteditable="true">5.5</td>
-                    <td contenteditable="true">6.0</td>
-                    <td contenteditable="true">6.5</td>
-                    <td contenteditable="true">6.0</td>
-                    <td>5.2</td>
-                </tr>
+                {% endfor %}
+            </form>
             </tbody>
         </table>
-        <button type="button" class="btn" id="btnCurso"
-            style=" margin-bottom: 5%; background-color: rgb(237,123,61);">Guardar Cambios</button>
         <button type="button" class="btn" id="btnCurso"
             style=" margin-bottom: 5%; background-color: rgb(15,48,74); color: white;">Descargar Notas</button>
     </div>

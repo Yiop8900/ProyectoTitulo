@@ -2,6 +2,7 @@
 {% load static %}
 {% block contenido %}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <div style="margin-left: 10%; margin-right: 10%;">
   <div class="dropdown">
     <button style="background-color: rgb(15,48,74);box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);"
@@ -40,11 +41,12 @@
       <form class="formularioApoderado row row-cols-md-2" method="POST" style="margin-bottom: 5%;">
         {% csrf_token %}
         <div class="mb-3">
-          <input type="text" class="form-control rut" name="rut"
-            placeholder="Rut sin puntos ni digito verificador" required style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;">
+          <input type="text" class="form-control rut" name="rut" placeholder="Rut sin puntos ni digito verificador"
+            required style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;">
         </div>
         <div class="mb-3">
-          <input type="text" class="form-control  " id="dv" name="dv" placeholder="Digito verificador"style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;">
+          <input type="text" class="form-control  " id="dv" name="dv" placeholder="Digito verificador"
+            style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;">
         </div>
 
         <div class="mb-3">
@@ -68,7 +70,8 @@
         </div>
 
         <div class="mb-3">
-          <select name="comuna" class="form-select  " style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;">
+          <select name="comuna" class="form-select  "
+            style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;">
             <option>Selecciona COMUNA...</option>
             {% for co in comuna %}
             <option value="{{ co.0 }}">{{ co.1 }}</option>
@@ -76,20 +79,15 @@
           </select>
         </div>
 
-        <div class="mb-3">
-          <select name="rol" class="form-select  " style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;">
-            <option>Selecciona ROL...</option>
-            {% for r in rol %}
-            <option value="{{ r.0 }}">{{ r.1 }}</option>
-            {% endfor %}
+        <div disabled class="mb-3">
+          <select name="rol" class="form-select  "
+            style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;">
+            <option value="3"  >Apoderado</option>
           </select>
         </div>
-
-
-        <button type="submit" class="btn btn-success" name="guardar">Guardar</button>
-        <button class="btn btn-primary">Modificar</button>
+        <button type="submit" class="btn btn-success" name="guardar"  style="margin-bottom: 10px; display: block; width: 100%;">Guardar</button>
       </form>
-    </div>
+
     <div>
       <h2 class="titCurso" style="text-align: center;">Lista Apoderados</h2>
       <table class="table table-bordered shadow">
@@ -115,10 +113,10 @@
             <td>{{ ap.4 }}</td>
             <td>{{ ap.5 }}</td>
             <td>
-              <a href="{% url 'borrar_apoderado' ap.0 %}" class="btn btn-danger"
-                style="margin-bottom: 10px;">Eliminar</a>
+              <a onclick="confirmarEliminar('{{ap.0}}')" class="btn btn-danger"
+              style="margin-bottom: 10px;">Eliminar</a>
 
-
+              <button onclick="abrir_modal_edicion('{% url 'admin_apoderadoModi' '{{ap.0}}' %}')"  class="btn btn-primary">Modificar</button>
             </td>
           </tr>
           {% endfor %}
@@ -148,6 +146,58 @@
             });
           });
         </script>
+        <script>
+          function confirmarEliminar(p_run) {
+            swal.fire({
+              title: '¿Estás seguro?',
+              text: "El apoderado será eliminado de la base de datos",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#4CAF50',
+              cancelButtonColor: '#f44336',
+              confirmButtonText: 'Sí',
+              cancelButtonText: 'No',
+              reverseButtons: true,
+              allowOutsideClick: false
+            }).then((result) => {
+              if (result.isConfirmed) {
+                swal.fire({
+                  title: '¡Eliminado!',
+                  text: 'El apoderado ha sido eliminado de la base de datos',
+                  icon: 'success',
+                  allowOutsideClick: false,
+                  confirmButtonColor: '#4CAF50'
+                }).then(function () {
+                  window.location.href = "/borrar_apoderado/" + p_run + "/";
+                })
+              } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+              ) {
+                swal.fire({
+                  title: 'Cancelado',
+                  text: 'El apoderado no ha sido eliminado',
+                  icon: 'error',
+                  confirmButtonColor: '#4CAF50'
+                })
+              }
+            })
+          }
+        </script>
+
+        <div class="modal fade" id="edicion" roler="dialog">
+        </div>
+        {% block extrajs %}
+        <script type="text/javascript">
+          var $ = jQuery.noConflict();
+          function abrir_modal_edicion(url) {
+            $('#edicion').load(url, function () {
+              $(this).modal('show');
+            });
+          }
+        </script>
+        {% endblock extrajs%}
+
 
       </table>
 

@@ -64,14 +64,14 @@ body
     margin-bottom: 5%;
 }
 
-.card
+.card_ex
 {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
     border-radius: 15px;
     transition: transform 0.3s;
 }
 
-.card:hover {
+.card_ex:hover {
     transform: scale(1.05);
 }
 

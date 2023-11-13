@@ -6,7 +6,7 @@
   <div>
     <h1 class="titCurso" style="text-align: center;">
         <a href="" style="text-decoration: none; color: black;">Cursos</a>
-        <a href="" onclick="mostrarCalendario(event)" style="text-decoration: none; color: black;">/Calendario</a>
+        <a href="" onclick="mostrarCalendario(event)" style="text-decoration: none; color: black;">/Actividades</a>
     </h1>
     {% for c in cursos %}
     <div class="curso" style="border-radius: 10px;">
@@ -23,7 +23,17 @@
 </div>
 
 <div id="calendario" style="height: 0; overflow: hidden; margin-left: 5%; margin-right: 5%;">
-    <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&bgcolor=%23ffffff&ctz=America%2FSantiago&showTitle=0&showNav=0&showDate=0&showPrint=0&showTabs=0&showTz=0&showCalendars=0" style="border-width:0; border-radius: 10px; " width="100%" height="500px" frameborder="0" scrolling="no"></iframe>
+    {% for n in notificaciones %}
+    <div class="card">
+        <div class="card-header">
+          {{ n.2 }}
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{ n.3 }}</p>
+          <p class="btn btn-primary">{{ n.4 }}</p>
+        </div>
+      </div>
+    {% endfor %}
 </div>
 
 </div>

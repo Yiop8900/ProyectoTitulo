@@ -1,0 +1,38 @@
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-tittle"> Modificar apoderado</h2>
+        <button class="close" type="button" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="POST" style="margin-bottom: 5%;">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="rut" class="form-label">Rut:</label>
+          <input type="text" class="form-control shadow"   id="rut" name="rut"
+            placeholder="sin puntos ni digito verificador" disabled required>
+        </div>
+  
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombres:</label>
+          <input class="form-control shadow" id="nombre" name="nombre">
+        </div>
+  
+  
+        <div class="mb-3">
+          <label for="telefono" class="form-label">Numero Telefonico</label>
+          <input class="form-control shadow" id="telefono" name="telefono">
+        </div>
+  
+        <div class="mb-3">
+          <label for="direccion" class="form-label">Direccion</label>
+          <input class="form-control shadow" id="direccion" name="direccion">
+        </div>
+  
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success" name="guardar">Guardar</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal">cancelar</button>
+        </div>
+  
+  

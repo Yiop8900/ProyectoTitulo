@@ -26,6 +26,14 @@ urlpatterns = [
     path('borrar_profesor/<str:p_run>/', borrar_profesor , name= 'borrar_profesor'),
     path('borrar_alumno/<str:p_run>/', borrar_alumno , name= 'borrar_alumno'),
     path('borrar_usuario/<str:p_id>/', borrar_usuario , name= 'borrar_usuario'),
+    path('admin_apoderadoModi/<str:p_run>/', admin_apoderadoModi, name='admin_apoderadoModi'),
+    path('admin_profeModi/<p_run>/', admin_profeModi, name='admin_profeModi'),
+    path('admin_alumModi/<p_run>/', admin_alumModi, name='admin_alumModi'),
+
+
+    path('cerrar_sesion/', cerrar_sesion, name='cerrar_sesion'),
+
+
 ]
 
 if settings.DEBUG:

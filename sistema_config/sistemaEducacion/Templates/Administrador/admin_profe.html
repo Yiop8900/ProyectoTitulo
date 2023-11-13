@@ -99,7 +99,6 @@
 
           </div>
           <button type="submit" class="btn btn-success">Guardar</button>
-          <button class="btn btn-primary">Modificar</button>
         </form>
       </div>
       <div class=>
@@ -114,6 +113,7 @@
               <th>Correo</th>
               <th>Comuna</th>
               <th>Curso Asignado</th>
+              <th>Opciones</th>
             </tr>
           </thead>
           <tbody>
@@ -127,12 +127,66 @@
               <td>{{ pro.4 }}</td>
               <td>{{ pro.5 }}</td>
               <td>
-                <a href="{% url 'borrar_profesor' pro.0 %}" class="btn btn-danger"
-                  style="margin-bottom: 10px;">Eliminar</a>
+                <a onclick="confirmarEliminar('{{pro.0}}')" class="btn btn-danger"
+                style="margin-bottom: 10px;">Eliminar</a>
+                
+                <button onclick="abrir_modal_edicion('{% url 'admin_profeModi' '{{pro.0}}' %}')"  class="btn btn-primary">Modificar</button>
+
               </td>
             </tr>
             {% endfor %}
           </tbody>
+          <script>
+            function confirmarEliminar(p_run) {
+              swal.fire({
+                title: '¿Estás seguro?',
+                text: "El profesor será eliminado de la base de datos",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#4CAF50',
+                cancelButtonColor: '#f44336',
+                confirmButtonText: 'Sí',
+                cancelButtonText: 'No',
+                reverseButtons: true,
+                allowOutsideClick: false
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  swal.fire({
+                    title: '¡Eliminado!',
+                    text: 'El profesor ha sido eliminado de la base de datos',
+                    icon: 'success',
+                    allowOutsideClick: false,
+                    confirmButtonColor: '#4CAF50'
+                  }).then(function () {
+                    window.location.href = "/borrar_profesor/" + p_run + "/";
+                  })
+                } else if (
+                  /* Read more about handling dismissals below */
+                  result.dismiss === Swal.DismissReason.cancel
+                ) {
+                  swal.fire({
+                    title: 'Cancelado',
+                    text: 'El apoderado no ha sido eliminado',
+                    icon: 'error',
+                    confirmButtonColor: '#4CAF50'
+                  })
+                }
+              })
+            }
+          </script>
+          <div class="modal fade" id="edicion" roler="dialog">
+          </div>
+          {% block extrajs %}
+          <script type="text/javascript">
+            var $ = jQuery.noConflict();
+            function abrir_modal_edicion(url) {
+              $('#edicion').load(url, function () {
+                $(this).modal('show');
+              });
+            }
+          </script>
+          {% endblock extrajs%}
+  
         </table>
 
 

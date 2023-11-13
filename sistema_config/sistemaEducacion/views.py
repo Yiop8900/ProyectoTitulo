@@ -7,33 +7,21 @@ import json
 from datetime import datetime
 import base64
 import hashlib
-import matplotlib.pyplot as plt
 import os
 from django.conf import settings
-
-
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, logout, login as login_aut
+#importar una libreria decoradora que evita el ingreso a las paginas
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
-from django.contrib.auth import login as auth_login
-
-
-
-
 #ORIGINAL
-def login(p_correo, p_contrasenia):
-    django_cursor = connection.cursor()
-    out_cur = django_cursor.connection.cursor()
+def cerrar_sesion(request):
+    logout(request)
+    return render (request, "index.html")
 
-    # Llama al procedimiento PL/SQL
-    django_cursor.callproc("LOGIN", [p_correo, p_contrasenia, out_cur])
 
-    # Recopila los resultados del cursor de referencia
-    result = []
-    for row in out_cur:
-        result.append(row)
 
-    return result
 
 def index(request):
     is_login_successful = request.GET.get('is_login_successful', False)
@@ -62,18 +50,22 @@ def index(request):
 
 def base(request):
     is_login_successful = request.GET.get('is_login_successful', False)
-    context = {  # Establece esto en True para la página de inicio
+    rol = iniciar_sesion(request)
+
+    
+    context = {
         'is_login_successful': is_login_successful,
+        'rol': rol,
+    
     }
     return render(request, 'base.html', context)
-
-
 
 def sistema_Profe(request):
     is_login_successful = request.GET.get('is_login_successful', False)
     context = {  # Establece esto en True para la página de inicio
         'is_login_successful': is_login_successful,
-        'cursos': listar_cursos()
+        'cursos': listar_cursos(),
+        'notificaciones' : listar_notificaciones()
     }
     return render(request, 'Profesor/sistema_Profe.html',context)
 
@@ -88,32 +80,62 @@ def planificar(request):
     return render(request, 'Profesor/planificar.html')
 
 def calificar(request):
-    return render(request, 'Profesor/calificar.html')
+    if request.method == 'POST':
+        p_nota1 = request.POST.get("nota1")
+        p_nota2 = request.POST.get("nota2")
+        p_nota3 = request.POST.get("nota3")
+        p_nota4 = request.POST.get("nota4")
+        p_nota5 = request.POST.get("nota5")
+        p_nota6 = request.POST.get("nota6")
+        p_id_nota = request.POST.get("id")
+        
+        insert = modificar_notas(p_nota1, p_nota2, p_nota3, p_nota4, p_nota5, p_nota6, p_id_nota)
+
+        if insert:
+            print("INSERCION EXITOSA!!")
+        else:
+            print("VUELVE A PROBAR")
+
+    data = {
+        'nota': listar_nota()
+    }
+    return render(request, 'Profesor/calificar.html', data)
 
 def iniciar_sesion(request):
     if request.method == 'POST':
         p_correo = request.POST.get('correo')
         p_contrasenia = request.POST.get('contrasenia')
 
-        resultados = login(p_correo, p_contrasenia)
+        user = authenticate(request, username=p_correo, password=p_contrasenia)
 
-        if resultados:
-            # Configuración específica de Swal para la alerta de éxito
-            success_config = {
-                'icon': 'success',
-                'title': 'Inicio de sesión exitoso',
-                'position': 'top-end',
-            }
+        if user is not None and user.is_active:
+            if user.is_active:
 
-            return redirect(reverse('index') + '?is_login_successful=True' + json.dumps(success_config), resultados)
+                # Iniciar sesión
+                login_aut(request, user)
 
+                # Configuración específica de Swal para la alerta de éxito
+                success_config = {
+                    'icon': 'success',
+                    'title': 'Inicio de sesión exitoso',
+                    'position': 'top-end',
+                }
 
+                # Agrega una alerta de éxito
+                success_alert = f"swal({json.dumps(success_config)});"
+                
+                # Redirige a la vista 'index' con la cadena de consulta
+                return redirect(reverse('index') + '?is_login_successful=True' + json.dumps(success_config))
+            else:
+                # Cuenta desactivada
+                messages.error(request, "Tu cuenta está desactivada.")
         else:
-            # En caso de error, puedes manejar los mensajes de error como lo hacías antes
-            messages.error(request, 'Correo o contraseña incorrectos')
+            # Credenciales incorrectas
+            messages.error(request, "Correo o contraseña incorrectos")
 
     return render(request, 'iniciar_sesion.html')
 
+    
 def apoderado (request):
 
     return render (request, 'Apoderados_Alumnos/apoderado.html')
@@ -122,8 +144,22 @@ def revisar_notas (request):
     return render (request, 'Apoderados_Alumnos/revisar_notas.html')
 
 def notificar (request):
+    if request.method == 'POST':
+        p_fecha = request.POST.get("fecha")
+        p_asunto = request.POST.get("asunto")
+        p_mensaje = request.POST.get("cuerpo")
+        p_profesor_id = request.POST.get("profe_id")
+        
+        insert = insertar_notificacion(p_fecha, p_asunto, p_mensaje ,p_profesor_id)
+
+        if insert:
+            print("INSERCION EXITOSA!!")
+        else:
+            print("VUELVE A PROBAR")
+
     data = {
-        'apoderados' : listar_apoderado()
+        'apoderados' : listar_apoderado(),
+        'profesores' : listar_profesores_esp(),
     }
 
     return render (request, 'Profesor/notificar.html', data)
@@ -154,7 +190,6 @@ def admin_ap(request):
 
     data = {
         'apoderados': listar_apoderado(),
-        'apoderado_run': listar_apoderado_r(),
         'rol': listar_rol(),
         'comuna': listar_comunas(),
     }
@@ -178,7 +213,6 @@ def admin_al (request):
         p_rol_id = request.POST.get("rol")
 
         insert = insertar_alumno(p_run, p_dv, p_nombre, p_apellido, p_fecha_nac, p_direccion, p_telefono, p_inf_adicional, p_curso_id, p_comuna_id, p_apoderado_id, p_notas_id, p_rol_id)
-        delete = eliminar_alumno(p_run)
         if insert:
             print("INSERCION EXITOSA!!")
         else:
@@ -187,20 +221,12 @@ def admin_al (request):
     
     data = {
         'alumnos' : listar_alumnos(),
-        'curso': listar_cursos(),
+        'curso': listar_cursos_e(),
         'rol': listar_rol(),
         'comuna': listar_comunas(),
         'nota': listar_nota()
     }
     return render (request, 'Administrador/admin_alum.html', data)
-
-def eliminar_alumno (p_run):
-    django_cursor = connection.cursor()
-    cursor = django_cursor.connection.cursor()
-
-    cursor.callproc("DELETE_ALUMNO", [p_run])
-       
-    return True
 
 def admin_pro (request):
     if request.method == 'POST':
@@ -229,7 +255,6 @@ def admin_pro (request):
         'comuna': listar_comunas(),
     }
     return render (request, 'Administrador/admin_profe.html',data)
-
 
 def admin_user (request):
     if request.method == 'POST':
@@ -301,7 +326,8 @@ def admin_grafico (request):
 def pagoMatricula(request):
     return render(request, 'Apoderados_Alumnos/pagoMatricula.html')
 
-#-------- cosas ---------------
+#-------- CRUDS ---------------
+#---------APODERADOS CRUD----------
 
 def listar_apoderado():
     django_cursor = connection.cursor()
@@ -318,20 +344,49 @@ def listar_apoderado():
 
     return lista_apo
 
-def listar_apoderado_r():
+def insertar_apoderado(p_run, p_dv, p_nombre, p_apellido, p_telefono, p_direccion, p_comuna_id, p_rol_id):
+    # Establecer una conexión a la base de datos
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    out_cur = django_cursor.connection.cursor()
 
-    cursor.callproc("LIST_APODERADO_R", [out_cur])
-
-    lista_apo_r = []
-
-    for fila in out_cur:
-        lista_apo_r.append(fila)
+    try:
+        # Llamar a la función almacenada "INSERT_APODERADO" con los parámetros
+        cursor.callproc("INSERT_APODERADO", (p_run, p_dv, p_nombre, p_apellido, p_telefono, p_direccion, p_comuna_id, p_rol_id))
         
+        # Confirmar los cambios en la base de datos
+        django_cursor.connection.commit()
+        
+        # Devolver True para indicar que la inserción se realizó correctamente
+        return True
+    except Exception as e:
+        # En caso de error, puedes manejar la excepción aquí, por ejemplo, registrando el error
+        # y devolviendo False para indicar que la inserción falló
+        print(f"Error al insertar apoderado: {e}")
+        return False
+    finally:
+        # Asegúrate de cerrar el cursor y liberar los recursos
+        cursor.close()
 
-    return lista_apo_r
+def borrar_apoderado(request, p_run):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+
+    cursor.callproc('DELETE_APODERADO', [p_run])
+    cursor.connection.commit()
+
+    # Redireccionar a una página diferente después de eliminar el apoderado
+    return HttpResponseRedirect('/admin_apoderado/')  # Reemplaza '/pagina_de_exito/' con la URL que desees redirigir
+
+def admin_apoderadoModi(request, p_run):
+
+    data = {
+        'apoderados': listar_apoderado(),
+        'rol': listar_rol(),
+        'comuna': listar_comunas(),
+    }
+    return render(request, 'Administrador/admin_apoderadoModi.html', data)
+
+#------CRUD ALUMNOS-------
 
 def listar_alumnos():
     django_cursor = connection.cursor()
@@ -346,6 +401,45 @@ def listar_alumnos():
         lista_al.append(fila)
 
     return lista_al
+
+def insertar_alumno(p_run, p_dv, p_nombre, p_apellido, p_fecha_nac, p_direccion, p_telefono, p_inf_adicional, p_curso_id, p_comuna_id, p_apoderado_id, p_notas_id, p_rol_id):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+
+    try:
+
+        cursor.callproc("INSERT_ALUMNO", (p_run, p_dv, p_nombre, p_apellido, p_fecha_nac, p_direccion, p_telefono, p_inf_adicional, p_curso_id, p_comuna_id, p_apoderado_id, p_notas_id, p_rol_id))
+        cursor.connection.commit()
+        
+        print("correcto")
+
+    except Exception as e:
+        # En caso de error, puedes manejar la excepción aquí, por ejemplo, registrando el error
+        # y devolviendo False para indicar que la inserción falló
+        print(f"Error al insertar alumno: {e}")
+        return False
+    finally:
+        # Asegúrate de cerrar el cursor y liberar los recursos
+        cursor.close()
+
+def borrar_alumno(request, p_run):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+
+    cursor.callproc('DELETE_ALUMNO', [p_run])
+    cursor.connection.commit()
+
+    # Redireccionar a una página diferente después de eliminar el apoderado
+    return HttpResponseRedirect('/admin_alum/')  # Reemplaza '/pagina_de_exito/' con la URL que desees redirigir
+
+def admin_alumModi(request, p_run):
+
+    data = {
+        'rol': listar_rol(),
+        'comuna': listar_comunas(),
+    }
+    return render(request, 'Administrador/admin_apoderadoModi.html', data)
+#-------CRUD PROFESORES--------------
 
 def listar_profesores():
     django_cursor = connection.cursor()
@@ -375,19 +469,45 @@ def listar_profesores_esp():
 
     return lista_prof
 
-
-def listar_comunas():
+def insertar_profesor(p_run, p_dv, p_nombre, p_apellido, p_direccion, p_telefono, p_comuna_id, p_curso_id, p_rol_id):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    out_cur = django_cursor.connection.cursor()
 
-    cursor.callproc("LIST_COMUNA", [out_cur])
+    try:
+        # Llamar a la función almacenada "INSERT_APODERADO" con los parámetros
+        cursor.callproc("INSERT_PROFESOR", (p_run, p_dv, p_nombre, p_apellido, p_direccion, p_telefono, p_comuna_id, p_curso_id, p_rol_id))
 
-    lista_com = []
-    
-    for fila in out_cur:
-        lista_com.append(fila)
-    return lista_com
+        cursor.connection.commit()
+        
+        print("correcto")
+
+    except Exception as e:
+        # En caso de error, puedes manejar la excepción aquí, por ejemplo, registrando el error
+        # y devolviendo False para indicar que la inserción falló
+        print(f"Error al insertar apoderado: {e}")
+        return False
+    finally:
+        # Asegúrate de cerrar el cursor y liberar los recursos
+        cursor.close()
+
+def borrar_profesor(request, p_run):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+
+    cursor.callproc('DELETE_PROFESOR', (p_run,))
+    cursor.connection.commit()
+
+    # Redireccionar a una página diferente después de eliminar el apoderado
+    return HttpResponseRedirect('/admin_profe/')  # Reemplaza '/pagina_de_exito/' con la URL que desees redirigir
+
+def admin_profeModi(request, p_run):
+
+    data = {
+        'rol': listar_rol(),
+        'comuna': listar_comunas(),
+    }
+    return render(request, '', data)
+#--------CRUD USUARIOS-------------------------------
 
 def listar_usuarios():
     django_cursor = connection.cursor()
@@ -403,6 +523,28 @@ def listar_usuarios():
 
     return lista_user
 
+def borrar_usuario(request, p_id):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+
+    cursor.callproc('DELETE_USUARIO', (p_id,))
+    cursor.connection.commit()
+
+    # Redireccionar a una página diferente después de eliminar el apoderado
+    return HttpResponseRedirect('/admin_user/')  # Reemplaza '/pagina_de_exito/' con la URL que desees redirigir   
+
+def listar_comunas():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("LIST_COMUNA", [out_cur])
+
+    lista_com = []
+    
+    for fila in out_cur:
+        lista_com.append(fila)
+    return lista_com
 
 
 
@@ -419,7 +561,6 @@ def listar_cursos():
         lista_curso.append(fila)
 
     return lista_curso
-
 
 def cbo_usuario():
     django_cursor = connection.cursor()
@@ -475,70 +616,6 @@ def listar_evento():
         lista_e.append(fila)
     return lista_e
 
-def insertar_apoderado(p_run, p_dv, p_nombre, p_apellido, p_telefono, p_direccion, p_comuna_id, p_rol_id):
-    # Establecer una conexión a la base de datos
-    django_cursor = connection.cursor()
-    cursor = django_cursor.connection.cursor()
-
-    try:
-        # Llamar a la función almacenada "INSERT_APODERADO" con los parámetros
-        cursor.callproc("INSERT_APODERADO", (p_run, p_dv, p_nombre, p_apellido, p_telefono, p_direccion, p_comuna_id, p_rol_id))
-        
-        # Confirmar los cambios en la base de datos
-        django_cursor.connection.commit()
-        
-        # Devolver True para indicar que la inserción se realizó correctamente
-        return True
-    except Exception as e:
-        # En caso de error, puedes manejar la excepción aquí, por ejemplo, registrando el error
-        # y devolviendo False para indicar que la inserción falló
-        print(f"Error al insertar apoderado: {e}")
-        return False
-    finally:
-        # Asegúrate de cerrar el cursor y liberar los recursos
-        cursor.close()
-
-def insertar_profesor(p_run, p_dv, p_nombre, p_apellido, p_direccion, p_telefono, p_comuna_id, p_curso_id, p_rol_id):
-    django_cursor = connection.cursor()
-    cursor = django_cursor.connection.cursor()
-
-    try:
-        # Llamar a la función almacenada "INSERT_APODERADO" con los parámetros
-        cursor.callproc("INSERT_PROFESOR", (p_run, p_dv, p_nombre, p_apellido, p_direccion, p_telefono, p_comuna_id, p_curso_id, p_rol_id))
-
-        cursor.connection.commit()
-        
-        print("correcto")
-
-    except Exception as e:
-        # En caso de error, puedes manejar la excepción aquí, por ejemplo, registrando el error
-        # y devolviendo False para indicar que la inserción falló
-        print(f"Error al insertar apoderado: {e}")
-        return False
-    finally:
-        # Asegúrate de cerrar el cursor y liberar los recursos
-        cursor.close()
-
-def insertar_alumno(p_run, p_dv, p_nombre, p_apellido, p_fecha_nac, p_direccion, p_telefono, p_inf_adicional, p_curso_id, p_comuna_id, p_apoderado_id, p_notas_id, p_rol_id):
-    django_cursor = connection.cursor()
-    cursor = django_cursor.connection.cursor()
-
-    try:
-
-        cursor.callproc("INSERT_ALUMNO", (p_run, p_dv, p_nombre, p_apellido, p_fecha_nac, p_direccion, p_telefono, p_inf_adicional, p_curso_id, p_comuna_id, p_apoderado_id, p_notas_id, p_rol_id))
-        cursor.connection.commit()
-        
-        print("correcto")
-
-    except Exception as e:
-        # En caso de error, puedes manejar la excepción aquí, por ejemplo, registrando el error
-        # y devolviendo False para indicar que la inserción falló
-        print(f"Error al insertar alumno: {e}")
-        return False
-    finally:
-        # Asegúrate de cerrar el cursor y liberar los recursos
-        cursor.close()
-
 def insertar_admin(p_correo, p_contrasenia, p_rol_id):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -558,13 +635,13 @@ def insertar_admin(p_correo, p_contrasenia, p_rol_id):
         # Asegúrate de cerrar el cursor y liberar los recursos
         cursor.close()
 
-def insertar_notificacion(p_fecha, p_asunto, p_mensaje):
+def insertar_notificacion(p_fecha, p_asunto, p_mensaje, p_profesor_id):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
 
     try:
 
-        cursor.callproc("INSERT_NOTIFICAR", (p_fecha, p_asunto, p_mensaje))
+        cursor.callproc("INSERT_NOTIFICACION", (p_fecha, p_asunto, p_mensaje, p_profesor_id))
         cursor.connection.commit()
         
         print("correcto")
@@ -618,31 +695,6 @@ def eliminar_evento(p_evento_id):
         # Asegúrate de cerrar el cursor y liberar los recursos
         cursor.close()
 
-
-
-        
-def eliminar_apoderado(p_run):
-    django_cursor = connection.cursor()
-    cursor = django_cursor.connection.cursor()
-
-    try:
-
-        cursor.callproc("DELETE_APODERADO", (p_run))
-        cursor.connection.commit()
-        
-        print("eliminado")
-
-    except Exception as e:
-
-        print(f"Error al insertar notificacion: {e}")
-        return False
-    finally:
-        # Asegúrate de cerrar el cursor y liberar los recursos
-        cursor.close()
-
-
-
-
 def listar_eventos_finales():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -657,47 +709,51 @@ def listar_eventos_finales():
     return lista_e
 
 
-def borrar_apoderado(request, p_run):
+def listar_notificaciones():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("LIST_NOTIFICACION", [out_cur])
+
+    lista_noti = []
+
+    for fila in out_cur:
+        lista_noti.append(fila)
+    return lista_noti
+
+
+
+def modificar_notas(p_nota1, p_nota2, p_nota3, nota4, p_nota5, p_nota6, p_id_nota):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
 
-    cursor.callproc('DELETE_APODERADO', (p_run,))
-    cursor.connection.commit()
+    try:
 
-    # Redireccionar a una página diferente después de eliminar el apoderado
-    return HttpResponseRedirect('/admin_apoderado/')  # Reemplaza '/pagina_de_exito/' con la URL que desees redirigir
+        cursor.callproc("UPDATE_NOTAS", (p_nota1, p_nota2, p_nota3, nota4, p_nota5, p_nota6, p_id_nota))
+        cursor.connection.commit()
 
-def borrar_profesor(request, p_run):
+    except Exception as e:
+
+        print(f"Error al actualizar nota: {e}")
+        return False
+    finally:
+        # Asegúrate de cerrar el cursor y liberar los recursos
+        cursor.close()
+
+
+
+
+def listar_cursos_e():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
 
-    cursor.callproc('DELETE_PROFESOR', (p_run,))
-    cursor.connection.commit()
+    cursor.callproc("LIST_CURSO_E", [out_cur])
 
-    # Redireccionar a una página diferente después de eliminar el apoderado
-    return HttpResponseRedirect('/admin_profe/')  # Reemplaza '/pagina_de_exito/' con la URL que desees redirigir
+    lista_curso_e = []
 
-def borrar_alumno(request, p_run):
-    django_cursor = connection.cursor()
-    cursor = django_cursor.connection.cursor()
+    for fila in out_cur:
+        lista_curso_e.append(fila)
 
-    cursor.callproc('DELETE_ALUMNO', (p_run,))
-    cursor.connection.commit()
-
-    # Redireccionar a una página diferente después de eliminar el apoderado
-    return HttpResponseRedirect('/admin_alum/')  # Reemplaza '/pagina_de_exito/' con la URL que desees redirigir
-
-
-def borrar_usuario(request, p_id):
-    django_cursor = connection.cursor()
-    cursor = django_cursor.connection.cursor()
-
-    cursor.callproc('DELETE_USUARIO', (p_id,))
-    cursor.connection.commit()
-
-    # Redireccionar a una página diferente después de eliminar el apoderado
-    return HttpResponseRedirect('/admin_user/')  # Reemplaza '/pagina_de_exito/' con la URL que desees redirigir   
-
-
-
-        
+    return lista_curso_e

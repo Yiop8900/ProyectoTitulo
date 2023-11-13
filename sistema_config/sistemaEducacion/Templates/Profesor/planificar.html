@@ -2,6 +2,9 @@
 {% load static %}
 {% block contenido %}
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+
 <div style="margin-left: 10%; margin-right: 10%;">
     <div class="row">
         <a type="button" class="btn btn-secondary" href="{% url 'sistema_Profe' %}"
@@ -11,86 +14,68 @@
         <h2 class="text-center">Planificar</h2>
         <i style="margin-right: 5%;"></i>
     </div>
-
-
-
+    <button type="button" class="btn btn-primary" id="generarPDF">Generar PDF</button>
+    <button type="button" class="btn btn-success" id="agregar">Agregar Semanas</button>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4">
-                <form class="formularioPlan">
+            <div class="col-md-7">
+                <form class="formularioPlan ">
                     <div style="height: 500px; overflow-y: scroll;" id="inputs-extra">
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Objetivo de la clase</label>
-                            <input type="text" class="form-control shadow" id="exampleFormControlInput1"
-                                placeholder="Objetivo:">
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Semana 1</label>
-                            <textarea class="form-control shadow" id="exampleFormControlTextarea1" name="semana1"
-                                rows="3"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Semana 2</label>
-                            <textarea class="form-control shadow" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Semana 3</label>
-                            <textarea class="form-control shadow" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Guardar Planificacion</button>
-                    <button type="submit" class="btn btn-warning">Editar</button>
-                    <button type="button" class="btn btn-success" id="agregar">Agregar Semanas</button>
-                </form>
+                </form> 
             </div>
-            <div class="col-md-4">
-                <iframe src="{% static 'PDF/Definicion Proyecto APT Fase1.pdf' %}" width="100%" height="90%"
-                    style="margin-bottom: 2%;"></iframe>
-            </div>
-            <div class="col-md-4">
-                <div style="margin-right: 2%; margin-left: 2%;">
-                    <table class="table tablaPlan">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Documento</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>02/09/2023</td>
-                                <td><a href="{% static 'PDF/Definicion Proyecto APT Fase1.pdf' %}"
-                                        target="_blank">Definicion Proyecto APT Fase1.pdf</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
+         
+        </div>
+        <div class="col-md-4">
+            <iframe src="{% static 'PDF/Definicion Proyecto APT Fase1.pdf' %}" width="100%" height="90%"
+                style="margin-bottom: 2%;"></iframe>
         </div>
     </div>
 </div>
 <script>
     $(document).ready(function () {
-        var contador = 4;
+        var contador = 3;
+        var contadorSemanas = 0; // Nuevo contador para llevar el control de las semanas agregadas
 
         $("#agregar").click(function () {
+            // Incrementar el contador de semanas cada vez que se agrega una semana
+            contadorSemanas++;
+
             // Crear un nuevo campo de entrada
             var nuevoInputHTML =
                 '<div class="mb-3">' +
-                '<label for="input' + contador + '">Semana ' + contador + ':</label>' +
-                '<textarea type="text" class="form-control" id="input' + contador + '" rows="3">' +
-                '</textarea>';
+                '<label for="exampleFormControlTextarea' + contador + '" class="form-label" style="font-size: x-large;">Semana ' + contadorSemanas + '</label>' +
+                '<div class="mb-3">' +
+                '<input class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" id="exampleFormControlnumclase' + contador + '" placeholder="Objetivos">' +
+                '</div>' +
+                '<div class="mb-3">' +
+                '<textarea class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" id="exampleFormControlTextarea' + contador + '" rows="3" placeholder="Descripcion"></textarea>' +
+                '</div>' +
+                '<div id="inputs-extra-clases' + contador + '"></div>' +
+                '</div>';
 
             // Agregar el nuevo campo de entrada al formulario
             $("#inputs-extra").append(nuevoInputHTML);
+
+            // Verificar si es el momento de agregar un título "Mes 2"
+            if (contadorSemanas % 4 === 0) {
+                var nuevoTituloHTML =
+                    '<div class="mb-3">' +
+                    '<label class="form-label" style="font-size: xx-large;">Mes ' + (contadorSemanas / 4 + 1) + '</label>' +
+                    '</div>';
+                
+                // Agregar el nuevo título al formulario
+                $("#inputs-extra").append(nuevoTituloHTML);
+            }
 
             // Incrementar el contador
             contador++;
         });
     });
 </script>
+
+
+
 
 {% endblock %}

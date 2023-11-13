@@ -4,9 +4,10 @@
 
 <div style="margin-left: 10%; margin-right: 10%;">
   <div class="dropdown">
-    <button style="background-color: rgb(15,48,74);box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);" class="btn btn-secondary btn-block" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Menu de Administración   ↓
-    </button>    
+    <button style="background-color: rgb(15,48,74);box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);"
+      class="btn btn-secondary btn-block" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Menu de Administración ↓
+    </button>
     <ul class="dropdown-menu shadow" style="background-color: rgb(255, 255, 255);">
       <li style="list-style-type: none; margin-bottom: 4%; margin-left: 5%; margin-right: 0.2%;"><a
           style="text-decoration: none; color: black;" href="{% url 'admin_apoderado' %}">Administrar Apoderados</a>
@@ -34,39 +35,59 @@
   </div>
   <div>
     <div class="row">
-      <div class="col-md-13" >
-        <h2 class="titCurso" style="text-align: center; margin-bottom: 1%;color: rgb(30, 38, 100);">Administrar Alumnos</h2>
+      <div class="col-md-13">
+        <h2 class="titCurso" style="text-align: center; margin-bottom: 1%;color: rgb(30, 38, 100);">Administrar Alumnos
+        </h2>
         <form class="formularioReunion row row-cols-md-2" method="POST" style="margin-bottom: 10%; height: 500px;">
           {% csrf_token %}
           <div class="mb3">
-            <input type="text" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" id="rut" name="rut" placeholder="Rut sin puntos ni guion" > 
+            <input type="text" class="form-control"
+              style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" id="rut" name="rut"
+              placeholder="Rut sin puntos ni guion">
           </div>
           <div class="mb3">
-            <input type="text" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" id="dv" name="dv" placeholder="Digito verificador">
+            <input type="text" class="form-control"
+              style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" id="dv" name="dv"
+              placeholder="Digito verificador">
           </div>
           <div class="mb3">
-            <input type="text" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" id="nombre" name="Nombre" placeholder="Nombre">
+            <input type="text" class="form-control"
+              style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" id="nombre" name="Nombre"
+              placeholder="Nombre">
           </div>
           <div class="mb3">
-            <input type="text" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;"id="apellido" name="apellido" placeholder="Apellido" >
+            <input type="text" class="form-control"
+              style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" id="apellido" name="apellido"
+              placeholder="Apellido">
           </div>
           <div class="mb3">
-            <input type="date" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;"id="fecha" name="fecha" max="" placeholder="Fecha de Nacimiento">
+            <input type="date" class="form-control"
+              style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" id="fecha" name="fecha" max=""
+              placeholder="Fecha de Nacimiento">
           </div>
           <div class="mb3">
-            <input type="text" class="form-control"style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" id="direccion" name="direccion" placeholder="Direccion">
-          </div>
-          <div class="mb3" >
-            <input type="text" class="form-control"style="box-shadow: in set0 0 5px rgba(0, 0, 0, 0.5);margin-bottom: 5%;" id="telefono" name="telefono" placeholder="Telefono">
-          </div>
-          <div class="mb3">
-            <input name="apoderado" id="apoderado" class="form-control" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5) ;margin-bottom: 5%;"placeholder="Rut del apoderado sin puntos ni guion" >
+            <input type="text" class="form-control"
+              style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;" id="direccion" name="direccion"
+              placeholder="Direccion">
           </div>
           <div class="mb3">
-            <textarea type="text-area" class="form-control " style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5) ;margin-bottom: 5%;" id="inf_adicional" name="inf_adicional" rows="3" placeholder="Información Adicional"></textarea>
+            <input type="text" class="form-control"
+              style="box-shadow: in set0 0 5px rgba(0, 0, 0, 0.5);margin-bottom: 5%;" id="telefono" name="telefono"
+              placeholder="Telefono">
           </div>
           <div class="mb3">
-            <select name="comuna" id="comuna" class="form-select "style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5) ;margin-bottom: 5%;" >
+            <input name="apoderado" id="apoderado" class="form-control"
+              style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5) ;margin-bottom: 5%;"
+              placeholder="Rut del apoderado sin puntos ni guion">
+          </div>
+          <div class="mb3">
+            <textarea type="text-area" class="form-control "
+              style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5) ;margin-bottom: 5%;" id="inf_adicional"
+              name="inf_adicional" rows="3" placeholder="Información Adicional"></textarea>
+          </div>
+          <div class="mb3">
+            <select name="comuna" id="comuna" class="form-select "
+              style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5) ;margin-bottom: 5%;">
               <option value="">Selecciona Comuna...</option>
               {% for co in comuna %}
               <option value="{{ co.0}}">{{co.1}}</option>
@@ -74,7 +95,8 @@
             </select>
           </div>
           <div class="mb3">
-            <select name="curso" id="curso" class="form-select " style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5) ;margin-bottom: 5%;">
+            <select name="curso" id="curso" class="form-select "
+              style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5) ;margin-bottom: 5%;">
               <option value="">Seleccione CURSO....</option>
               {% for c in curso %}
               <option value="{{c.0}}">{{c.1}}</option>
@@ -82,7 +104,8 @@
             </select>
           </div>
           <div class="mb3" style="margin-bottom: 2%;">
-            <select name="rol" id="rol" class="form-select" style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;">
+            <select name="rol" id="rol" class="form-select"
+              style="box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); margin-bottom: 5%;">
               <option value="">Selecccione ROL...</option>
               {% for r in rol %}
               <option value="{{r.0}}">{{r.1}}</option>
@@ -90,7 +113,6 @@
             </select>
           </div>
           <button type="submit" class="btn btn-success">Guardar</button>
-          <button class="btn btn-primary">Modificar</button>
         </form>
       </div>
       <div>
@@ -119,10 +141,11 @@
               <td>{{ a.5 }}</td>
               <td>{{ a.3 }}</td>
               <td>
-                <a href="{% url 'borrar_alumno' a.0 %}" class="btn btn-danger" style="margin-bottom: 10px;"
-                  >Eliminar</a>
-  
-                
+                <a onclick="confirmarEliminar('{{a.0}}')" class="btn btn-danger"
+                  style="margin-bottom: 10px;">Eliminar</a>
+                <button onclick="abrir_modal_edicion('{% url 'admin_alumModi' '{{a.0}}'%}')"
+                  class="btn btn-primary">Modificar</button>
+
               </td>
             </tr>
             {% endfor %}
@@ -131,20 +154,20 @@
             document.addEventListener("DOMContentLoaded", function () {
               var enlacesTexto = document.querySelectorAll(".enlaceTexto");
               var formulario = document.querySelector(".formularioReunion");
-          
+
               enlacesTexto.forEach(function (enlace) {
                 enlace.addEventListener("click", function (event) {
                   event.preventDefault();
-          
+
                   // Obtiene los valores de la fila
                   var rut = this.textContent;
                   var nombre = this.parentNode.nextElementSibling.textContent;
-                  var telefono = this.parentNode.nextElementSibling. nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+                  var telefono = this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
                   var direccion = this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
                   var fecha_nac = this.parentNode.nextElementSibling.nextElementSibling.textContent;
                   var apoderado = this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-                  var info_adicional = this.parentNode.nextElementSibling. nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
-          
+                  var info_adicional = this.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+
                   // Llena los campos del formulario con los valores
                   formulario.querySelector("#rut").value = rut;
                   formulario.querySelector("#nombre").value = nombre;
@@ -157,6 +180,58 @@
               });
             });
           </script>
+          <script>
+            function confirmarEliminar(p_run) {
+              swal.fire({
+                title: '¿Estás seguro?',
+                text: "El alumno será eliminado de la base de datos",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#4CAF50',
+                cancelButtonColor: '#f44336',
+                confirmButtonText: 'Sí',
+                cancelButtonText: 'No',
+                reverseButtons: true,
+                allowOutsideClick: false
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  swal.fire({
+                    title: '¡Eliminado!',
+                    text: 'El apoderado ha sido eliminado de la base de datos',
+                    icon: 'success',
+                    allowOutsideClick: false,
+                    confirmButtonColor: '#4CAF50'
+                  }).then(function () {
+                    window.location.href = "/borrar_alumno/" + p_run + "/";
+                  })
+                } else if (
+                  /* Read more about handling dismissals below */
+                  result.dismiss === Swal.DismissReason.cancel
+                ) {
+                  swal.fire({
+                    title: 'Cancelado',
+                    text: 'El apoderado no ha sido eliminado',
+                    icon: 'error',
+                    confirmButtonColor: '#4CAF50'
+                  })
+                }
+              })
+            }
+          </script>
+          <div class="modal fade" id="edicion" roler="dialog">
+          </div>
+          {% block extrajs %}
+          <script type="text/javascript">
+            var $ = jQuery.noConflict();
+            function abrir_modal_edicion(url) {
+              $('#edicion').load(url, function () {
+                $(this).modal('show');
+              });
+            }
+          </script>
+          {% endblock extrajs%}
+
+
         </table>
 
 

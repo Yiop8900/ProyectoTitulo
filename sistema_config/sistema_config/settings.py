@@ -137,3 +137,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'stmp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'veroizaluis@gmail.com'
+EMAIL_HOST_PASSWORD = 'jbmjudhbnbizgadg'
+EMAIL_USE_SSL = False  # Agrega esta línea
+
+#autenticacion 
+AUTH_USER_MODEL = 'sistemaEducacion.User'
+
+
+# Agrega estas líneas para habilitar el logging
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
